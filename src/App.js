@@ -1,5 +1,5 @@
 
-import './App.css';
+import './styles/sass/App.scss';
 
 function App() {
   return (
