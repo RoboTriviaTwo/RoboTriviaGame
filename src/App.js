@@ -1,17 +1,39 @@
-
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+// import { Routes, Route, useParams} from 'react-router-dom';
 import './styles/sass/App.scss';
 
 function App() {
+  const [categoryArr, setCategoryArr] = useState([]);
+
+  // useEffect for axios - put this info in dropdown
+    // associate id and name of category
+  useEffect(() => {
+    axios({
+      url: "https://opentdb.com/api_category.php",
+      method: "GET",
+      responseType: "json",
+      params: {},
+    })
+      .then((res) => {
+        setCategoryArr(res.data.trivia_categories);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [])
+
   return (
     <div>
-
+      <h1>RoboTrivia</h1>
     </div>
   );
 }
 
 export default App;
 
-
+// npm install
+// axios
 
 
 // pseudo code
