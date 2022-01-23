@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import UserSelectionForm from './components/UserSelectionForm';
 // import { Routes, Route, useParams} from 'react-router-dom';
 import './styles/sass/App.scss';
 
@@ -26,6 +27,7 @@ function App() {
   return (
     <div>
       <h1>RoboTrivia</h1>
+      <UserSelectionForm array={categoryArr} />
     </div>
   );
 }
