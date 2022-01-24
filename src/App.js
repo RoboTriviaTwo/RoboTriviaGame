@@ -15,6 +15,7 @@ function App() {
         <Route path="/" element={<UserSelectionForm />} />
         <Route path="/playernames/:num" element={<PlayerNames />} />
       </Routes>
+      <PlayerNames />
     </div>
   );
 }
