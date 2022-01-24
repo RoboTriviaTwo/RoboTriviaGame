@@ -5,7 +5,39 @@ import UserSelectionForm from './components/UserSelectionForm';
 import './styles/sass/App.scss';
 
 function App() {
+  // api call for category
   const [categoryArr, setCategoryArr] = useState([]);
+
+  // useStates from form component - for second api call
+  // const [userCategoryString, setCategoryString] = useState("");
+  // const [userDifficultyString, setDifficultyString] = useState(""); 
+
+
+  const submitHandler = (event, userDifficulty, userCategory) => {
+    event.preventDefault();
+    //  setCategoryString(userCategory);
+    //  setDifficultyString(userDifficulty);
+    axios({
+      url: "https://opentdb.com/api.php",
+      method: "GET",
+      responseType: "json",
+      params: {
+        // category: 19,
+        // type: "multiple",
+        // difficulty: "hard",
+        amount: 10,
+        category: userCategory,
+        type: "multiple",
+        difficulty: userDifficulty,
+      },
+    })
+    .then((res) => {
+      console.log(res.data.results);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  };
 
   // useEffect for axios - put this info in dropdown
     // associate id and name of category
@@ -24,10 +56,34 @@ function App() {
       });
   }, [])
 
+  // useEffect - second api call
+  // const getData = () => {
+  //   axios({
+  //     url: "https://opentdb.com/api.php",
+  //     method: "GET",
+  //     responseType: "json",
+  //     params: {
+  //       category: 19,
+  //       type: "multiple",
+  //       difficulty: "hard",
+  //       // category: userCategoryString,
+  //       // type: "multiple",
+  //       // difficulty: userDifficultyString,
+  //     },
+  //   })
+  //     .then((res) => {
+  //       console.log(res);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+
+
   return (
     <div>
       <h1>RoboTrivia</h1>
-      <UserSelectionForm array={categoryArr} />
+      <UserSelectionForm array={categoryArr} submitHandler={submitHandler}/>
     </div>
   );
 }
@@ -48,7 +104,7 @@ export default App;
 
 
 // ===========Player Info============ 
-// page to coolect user name and show
+// page to collect user name and show
     // This depends on the num-player chosen from loading page
     // this process will populate name and robot part of our data structure
     // button to proceed to next stage 

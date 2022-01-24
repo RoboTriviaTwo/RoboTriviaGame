@@ -16,17 +16,11 @@ const UserSelectionForm = (props) => {
         setUserDifficulty(event.target.value);
         // console.log(userDifficulty);
     }
-    const testFunction = (event, userDifficulty, userCategory) => {
-        event.preventDefault();
-        console.log(userDifficulty, userCategory);
-    }
-
 
     return(
-
         <form 
         action=""
-            onSubmit={(event) => { testFunction(event, userDifficulty, userCategory)}}
+            onSubmit={(event) => { props.submitHandler(event, userDifficulty, userCategory)}}
         >
             {/* <p>Number of Players</p> */}
             <p>Category</p>
@@ -37,7 +31,6 @@ const UserSelectionForm = (props) => {
                 id="categoryType"
                 onChange={handleCategoryChoice}
                 value={userCategory}
-
                 >
                     <option value="placeholder" default hidden>Pick One</option>
                     {props.array.map((categoryObj) => {
@@ -51,7 +44,7 @@ const UserSelectionForm = (props) => {
                 </select>
                 
                 
-                <label htmlFor="difficulties">Choose Your Category</label>
+                <label htmlFor="difficulties">Choose Your Difficulty</label>
                 <select 
                 name="difficulties" 
                 id="difficulties"
