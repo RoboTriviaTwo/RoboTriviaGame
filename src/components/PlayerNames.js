@@ -5,16 +5,19 @@ import { useParams } from "react-router-dom";
 
 const PlayerNames = () => {
     // const [playerName, setPlayerName] = useState([]);
-    // const nameArr = [];
+    
     // const {num} = useParams()
     // console.log(num)
 
+    // how do we append an object to the userNameArr?
+    const userNameArr = [];
     const [userName, setUserName] = useState('');
     const [avatarImage, setAvatarImage] = useState([]);
 
     const handleAvatarSubmit = (event) => {
         event.preventDefault()
         setAvatarImage(userName)
+        
     };
 
     const handleUserName = (event) => {
@@ -22,6 +25,15 @@ const PlayerNames = () => {
         console.log(userName)
     }
 
+    // const userNameArr = 
+
+    // userInfo Object:
+    // name: userName,
+    // avatar: avatarImage,
+    // score: 
+
+    userNameArr.push({name: userName, image: avatarImage })
+    console.log(userNameArr)
 
     return (
         <>
@@ -35,7 +47,7 @@ const PlayerNames = () => {
         {avatarImage != '' ?
         // <p>Hello, {userName}, please meet your avatar</p>
             <img src={`https://robohash.org/${avatarImage}.png`}></img> : null}      
-
+            {/* need to get the image url in the image property of object */}
         </>
 
 
