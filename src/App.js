@@ -1,7 +1,10 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import UserSelectionForm from './components/UserSelectionForm';
-// import { Routes, Route, useParams} from 'react-router-dom';
+import UserSelectionForm from './components/UserSelectionForm.js';
+import { Route, Routes } from 'react-router-dom';
+import PlayerNames from './components/PlayerNames.js';
+
+// import { Routes, Route, Link} from 'react-router-dom';
 import './styles/sass/App.scss';
 
 function App() {
@@ -92,6 +95,11 @@ useEffect( () => {
         userCategory={userCategory}
         userDifficulty={userDifficulty} 
       />
+
+      <Routes>
+        <Route path='/playernames/:num' element={<PlayerNames />} />
+      </Routes>
+
     </div>
   );
 }

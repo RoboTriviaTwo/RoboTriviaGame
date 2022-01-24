@@ -1,13 +1,16 @@
+import { Link } from "react-router-dom";
+
 const UserSelectionForm = (props) => {
     const { array, submitHandler, handlePlayerNumber, handleCategoryChoice, handleDifficultyChoice, numOfPlayers, userCategory, userDifficulty } = props;
     const difficultyArr = ["easy", "medium", "hard"];
 
     return(
+        <>
         <form 
         action=""
         onSubmit={(event) => {submitHandler(event)}}
         >
-
+            
             <fieldset>
                 <label htmlFor="playerNumbers">Choose the Number of Players</label>
                 <select 
@@ -59,11 +62,21 @@ const UserSelectionForm = (props) => {
                     })}
                 </select>
 
-                <button type="submit">Submit</button>
+                <button type="submit"><Link to={`/playernames/${numOfPlayers}`}>Submit</Link></button>
 
             </fieldset>
             {/* <p>Difficulty</p> */}
         </form>
+
+
+
+            
+
+            {/* <Routes>
+                <Route path='/playernames/:num' element={<PlayerNames />} />
+            </Routes> */}
+
+        </>
         
     );
 }
