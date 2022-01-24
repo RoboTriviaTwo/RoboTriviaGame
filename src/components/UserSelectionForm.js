@@ -2,25 +2,13 @@ import { useState } from "react";
 
 
 const UserSelectionForm = (props) => {
-
+    const { array, submitHandler, handleCategoryChoice, handleDifficultyChoice, userCategory, userDifficulty } = props;
     const difficultyArr = ["easy", "medium", "hard"];
-    const [userCategory, setUserCategory] = useState("");
-    const [userDifficulty, setUserDifficulty] = useState("");
-
-    const handleCategoryChoice = (event) => {
-        setUserCategory(event.target.value);
-        // console.log(userCategory);
-    }
-
-    const handleDifficultyChoice = (event) => {
-        setUserDifficulty(event.target.value);
-        // console.log(userDifficulty);
-    }
 
     return(
         <form 
         action=""
-            onSubmit={(event) => { props.submitHandler(event, userDifficulty, userCategory)}}
+        onSubmit={(event) => {submitHandler(event)}}
         >
             {/* <p>Number of Players</p> */}
             <p>Category</p>
@@ -33,7 +21,7 @@ const UserSelectionForm = (props) => {
                 value={userCategory}
                 >
                     <option value="placeholder" default hidden>Pick One</option>
-                    {props.array.map((categoryObj) => {
+                    {array.map((categoryObj) => {
                         // console.log(categoryObj);
                         return(
                             <option key={categoryObj.id} value={categoryObj.id}>

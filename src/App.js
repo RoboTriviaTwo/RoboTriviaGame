@@ -9,38 +9,27 @@ function App() {
   const [categoryArr, setCategoryArr] = useState([]);
 
   // useStates from form component - for second api call
-  // const [userCategoryString, setCategoryString] = useState("");
-  // const [userDifficultyString, setDifficultyString] = useState(""); 
+  const [userCategory, setUserCategory] = useState("");
+  const [userDifficulty, setUserDifficulty] = useState("");
+  const [submitButton, setSubmitButton] = useState(false)
 
+  const handleCategoryChoice = (event) => {
+    setUserCategory(event.target.value);
+    // console.log(userCategory);
+  }
 
-  const submitHandler = (event, userDifficulty, userCategory) => {
-    event.preventDefault();
-    //  setCategoryString(userCategory);
-    //  setDifficultyString(userDifficulty);
-    axios({
-      url: "https://opentdb.com/api.php",
-      method: "GET",
-      responseType: "json",
-      params: {
-        // category: 19,
-        // type: "multiple",
-        // difficulty: "hard",
-        amount: 10,
-        category: userCategory,
-        type: "multiple",
-        difficulty: userDifficulty,
-      },
-    })
-    .then((res) => {
-      console.log(res.data.results);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  };
+  const handleDifficultyChoice = (event) => {
+    setUserDifficulty(event.target.value);
+    // console.log(userDifficulty);
+  }
+
+  const submitHandler = (event) => {
+      event.preventDefault();
+      setSubmitButton(!submitButton);
+    };
 
   // useEffect for axios - put this info in dropdown
-    // associate id and name of category
+  // associate id and name of category
   useEffect(() => {
     axios({
       url: "https://opentdb.com/api_category.php",
@@ -56,34 +45,50 @@ function App() {
       });
   }, [])
 
-  // useEffect - second api call
-  // const getData = () => {
-  //   axios({
-  //     url: "https://opentdb.com/api.php",
-  //     method: "GET",
-  //     responseType: "json",
-  //     params: {
-  //       category: 19,
-  //       type: "multiple",
-  //       difficulty: "hard",
-  //       // category: userCategoryString,
-  //       // type: "multiple",
-  //       // difficulty: userDifficultyString,
-  //     },
-  //   })
-  //     .then((res) => {
-  //       console.log(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+
+useEffect( () => {
+  if (userCategory !== "" ) {
+    
+    axios({
+        url: "https://opentdb.com/api.php",
+        method: "GET",
+        responseType: "json",
+        params: {
+          // category: 19,
+          // type: "multiple",
+          // difficulty: "hard",
+          amount: 10,
+          category: userCategory,
+          type: "multiple",
+          difficulty: userDifficulty,
+        },
+      })
+      .then((res) => {
+        console.log(res.data.results);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+  } 
+}, [submitButton])
+
+  
 
 
+
+  
   return (
     <div>
       <h1>RoboTrivia</h1>
-      <UserSelectionForm array={categoryArr} submitHandler={submitHandler}/>
+      <UserSelectionForm 
+        array={categoryArr} 
+        submitHandler={submitHandler} 
+        handleCategoryChoice={handleCategoryChoice} 
+        handleDifficultyChoice={handleDifficultyChoice}
+        userCategory={userCategory}
+        userDifficulty={userDifficulty} 
+      />
     </div>
   );
 }
