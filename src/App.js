@@ -9,9 +9,16 @@ function App() {
   const [categoryArr, setCategoryArr] = useState([]);
 
   // useStates from form component - for second api call
+  const [numOfPlayers, setNumOfPlayers] = useState(0);
+
   const [userCategory, setUserCategory] = useState("");
   const [userDifficulty, setUserDifficulty] = useState("");
+
   const [submitButton, setSubmitButton] = useState(false)
+
+  const handlePlayerNumber = (event) => {
+    setNumOfPlayers(event.target.value);
+  }
 
   const handleCategoryChoice = (event) => {
     setUserCategory(event.target.value);
@@ -47,7 +54,7 @@ function App() {
 
 
 useEffect( () => {
-  if (userCategory !== "" ) {
+  if (userCategory !== ""){
     
     axios({
         url: "https://opentdb.com/api.php",
@@ -69,23 +76,19 @@ useEffect( () => {
       .catch((err) => {
         console.log(err);
       });
-
-  } 
+  }
 }, [submitButton])
 
-  
-
-
-
-  
   return (
     <div>
       <h1>RoboTrivia</h1>
       <UserSelectionForm 
         array={categoryArr} 
         submitHandler={submitHandler} 
+        handlePlayerNumber={handlePlayerNumber}
         handleCategoryChoice={handleCategoryChoice} 
         handleDifficultyChoice={handleDifficultyChoice}
+        numOfPlayers={numOfPlayers}
         userCategory={userCategory}
         userDifficulty={userDifficulty} 
       />

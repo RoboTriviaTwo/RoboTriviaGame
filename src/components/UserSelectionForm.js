@@ -1,8 +1,5 @@
-import { useState } from "react";
-
-
 const UserSelectionForm = (props) => {
-    const { array, submitHandler, handleCategoryChoice, handleDifficultyChoice, userCategory, userDifficulty } = props;
+    const { array, submitHandler, handlePlayerNumber, handleCategoryChoice, handleDifficultyChoice, numOfPlayers, userCategory, userDifficulty } = props;
     const difficultyArr = ["easy", "medium", "hard"];
 
     return(
@@ -10,9 +7,22 @@ const UserSelectionForm = (props) => {
         action=""
         onSubmit={(event) => {submitHandler(event)}}
         >
-            {/* <p>Number of Players</p> */}
-            <p>Category</p>
+
             <fieldset>
+                <label htmlFor="playerNumbers">Choose the Number of Players</label>
+                <select 
+                name="playerNumbers" 
+                id="playerNumbers"
+                onChange={handlePlayerNumber}
+                value={numOfPlayers}
+                >
+                    <option value="placeholder" default hidden>Pick One</option>
+                    <option value={1}>1</option>
+                    <option value={2}>2</option>
+                    <option value={3}>3</option>
+                    <option value={4}>4</option>
+                </select>
+
                 <label htmlFor="categoryType">Choose Your Category</label>
                 <select 
                 name="categoryType" 
@@ -30,7 +40,6 @@ const UserSelectionForm = (props) => {
                         )
                     })}
                 </select>
-                
                 
                 <label htmlFor="difficulties">Choose Your Difficulty</label>
                 <select 
@@ -51,7 +60,6 @@ const UserSelectionForm = (props) => {
                 </select>
 
                 <button type="submit">Submit</button>
-
 
             </fieldset>
             {/* <p>Difficulty</p> */}
