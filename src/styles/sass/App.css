@@ -230,6 +230,14 @@ html {
   overflow: hidden;
 }
 
+.correctAnswer:active {
+  border: 2px solid green;
+}
+
+.incorrectAnswer:active {
+  border: 2px solid red;
+}
+
 .App {
   text-align: center;
 }

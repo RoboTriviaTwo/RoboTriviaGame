@@ -35,9 +35,29 @@ import Quiz from './Quiz.js';
     setSubmitButton(!submitButton);
   };
 
-  const randomizer = () => {
-    return Math.floor(Math.random() * 4);
-  };
+  // const randomizer = () => {
+  //   return Math.floor(Math.random() * 4);
+  // };
+
+
+    const shuffleArr = (array) => {
+      let currentIndex = array.length, randomIndex;
+
+      // While there remain elements to shuffle...
+      while (currentIndex != 0) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex], array[currentIndex]];
+      }
+
+      return array;
+    }
+
 
   // useEffect for axios - put this info in dropdown
   // associate id and name of category
@@ -73,35 +93,32 @@ import Quiz from './Quiz.js';
         .then((res) => {
           // questions array
           const returnedObject = res.data.results;
-          const combinedAnswers = (quizQuestions) => {
 
-            const combinedAnswerArr = [...quizQuestions]
-            combinedAnswerArr.forEach((quizObject) => {
-              quizObject.allAnswers = quizObject.incorrect_answers.splice(randomizer(), 0, quizObject.correct_answer)
+
+          // console.log(returnedObject);
+
+          const combinedAnswerArr = [...returnedObject];
+
+          combinedAnswerArr.forEach((quizObject) => {
+            const quizAnswers = [quizObject.correct_answer, ...quizObject.incorrect_answers];
+            const updatedQuizAnswers = quizAnswers.map((quiz) => {
+              if(quiz === quizObject.correct_answer){
+                return{
+                  name: quiz,
+                  isCorrect: true,
+                }
+              } else {
+                return {
+                  name: quiz,
+                  isCorrect: false,
+                }
+              }
             })
-            setQuizQuestions(combinedAnswerArr);
-            console.log(quizQuestions);
-          }
+            quizObject.answerButtons = shuffleArr(updatedQuizAnswers);
+          })
 
-          combinedAnswers(returnedObject);
-          // returnedObject.forEach()
-          // setQuizQuestions(returnedObject);
-          // code for questions!
-
-
-          // const resturnedObject = res.data.results
-
-
-          // const combinedAnswers = (triviaQuestion) => {
-          //   const responseWithCombined = [...triviaQuestion];
-          //   // Need to figure out how to shuffle the answers
-          //   responseWithCombined.forEach((triviaObject) => {
-          //     triviaObject.allAnswers = [...triviaObject.incorrect_answers, triviaObject.correct_answer]
-          //   })
-          //   setQuizQuestions(responseWithCombined);
-          // }
-          // combinedAnswers(resturnedObject);
-          // console.log(quizQuestions)
+          setQuizQuestions(combinedAnswerArr);
+          
         })
         .catch((err) => {
           console.log(err);
