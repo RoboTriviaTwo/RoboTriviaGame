@@ -78,8 +78,18 @@ function App() {
         .then((res) => {
           // questions array
           const returnedObject = res.data.results;
+          const combinedAnswers = (quizQuestions)=>{
+            const combinedAnswerArr = [...quizQuestions]
+            combinedAnswerArr.forEach((quizObject)=>{
+              quizObject.allAnswers = [...quizObject.incorrect_answers, quizObject.correct_answer]
+            })
+            setQuizQuestions(combinedAnswerArr);
+            console.log(quizQuestions);
+          }
+          
+          combinedAnswers(returnedObject);
           // returnedObject.forEach()
-          setQuizQuestions(returnedObject[0].question);
+          // setQuizQuestions(returnedObject);
           // code for questions!
 
 
