@@ -1,17 +1,147 @@
-
+// import UserSelectionForm from './components/UserSelectionForm.js';
+// import { Route, Routes } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import PlayerNames from './components/PlayerNames.js';
+// import Quiz from './components/Quiz.js';
+import UserSelectionForm from './components/UserSelectionForm.js';
+import Quiz from './components/Quiz.js';
+// import { Routes, Route, Link} from 'react-router-dom';
 import './styles/sass/App.scss';
 
+
+  
+
 function App() {
+
+  const difficultyArr = ["easy", "medium", "hard"];
+  // api call for category
+  const [categoryArr, setCategoryArr] = useState([]);
+  // useStates from form component - for second api call
+  // const [numOfPlayers, setNumOfPlayers] = useState(0);
+  const [userCategory, setUserCategory] = useState("");
+  const [userDifficulty, setUserDifficulty] = useState("");
+  const [submitButton, setSubmitButton] = useState(false);
+  
+  // setting state with quiz questions
+  const [quizQuestions, setQuizQuestions] = useState([]); 
+
+  // const handlePlayerNumber = (event) => {
+  //   setNumOfPlayers(event.target.value);
+  // };
+
+  const handleCategoryChoice = (event) => {
+    setUserCategory(event.target.value);
+  };
+
+  const handleDifficultyChoice = (event) => {
+    setUserDifficulty(event.target.value);
+    // console.log(userDifficulty);
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+    setSubmitButton(!submitButton);
+  };
+
+  const randomizer = () => { 
+    return Math.floor(Math.random() * 4); 
+  };
+
+  // useEffect for axios - put this info in dropdown
+  // associate id and name of category
+  useEffect(() => {
+    axios({
+      url: "https://opentdb.com/api_category.php",
+      method: "GET",
+      responseType: "json",
+      params: {},
+    })
+      .then((res) => {
+        setCategoryArr(res.data.trivia_categories);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    // console.log("app is running");
+    if (userCategory !== "") {
+      axios({
+        url: "https://opentdb.com/api.php",
+        method: "GET",
+        responseType: "json",
+        params: {
+          amount: 10,
+          category: userCategory,
+          type: "multiple",
+          difficulty: userDifficulty,
+        },
+      })
+        .then((res) => {
+          // questions array
+          const returnedObject = res.data.results;
+          const combinedAnswers = (quizQuestions)=>{
+            
+            const combinedAnswerArr = [...quizQuestions]
+            combinedAnswerArr.forEach((quizObject)=>{
+              quizObject.allAnswers = quizObject.incorrect_answers.splice(randomizer(), 0, quizObject.correct_answer)
+            })
+            setQuizQuestions(combinedAnswerArr);
+            console.log(quizQuestions);
+          }
+          
+          combinedAnswers(returnedObject);
+          // returnedObject.forEach()
+          // setQuizQuestions(returnedObject);
+          // code for questions!
+
+
+          // const resturnedObject = res.data.results
+
+
+          // const combinedAnswers = (triviaQuestion) => {
+          //   const responseWithCombined = [...triviaQuestion];
+          //   // Need to figure out how to shuffle the answers
+          //   responseWithCombined.forEach((triviaObject) => {
+          //     triviaObject.allAnswers = [...triviaObject.incorrect_answers, triviaObject.correct_answer]
+          //   })
+          //   setQuizQuestions(responseWithCombined);
+          // }
+          // combinedAnswers(resturnedObject);
+          // console.log(quizQuestions)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [submitButton]);
+
   return (
     <div>
+      <h1>RoboTrivia</h1>
+      <UserSelectionForm
+        submitHandler={submitHandler}
+        handleCategoryChoice={handleCategoryChoice}
+        userCategory={userCategory}
+        handleDifficultyChoice={handleDifficultyChoice}
+        userDifficulty={userDifficulty}
+        categoryArr={categoryArr}
+        difficultyArr={difficultyArr}
+        submitButton={submitButton}
+      />
 
+      <PlayerNames />
+      <Quiz quizQuestions={quizQuestions} />
     </div>
   );
 }
 
 export default App;
 
-
+// npm install
+// axios
 
 
 // pseudo code
@@ -24,7 +154,7 @@ export default App;
 
 
 // ===========Player Info============ 
-// page to coolect user name and show
+// page to collect user name and show
     // This depends on the num-player chosen from loading page
     // this process will populate name and robot part of our data structure
     // button to proceed to next stage 
