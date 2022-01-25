@@ -13,17 +13,23 @@ const PlayerNames = () => {
     const userNameArr = [];
     const [userName, setUserName] = useState('');
     const [avatarImage, setAvatarImage] = useState([]);
+    // const [avatarUrl, setAvatarUrl] = useState('')
 
     const handleAvatarSubmit = (event) => {
         event.preventDefault()
+        console.log(event)
         setAvatarImage(userName)
-        
+        // setAvatarUrl(`https://robohash.org/${avatarImage}.png`)
     };
+
+
 
     const handleUserName = (event) => {
         setUserName(event.target.value)
         console.log(userName)
     }
+
+
 
     // const userNameArr = 
 
