@@ -18,7 +18,7 @@ const Quiz = (props) => {
             
             <p>Question: {props.quizQuestions[2].question}</p>
             {
-              props.quizQuestions[2].allAnswers.map((answerItem, index)=>{
+              props.quizQuestions[2].incorrect_answers.map((answerItem, index)=>{
                 return(
                   <button
                     value={answerItem}

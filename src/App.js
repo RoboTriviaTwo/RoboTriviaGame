@@ -44,6 +44,10 @@ function App() {
     setSubmitButton(!submitButton);
   };
 
+  const randomizer = () => { 
+    return Math.floor(Math.random() * 4); 
+  };
+
   // useEffect for axios - put this info in dropdown
   // associate id and name of category
   useEffect(() => {
@@ -79,9 +83,10 @@ function App() {
           // questions array
           const returnedObject = res.data.results;
           const combinedAnswers = (quizQuestions)=>{
+            
             const combinedAnswerArr = [...quizQuestions]
             combinedAnswerArr.forEach((quizObject)=>{
-              quizObject.allAnswers = [...quizObject.incorrect_answers, quizObject.correct_answer]
+              quizObject.allAnswers = quizObject.incorrect_answers.splice(randomizer(), 0, quizObject.correct_answer)
             })
             setQuizQuestions(combinedAnswerArr);
             console.log(quizQuestions);
