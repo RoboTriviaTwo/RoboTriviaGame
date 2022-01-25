@@ -1,13 +1,25 @@
+import { useState } from "react";
+
 
 const Quiz = (props) => {
 
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+
   const handleAnswerClick = (event) => {
     const userAnswer = event.target.value;
-    if (userAnswer === props.quizQuestions[2].correct_answer){
+    if (userAnswer === props.quizQuestions[currentQuestion].correct_answer){
       console.log("Correct!")
     }else{
       console.log("Nope!")
     }
+    if (currentQuestion < props.quizQuestions.length - 1 ){
+      setCurrentQuestion(currentQuestion + 1)
+      console.log(currentQuestion);
+    } 
+    else {
+      alert("end of quiz");
+    }
+    // console.log(currentQuestion);
   }
 
     return (
@@ -16,9 +28,9 @@ const Quiz = (props) => {
           <>
             <h2>quiz here</h2>
             
-            <p>Question: {props.quizQuestions[2].question}</p>
+            <p>Question: {props.quizQuestions[currentQuestion].question}</p>
             {
-              props.quizQuestions[2].incorrect_answers.map((answerItem, index)=>{
+              props.quizQuestions[currentQuestion].incorrect_answers.map((answerItem, index)=>{
                 return(
                   <button
                     value={answerItem}
