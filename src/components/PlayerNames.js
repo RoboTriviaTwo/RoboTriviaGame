@@ -26,7 +26,7 @@ const PlayerNames = () => {
 
     const handleUserName = (event) => {
         setUserName(event.target.value)
-        console.log(userName)
+        // console.log(userName)
     }
 
 
@@ -39,7 +39,7 @@ const PlayerNames = () => {
     // score: 
 
     userNameArr.push({name: userName, image: avatarImage })
-    console.log(userNameArr)
+    // console.log(userNameArr)
 
     return (
         <>

@@ -5,7 +5,7 @@ import axios from 'axios';
 import PlayerNames from './components/PlayerNames.js';
 // import Quiz from './components/Quiz.js';
 import UserSelectionForm from './components/UserSelectionForm.js';
-
+import Quiz from './components/Quiz.js';
 // import { Routes, Route, Link} from 'react-router-dom';
 import './styles/sass/App.scss';
 
@@ -24,7 +24,7 @@ function App() {
   const [submitButton, setSubmitButton] = useState(false);
   
   // setting state with quiz questions
-  const [quizQuestions, setQuizQuestions] = []; 
+  const [quizQuestions, setQuizQuestions] = useState([]); 
 
   // const handlePlayerNumber = (event) => {
   //   setNumOfPlayers(event.target.value);
@@ -76,11 +76,11 @@ function App() {
         },
       })
         .then((res) => {
-
+          // questions array
           const returnedObject = res.data.results;
-          returnedObject.forEach()
-          console.log(returnedObject)
-
+          // returnedObject.forEach()
+          setQuizQuestions(returnedObject[0].question);
+          // code for questions!
 
 
           // const resturnedObject = res.data.results
@@ -106,21 +106,20 @@ function App() {
   return (
     <div>
       <h1>RoboTrivia</h1>
-      <UserSelectionForm 
-      submitHandler={submitHandler}
-      handleCategoryChoice={handleCategoryChoice}
+      <UserSelectionForm
+        submitHandler={submitHandler}
+        handleCategoryChoice={handleCategoryChoice}
         userCategory={userCategory}
         handleDifficultyChoice={handleDifficultyChoice}
         userDifficulty={userDifficulty}
         categoryArr={categoryArr}
         difficultyArr={difficultyArr}
-        submitButton={submitButton}/>
+        submitButton={submitButton}
+      />
 
-        <PlayerNames />
-
-    {/* <PlayerNames />
-    <Quiz /> */}
-        </div>
+      <PlayerNames />
+      <Quiz quizQuestions={quizQuestions} />
+    </div>
   );
 }
 
