@@ -13,7 +13,7 @@ const Quiz = (props) => {
     const userAnswer = event.target.value;
     if (userAnswer === props.quizQuestions[currentQuestion].correct_answer){
       console.log("Correct!");
-      setCurrentScore(currentScore + 1);
+      setCurrentScore(currentScore + 100);
       // setIsCorrect(true);  
     } else {
       console.log("Nope!");
