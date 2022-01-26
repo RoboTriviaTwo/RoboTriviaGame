@@ -43,7 +43,8 @@ const Quiz = (props) => {
          {props.quizQuestions.length !== 0 ? (
           <>
             <h2>quiz here</h2>
-            <p>Question: {props.quizQuestions[currentQuestion].question}</p>
+            <p>Question: {(props.quizQuestions[currentQuestion].question).replace(/&quot;/g, '"').replace(/&rsquo;/g, "'").replace(/&Eacute;/g, "é").replace(/&#039;/g, "'").replace(/&shy;/g, "")}
+            </p>
               {props.quizQuestions[currentQuestion].answerButtons.map(
               (answerItem, index) => {
                 return (
@@ -55,7 +56,7 @@ const Quiz = (props) => {
                       answerItem.isCorrect ? "correctAnswer" : "incorrectAnswer"
                     }
                   >
-                    {answerItem.name}
+                    {(answerItem.name).replace(/&quot;/g, '"').replace(/&rsquo;/g, "'").replace(/&Eacute;/g, "é").replace(/&#039;/g, "'").replace(/&shy;/g, "")}
                   </button>
                 );
               }
