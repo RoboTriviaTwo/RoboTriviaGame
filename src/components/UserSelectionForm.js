@@ -18,15 +18,35 @@ import Quiz from './Quiz.js';
   const [quizQuestions, setQuizQuestions] = useState([]);
 
   const [userName, setUserName] = useState('');
-  const [allPlayersArr, setAllPlayersArr] = useState([]);
-  const [playerOneObj, setPlayerOneObj] = useState({});
-  const [playerTwoObj, setPlayerTwoObj] = useState({});
-  const [playerThreeObj, setPlayerThreeObj] = useState({});
-  const [playerFourObj, setPlayerFourObj] = useState({});
+  const [allPlayersArrCounter, setAllPlayerArrCounter] = useState(0);
+  const [allPlayersArr, setAllPlayersArr] = useState([
+    {
+      playerName:"",
+      score:0
+    },
+    {
+      playerName: "",
+      score: 0
+    },
+    {
+      playerName: "",
+      score: 0
+    },
+    {
+      playerName: "",
+      score: 0
+    },
+  ]);
+  // const [playerOneObj, setPlayerOneObj] = useState({});
+  // const [playerTwoObj, setPlayerTwoObj] = useState({});
+  // const [playerThreeObj, setPlayerThreeObj] = useState({});
+  // const [playerFourObj, setPlayerFourObj] = useState({});
 
   // const handlePlayerNumber = (event) => {
   //   setNumOfPlayers(event.target.value);
   // };
+
+
 
   const handleCategoryChoice = (event) => {
     setUserCategory(event.target.value);
@@ -44,7 +64,28 @@ import Quiz from './Quiz.js';
 
   const handleUserName = (event) => {
     setUserName(event.target.value)
+    
     // console.log(userName)
+  }
+
+    const AllPlayerArrUpdate = () => {
+      let tempAllPlayersArr = [...allPlayersArr];
+      tempAllPlayersArr[allPlayersArrCounter] = {
+        ...tempAllPlayersArr[allPlayersArrCounter],
+        playerName: userName
+      }
+      console.log(tempAllPlayersArr)
+    }
+
+  const handleNameSubmit = () => {
+    
+      setAllPlayerArrCounter(allPlayersArrCounter + 1)
+      console.log(allPlayersArrCounter);
+
+    AllPlayerArrUpdate()
+    
+    
+    
   }
 
   // const randomizer = () => {
@@ -52,24 +93,30 @@ import Quiz from './Quiz.js';
   // };
 
 
-    const shuffleArr = (array) => {
-      let currentIndex = array.length, randomIndex;
+  const shuffleArr = (array) => {
+    let currentIndex = array.length, randomIndex;
 
-      // While there remain elements to shuffle...
-      while (currentIndex != 0) {
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
 
-        // Pick a remaining element...
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
 
-        // And swap it with the current element.
-        [array[currentIndex], array[randomIndex]] = [
-          array[randomIndex], array[currentIndex]];
-      }
-
-      return array;
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
     }
 
+    return array;
+  }
+    
+  //   useEffect(()=>{
+  //     AllPlayerArrUpdate()
+  //     setAllPlayersArr(tempAllPlayersArr)
+         
+        
+  // },[userName])
 
   // useEffect for axios - put this info in dropdown
   // associate id and name of category
@@ -207,6 +254,7 @@ import Quiz from './Quiz.js';
       <PlayerNames 
         handleUserName={handleUserName}
         userName={userName}
+        handleNameSubmit={handleNameSubmit}
       />
       <Quiz quizQuestions={quizQuestions} />
 

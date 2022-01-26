@@ -14,7 +14,7 @@ const PlayerNames = (props) => {
     // const [userName, setUserName] = useState('');
     const [avatarImage, setAvatarImage] = useState([]);
 
-    const [allPlayersArrCounter, setAllPlayerArrCounter] = useState(0);
+    
     // const [avatarUrl, setAvatarUrl] = useState('')
 
     const handleAvatarSubmit = (event) => {
@@ -24,12 +24,7 @@ const PlayerNames = (props) => {
         // setAvatarUrl(`https://robohash.org/${avatarImage}.png`)
     };
 
-    const handleNameSubmit = () => {
-        if (avatarImage){
-            setAllPlayerArrCounter(allPlayersArrCounter + 1)
-            console.log(allPlayersArrCounter);
-        }
-    }
+    
 
 
 
@@ -58,7 +53,7 @@ const PlayerNames = (props) => {
             <input onChange={props.handleUserName} type="text" id="playerName" value={props.userName}/>
             <button>Generate 🤖</button>
             <button
-                onClick={handleNameSubmit}
+                onClick={props.handleNameSubmit}
             >submit</button>
         </form>
 
