@@ -9,7 +9,7 @@ import Quiz from './Quiz.js';
   // api call for category
   const [categoryArr, setCategoryArr] = useState([]);
   // useStates from form component - for second api call
-  // const [numOfPlayers, setNumOfPlayers] = useState(0);
+  const [numOfPlayers, setNumOfPlayers] = useState(0);
   const [userCategory, setUserCategory] = useState("");
   const [userDifficulty, setUserDifficulty] = useState("");
   const [submitButton, setSubmitButton] = useState(false);
@@ -17,9 +17,15 @@ import Quiz from './Quiz.js';
   // setting state with quiz questions
   const [quizQuestions, setQuizQuestions] = useState([]);
 
-  const [avatarImage, setAvatarImage] = useState('');
+  const [hasReachedEndOfQuiz, setHasReachedEndOfQuiz] = useState(false);
+  const [nextPlayer, setNextPlayer] = useState(1);
+  const [reachedPlayerFour, setReachedPlayerFour] = useState(false);
+  const [currentPlayer, setCurrentPlayer] = useState(1);
+  const [currentPlayerScore, setCurrentPlayerScore] = useState(0);
+
+  const [avatarImage, setAvatarImage] = useState([]);
   const [userName, setUserName] = useState('');
-  // const [allPlayersArrCounter, setAllPlayerArrCounter] = useState(0);
+  const [allPlayersArrCounter, setAllPlayerArrCounter] = useState(0);
   const [allPlayersArr, setAllPlayersArr] = useState([
     {
       playerName:"",
@@ -41,9 +47,21 @@ import Quiz from './Quiz.js';
   ]);
   
 
-  // const handlePlayerNumber = (event) => {
-  //   setNumOfPlayers(event.target.value);
-  // };
+  const handlePlayerNumber = (event) => {
+    setNumOfPlayers(event.target.value);
+  };
+
+  const handleNextPlayer = () => {
+      axiosTrigger();
+  }
+
+  const axiosTrigger = () => {
+    if (currentPlayer < numOfPlayers){
+    setCurrentPlayer(currentPlayer + 1);
+    console.log(currentPlayer);
+    }
+  }
+  
 
   const handleCategoryChoice = (event) => {
     setUserCategory(event.target.value);
@@ -65,6 +83,13 @@ import Quiz from './Quiz.js';
     // console.log(userName)
   }
 
+  const scoreSetter = (score) => {
+    setCurrentPlayerScore(score)
+  }
+  useEffect(() => {
+    scoreUpdate()
+  }, [currentPlayerScore])
+
   const handleAvatarSubmit = (event) => {
     event.preventDefault()
     // console.log(event)
@@ -72,22 +97,41 @@ import Quiz from './Quiz.js';
     // setAvatarUrl(`https://robohash.org/${avatarImage}.png`)
   };
 
-  const AllPlayerArrUpdate = () => {
-    // // @@@ for multiplayer
-    // let tempAllPlayersArr = [...allPlayersArr];
-    // tempAllPlayersArr[allPlayersArrCounter] = {
-    //   ...tempAllPlayersArr[allPlayersArrCounter],
-    //   playerName: userName
-    // }
-    // setAllPlayersArr(tempAllPlayersArr);
+    const AllPlayerArrUpdate = () => {
+      // // @@@ for multiplayer
+      // let tempAllPlayersArr = [...allPlayersArr];
+      // tempAllPlayersArr[allPlayersArrCounter] = {
+      //   ...tempAllPlayersArr[allPlayersArrCounter],
+      //   playerName: userName
+      // }
+      // setAllPlayersArr(tempAllPlayersArr);
 
-    let tempAllPlayersArr = [...allPlayersArr];
-    tempAllPlayersArr[0] = {
-      ...tempAllPlayersArr[0],
-      playerName: userName
+      let tempAllPlayersArr = [...allPlayersArr];
+      tempAllPlayersArr[0] = {
+        ...tempAllPlayersArr[0],
+        playerName: userName
+      }
+      setAllPlayersArr(tempAllPlayersArr);
     }
-    setAllPlayersArr(tempAllPlayersArr);
-  }
+
+    const scoreUpdate = () => {
+      console.log("im running")
+      console.log(currentPlayerScore)
+      // // @@@ for multiplayer
+      // let tempAllPlayersArr = [...allPlayersArr];
+      // tempAllPlayersArr[allPlayersArrCounter] = {
+      //   ...tempAllPlayersArr[allPlayersArrCounter],
+      //   playerName: userName
+      // }
+      // setAllPlayersArr(tempAllPlayersArr);
+
+      let tempAllPlayersArr = [...allPlayersArr];
+      tempAllPlayersArr[0] = {
+        ...tempAllPlayersArr[0],
+        score: currentPlayerScore
+      }
+      setAllPlayersArr(tempAllPlayersArr);
+    }
 
   const handleNameSubmit = () => {
     if (avatarImage) {
@@ -102,12 +146,13 @@ import Quiz from './Quiz.js';
     //   }
     // }  
   }
+  
 
   const shuffleArr = (array) => {
     let currentIndex = array.length, randomIndex;
 
     // While there remain elements to shuffle...
-    while (currentIndex !== 0) {
+    while (currentIndex != 0) {
 
       // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
@@ -121,6 +166,7 @@ import Quiz from './Quiz.js';
     return array;
   }
     
+
   // useEffect for axios - put this info in dropdown
   // associate id and name of category
   useEffect(() => {
@@ -156,6 +202,7 @@ import Quiz from './Quiz.js';
           // questions array
           const returnedObject = res.data.results;
 
+
           // console.log(returnedObject);
 
           const combinedAnswerArr = [...returnedObject];
@@ -185,7 +232,7 @@ import Quiz from './Quiz.js';
           console.log(err);
         });
     }
-  }, [submitButton]);
+  }, [submitButton, currentPlayer]);
 
   return (
     <>
@@ -197,7 +244,7 @@ import Quiz from './Quiz.js';
       >
         <fieldset>
           <label htmlFor="playerNumbers">Choose the Number of Players</label>
-          {/* @@@ for multiplayer
+         
           <select
             name="playerNumbers"
             id="playerNumbers"
@@ -211,7 +258,7 @@ import Quiz from './Quiz.js';
             <option value={2}>2</option>
             <option value={3}>3</option>
             <option value={4}>4</option>
-          </select> */}
+          </select>
 
           <label htmlFor="categoryType">Choose Your Category</label>
           <select
@@ -261,7 +308,17 @@ import Quiz from './Quiz.js';
         handleAvatarSubmit={handleAvatarSubmit}
         avatarImage={avatarImage}
       />
-      <Quiz quizQuestions={quizQuestions} />
+      <Quiz 
+        quizQuestions={quizQuestions}
+        numOfPlayers={numOfPlayers}
+        handleNextPlayer={handleNextPlayer}
+        nextPlayer={nextPlayer}
+        reachedPlayerFour={reachedPlayerFour}
+        axiosTrigger={axiosTrigger}
+        scoreSetter={scoreSetter}
+        allPlayersArr={allPlayersArr}
+        // hasReachedEndOfQuiz={hasReachedEndOfQuiz}
+      />
 
     {/* {submitButton ? <Link to={`/playernames/${numOfPlayers}`}>Continue player names</Link> : null} */}
     </>

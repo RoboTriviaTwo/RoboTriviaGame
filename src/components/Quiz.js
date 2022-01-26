@@ -32,6 +32,7 @@ const Quiz = (props) => {
     } else {
       setScoreboard(true);
       setPopup(true);
+      props.scoreSetter(currentScore)
       // alert("end of quiz");
     }
     
@@ -66,7 +67,12 @@ const Quiz = (props) => {
             
           </>
           ) : null}
-        {scoreboard ? <Scoreboard currentScore={currentScore} trigger={popup} setTrigger={setPopup}/> : null}
+        {scoreboard ? <Scoreboard 
+          currentScore={currentScore} 
+          trigger={popup} 
+          setTrigger={setPopup}
+          allPlayersArr={props.allPlayersArr}
+        /> : null}
       </div>
     );
 }

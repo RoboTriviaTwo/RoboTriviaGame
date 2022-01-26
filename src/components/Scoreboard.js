@@ -51,7 +51,7 @@ const Scoreboard = (props) => {
 
   //   push(dbRef, newUserObj);
   // }, [newUserObj]);
-
+  console.log(props.allPlayersArr)
   return (props.trigger) ? (
     <div className="popup">
       <div className="popupInner">
