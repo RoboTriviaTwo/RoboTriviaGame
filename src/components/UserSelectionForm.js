@@ -17,6 +17,7 @@ import Quiz from './Quiz.js';
   // setting state with quiz questions
   const [quizQuestions, setQuizQuestions] = useState([]);
 
+  const [avatarImage, setAvatarImage] = useState([]);
   const [userName, setUserName] = useState('');
   const [allPlayersArrCounter, setAllPlayerArrCounter] = useState(0);
   const [allPlayersArr, setAllPlayersArr] = useState([
@@ -24,23 +25,21 @@ import Quiz from './Quiz.js';
       playerName:"",
       score:0
     },
-    {
-      playerName: "",
-      score: 0
-    },
-    {
-      playerName: "",
-      score: 0
-    },
-    {
-      playerName: "",
-      score: 0
-    },
+    // // @@@ for multiplayer
+    // {
+    //   playerName: "",
+    //   score: 0
+    // },
+    // {
+    //   playerName: "",
+    //   score: 0
+    // },
+    // {
+    //   playerName: "",
+    //   score: 0
+    // },
   ]);
-  // const [playerOneObj, setPlayerOneObj] = useState({});
-  // const [playerTwoObj, setPlayerTwoObj] = useState({});
-  // const [playerThreeObj, setPlayerThreeObj] = useState({});
-  // const [playerFourObj, setPlayerFourObj] = useState({});
+  
 
   // const handlePlayerNumber = (event) => {
   //   setNumOfPlayers(event.target.value);
@@ -68,30 +67,44 @@ import Quiz from './Quiz.js';
     // console.log(userName)
   }
 
+  const handleAvatarSubmit = (event) => {
+    event.preventDefault()
+    // console.log(event)
+    setAvatarImage(userName)
+    // setAvatarUrl(`https://robohash.org/${avatarImage}.png`)
+  };
+
     const AllPlayerArrUpdate = () => {
+      // // @@@ for multiplayer
+      // let tempAllPlayersArr = [...allPlayersArr];
+      // tempAllPlayersArr[allPlayersArrCounter] = {
+      //   ...tempAllPlayersArr[allPlayersArrCounter],
+      //   playerName: userName
+      // }
+      // setAllPlayersArr(tempAllPlayersArr);
+
       let tempAllPlayersArr = [...allPlayersArr];
-      tempAllPlayersArr[allPlayersArrCounter] = {
-        ...tempAllPlayersArr[allPlayersArrCounter],
+      tempAllPlayersArr[0] = {
+        ...tempAllPlayersArr[0],
         playerName: userName
       }
-      console.log(tempAllPlayersArr)
+      setAllPlayersArr(tempAllPlayersArr);
     }
 
   const handleNameSubmit = () => {
-    
-      setAllPlayerArrCounter(allPlayersArrCounter + 1)
-      console.log(allPlayersArrCounter);
-
-    AllPlayerArrUpdate()
-    
-    
-    
+    if (avatarImage) {
+      AllPlayerArrUpdate()
+    }
+    // //@@@ for multiplayer
+    // if(avatarImage && allPlayersArrCounter < 4){
+    //   AllPlayerArrUpdate()
+    //   setAllPlayerArrCounter(allPlayersArrCounter + 1)
+    //   if(allPlayersArrCounter === 3){
+    //     setAllPlayerArrCounter(0);
+    //   }
+    // }  
   }
-
-  // const randomizer = () => {
-  //   return Math.floor(Math.random() * 4);
-  // };
-
+  
 
   const shuffleArr = (array) => {
     let currentIndex = array.length, randomIndex;
@@ -111,12 +124,6 @@ import Quiz from './Quiz.js';
     return array;
   }
     
-  //   useEffect(()=>{
-  //     AllPlayerArrUpdate()
-  //     setAllPlayersArr(tempAllPlayersArr)
-         
-        
-  // },[userName])
 
   // useEffect for axios - put this info in dropdown
   // associate id and name of category
@@ -195,7 +202,8 @@ import Quiz from './Quiz.js';
       >
         <fieldset>
           <label htmlFor="playerNumbers">Choose the Number of Players</label>
-          {/* <select
+          {/* @@@ for multiplayer
+          <select
             name="playerNumbers"
             id="playerNumbers"
             onChange={handlePlayerNumber}
@@ -255,6 +263,8 @@ import Quiz from './Quiz.js';
         handleUserName={handleUserName}
         userName={userName}
         handleNameSubmit={handleNameSubmit}
+        handleAvatarSubmit={handleAvatarSubmit}
+        avatarImage={avatarImage}
       />
       <Quiz quizQuestions={quizQuestions} />
 

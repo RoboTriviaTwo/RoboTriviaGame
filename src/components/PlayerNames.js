@@ -12,17 +12,12 @@ const PlayerNames = (props) => {
     // how do we append an object to the userNameArr?
     const userNameArr = [];
     // const [userName, setUserName] = useState('');
-    const [avatarImage, setAvatarImage] = useState([]);
+    
 
     
     // const [avatarUrl, setAvatarUrl] = useState('')
 
-    const handleAvatarSubmit = (event) => {
-        event.preventDefault()
-        console.log(event)
-        setAvatarImage(props.userName)
-        // setAvatarUrl(`https://robohash.org/${avatarImage}.png`)
-    };
+    
 
     
 
@@ -42,24 +37,24 @@ const PlayerNames = (props) => {
     // avatar: avatarImage,
     // score: 
 
-    userNameArr.push({name: props.userName, image: avatarImage })
+    // userNameArr.push({ name: props.userName, image: props.avatarImage })
     // console.log(userNameArr)
 
     return (
         <>
         <h2>Player Info</h2>
-        <form onSubmit={handleAvatarSubmit} action="">
+            <form onSubmit={props.handleAvatarSubmit} action="">
             <label htmlFor="playerName">Please Enter your Name</label>
             <input onChange={props.handleUserName} type="text" id="playerName" value={props.userName}/>
             <button>Generate 🤖</button>
             <button
                 onClick={props.handleNameSubmit}
-            >submit</button>
+                >🤖 Generate 🤖</button>
         </form>
 
-        {avatarImage != '' ?
+        {props.avatarImage != '' ?
         // <p>Hello, {userName}, please meet your avatar</p>
-            <img src={`https://robohash.org/${avatarImage}.png`}></img> : null}      
+            <img src={`https://robohash.org/${props.avatarImage}.png`}></img> : null}      
             {/* need to get the image url in the image property of object */}
         </>
 
