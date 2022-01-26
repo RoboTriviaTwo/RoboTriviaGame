@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 
-const PlayerNames = () => {
+const PlayerNames = (props) => {
     // const [playerName, setPlayerName] = useState([]);
     
     // const {num} = useParams()
@@ -11,23 +11,22 @@ const PlayerNames = () => {
 
     // how do we append an object to the userNameArr?
     const userNameArr = [];
-    const [userName, setUserName] = useState('');
-    const [avatarImage, setAvatarImage] = useState([]);
+    // const [userName, setUserName] = useState('');
+    
+
+    
     // const [avatarUrl, setAvatarUrl] = useState('')
 
-    const handleAvatarSubmit = (event) => {
-        event.preventDefault()
-        console.log(event)
-        setAvatarImage(userName)
-        // setAvatarUrl(`https://robohash.org/${avatarImage}.png`)
-    };
+    
+
+    
 
 
 
-    const handleUserName = (event) => {
-        setUserName(event.target.value)
-        // console.log(userName)
-    }
+    // const handleUserName = (event) => {
+    //     setUserName(event.target.value)
+    //     // console.log(userName)
+    // }
 
 
 
@@ -38,21 +37,24 @@ const PlayerNames = () => {
     // avatar: avatarImage,
     // score: 
 
-    userNameArr.push({name: userName, image: avatarImage })
+    // userNameArr.push({ name: props.userName, image: props.avatarImage })
     // console.log(userNameArr)
 
     return (
         <>
         <h2>Player Info</h2>
-        <form onSubmit={handleAvatarSubmit} action="">
+            <form onSubmit={props.handleAvatarSubmit} action="">
             <label htmlFor="playerName">Please Enter your Name</label>
-            <input onChange={handleUserName} type="text" id="playerName" value={userName}/>
+            <input onChange={props.handleUserName} type="text" id="playerName" value={props.userName}/>
             <button>Generate 🤖</button>
+            <button
+                onClick={props.handleNameSubmit}
+                >🤖 Generate 🤖</button>
         </form>
 
-        {avatarImage != '' ?
+        {props.avatarImage != '' ?
         // <p>Hello, {userName}, please meet your avatar</p>
-            <img src={`https://robohash.org/${avatarImage}.png`}></img> : null}      
+            <img src={`https://robohash.org/${props.avatarImage}.png`}></img> : null}      
             {/* need to get the image url in the image property of object */}
         </>
 
