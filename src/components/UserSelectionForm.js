@@ -202,7 +202,6 @@ import Quiz from './Quiz.js';
           // questions array
           const returnedObject = res.data.results;
 
-
           // console.log(returnedObject);
 
           const combinedAnswerArr = [...returnedObject];
