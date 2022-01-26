@@ -6,21 +6,27 @@ const Quiz = (props) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [currentScore, setCurrentScore] = useState(0);
   // let currentPlayerScore = 0; 
+  // const [ isCorrect, setIsCorrect ] = useState(false);
+  
 
-  const handleAnswerClick = (event) => {
+  const handleAnswerClick = (event, value) => {
     const userAnswer = event.target.value;
     if (userAnswer === props.quizQuestions[currentQuestion].correct_answer){
-      console.log("Correct!")
+      console.log("Correct!");
       setCurrentScore(currentScore + 1);
-      // currentPlayerScore = currentPlayerScore + 1;
+      // setIsCorrect(true);  
     } else {
-      console.log("Nope!")
+      console.log("Nope!");
+      // setIsCorrect(false);
     }
+
     if (currentQuestion < props.quizQuestions.length - 1 ){
       setCurrentQuestion(currentQuestion + 1)
+
     } else {
       alert("end of quiz");
     }
+    
     // console.log(currentQuestion);
   }
 
@@ -32,12 +38,15 @@ const Quiz = (props) => {
             
             <p>Question: {props.quizQuestions[currentQuestion].question}</p>
             {
-              props.quizQuestions[currentQuestion].incorrect_answers.map((answerItem, index)=>{
+              props.quizQuestions[currentQuestion].answerButtons.map((answerItem, index)=>{
                 return(
                   <button
-                    value={answerItem}
+                    value={answerItem.name}
                     onClick={handleAnswerClick}
-                    key={index}>{answerItem}
+                    key={index}
+                    className={answerItem.isCorrect ? "correctAnswer" : "incorrectAnswer" }
+                  >
+                    {answerItem.name}
                   </button>
                 )
               })
@@ -54,3 +63,9 @@ const Quiz = (props) => {
 
 export default Quiz;
 
+
+
+// props.quizQuestions[currentQuestion].incorrect_answers
+// {style it red} on button click
+// props.quizQuestions[currentQuestion].correct_answer
+// {style it green} on button click
