@@ -12,6 +12,9 @@ const Quiz = (props) => {
   
     // useState to show score
   const [scoreboard, setScoreboard] = useState(false);
+  
+  // useState to set the popup of quiz done
+  const [popup, setPopup] = useState(false);
 
   const handleAnswerClick = (event, value) => {
     const userAnswer = event.target.value;
@@ -28,6 +31,7 @@ const Quiz = (props) => {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       setScoreboard(true);
+      setPopup(true);
       // alert("end of quiz");
     }
     
@@ -61,7 +65,7 @@ const Quiz = (props) => {
             
           </>
           ) : null}
-        {scoreboard ? <Scoreboard /> : null}
+        {scoreboard ? <Scoreboard currentScore={currentScore} trigger={popup} setTrigger={setPopup}/> : null}
       </div>
     );
 }

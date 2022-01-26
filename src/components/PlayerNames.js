@@ -1,7 +1,3 @@
-// import { useState } from "react";
-import { useState } from "react";
-import { useParams } from "react-router-dom";
-
 
 const PlayerNames = (props) => {
     // const [playerName, setPlayerName] = useState([]);
@@ -10,7 +6,7 @@ const PlayerNames = (props) => {
     // console.log(num)
 
     // how do we append an object to the userNameArr?
-    const userNameArr = [];
+    //************* */ const userNameArr = [];
     // const [userName, setUserName] = useState('');
     
 
@@ -42,13 +38,12 @@ const PlayerNames = (props) => {
             <form onSubmit={props.handleAvatarSubmit} action="">
             <label htmlFor="playerName">Please Enter your Name</label>
             <input onChange={props.handleUserName} type="text" id="playerName" value={props.userName}/>
-            <button>Generate 🤖</button>
             <button
                 onClick={props.handleNameSubmit}
                 >🤖 Generate 🤖</button>
         </form>
 
-        {props.avatarImage != '' ?
+        {props.avatarImage !== '' ?
         // <p>Hello, {userName}, please meet your avatar</p>
             <img src={`https://robohash.org/${props.avatarImage}.png`}></img> : null}      
             {/* need to get the image url in the image property of object */}

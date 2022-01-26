@@ -2,8 +2,9 @@
 import firebase from "./../firebase.js";
 import { getDatabase, ref, push, onValue } from "firebase/database";
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 
-const Scoreboard = () => {
+const Scoreboard = (props) => {
   // firebase data - for userObj
   const [userObj, setUserObj] = useState([]);
   const [newUserObj, setnewUserObj] = useState([]);
@@ -34,13 +35,13 @@ const Scoreboard = () => {
   }, []);
 
   // firebase handler for testing
-  const scoreButtonHandler = () => {
-    setnewUserObj([
-      { playerName: "Imitiaz", score: 99, avatar: "avatarUrl" },
-      { playerName: "Joey", score: 62, avatar: "avatarUrl" },
-      { playerName: "Laura", score: 80, avatar: "avatarUrl" },
-    ]);
-  };
+  // const scoreButtonHandler = () => {
+  //   setnewUserObj([
+  //     { playerName: "Imitiaz", score: 99, avatar: "avatarUrl" },
+  //     { playerName: "Joey", score: 62, avatar: "avatarUrl" },
+  //     { playerName: "Laura", score: 80, avatar: "avatarUrl" },
+  //   ]);
+  // };
 
   // useEffect to push
   useEffect(() => {
@@ -51,9 +52,11 @@ const Scoreboard = () => {
     push(dbRef, newUserObj);
   }, [newUserObj]);
 
-  return (
-    <>
+  return (props.trigger) ? (
+    <div className="popup">
+      <div className="popupInner">
       <h1>High Scores</h1>
+      <p>Your Score is: {props.currentScore} / 10.</p>
       <p>Top players</p>
       {userObj.map((user, index) => {
         return (
@@ -63,8 +66,10 @@ const Scoreboard = () => {
           </li>
         );
       })}
-    </>
-  );
+      <Link to='/'> Click here to play again</Link>
+    </div>
+    </div>
+  ) : '';
 };
 
 export default Scoreboard;

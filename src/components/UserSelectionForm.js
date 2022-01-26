@@ -17,9 +17,9 @@ import Quiz from './Quiz.js';
   // setting state with quiz questions
   const [quizQuestions, setQuizQuestions] = useState([]);
 
-  const [avatarImage, setAvatarImage] = useState([]);
+  const [avatarImage, setAvatarImage] = useState('');
   const [userName, setUserName] = useState('');
-  const [allPlayersArrCounter, setAllPlayerArrCounter] = useState(0);
+  // const [allPlayersArrCounter, setAllPlayerArrCounter] = useState(0);
   const [allPlayersArr, setAllPlayersArr] = useState([
     {
       playerName:"",
@@ -107,7 +107,7 @@ import Quiz from './Quiz.js';
     let currentIndex = array.length, randomIndex;
 
     // While there remain elements to shuffle...
-    while (currentIndex != 0) {
+    while (currentIndex !== 0) {
 
       // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
