@@ -33,7 +33,7 @@ const PlayerNames = (props) => {
     // console.log(userNameArr)
 
     return (
-        <>
+        <div className="playerInfoCard">
         <h2>Player Info</h2>
             <form onSubmit={props.handleAvatarSubmit} action="">
             <label htmlFor="playerName">Please Enter your Name</label>
@@ -45,9 +45,9 @@ const PlayerNames = (props) => {
 
         {props.avatarImage !== '' ?
         // <p>Hello, {userName}, please meet your avatar</p>
-            <img src={`https://robohash.org/${props.avatarImage}.png`} alt='your avatar image'></img> : null}      
+            <img src={`https://robohash.org/${props.avatarImage}.png`} alt='your avatar'></img> : null}      
             {/* need to get the image url in the image property of object */}
-        </>
+        </div>
 
 
         // <h1>Here is {num}</h1>

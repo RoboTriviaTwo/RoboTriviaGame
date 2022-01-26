@@ -12,10 +12,32 @@
 
 // testing out styles
 
-.root {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+// .root {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+// }
+
+.wrapper {
+    margin: 0 auto;
+    width: 1200px;
+    max-width: 80%;
+}
+
+// .quizContainer {
+//     display: flex;
+//     flex-direction: row;
+// }
+
+.startingLink {
+    margin-top: 25px;
+    a {
+        font-size: 50px;
+    }
+}
+
+html {
+    font-size: 125%;
 }
 
 body {
@@ -24,9 +46,13 @@ body {
     background-color: rgb(230, 185, 35);
 }
 
+header {
+    margin: 50px;
+}
+
 fieldset {
     display: flex;
-    flex-direction: column;
+    // flex-direction: column;
     justify-content: center;
     align-items: center;
     border-style: none;
@@ -59,14 +85,25 @@ button {
     
 }
 
+// form button {
+//     font-family: 'Mukta', sans-serif;
+// }
+
+.playerChoiceCard {
+    width: calc((100% / 3) - 20px);
+}
+
 h1, h2 {
     // font-family: 'Orbitron', sans-serif;
     font-family: 'Bangers', cursive;
+    font-weight: 100;
+    letter-spacing: 5px;
     color: white;
 }
 
 h1 {
     font-size: 3.5rem;
+    text-align: left;
 }
 
 h2 {
@@ -77,11 +114,36 @@ h2 {
 label, button, p, a {
     font-family: 'Bangers', cursive;
     font-size: 1.5rem;
+    letter-spacing: 1.2px;
     color: white;
+    font-weight: 100;
+}
+
+.instructions {
+    font-family: 'Mukta', sans-serif;
+    text-align: left;
+}
+
+
+
+label {
+    display: flex;
+    flex-direction: column;
 }
 
 form {
     margin: 20px;
 }
 
+// header image
 
+.landingPage {
+    background-image: url(/robo-trivia-header-image.jpg);
+    height: 50vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+}

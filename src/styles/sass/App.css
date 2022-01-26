@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Mukta:wght@300&family=Orbitron&family=Press+Start+2P&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mukta:wght@200&display=swap");
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -231,11 +233,121 @@ html {
 }
 
 .correctAnswer:active {
-  border: 2px solid green;
+  background-color: #64dc32;
 }
 
 .incorrectAnswer:active {
-  border: 2px solid red;
+  background-color: red;
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: 1200px;
+  max-width: 80%;
+}
+
+.startingLink {
+  margin-top: 25px;
+}
+.startingLink a {
+  font-size: 50px;
+}
+
+html {
+  font-size: 125%;
+}
+
+body {
+  text-align: center;
+  background-color: #e6b923;
+}
+
+header {
+  margin: 50px;
+}
+
+fieldset {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-style: none;
+}
+
+label {
+  margin: 10px;
+}
+
+select {
+  text-align: center;
+  margin: 10px;
+  background-color: royalblue;
+  border-style: none;
+  width: 200px;
+  font-family: "Mukta", sans-serif;
+  color: white;
+  border: 2px solid white;
+  border-radius: 25px;
+}
+
+button {
+  margin: 20px;
+  width: 200px;
+  height: 50px;
+  background-color: royalblue;
+  border: 2px solid white;
+  border-radius: 25px;
+}
+
+.playerChoiceCard {
+  width: calc((100% / 3) - 20px);
+}
+
+h1, h2 {
+  font-family: "Bangers", cursive;
+  font-weight: 100;
+  letter-spacing: 5px;
+  color: white;
+}
+
+h1 {
+  font-size: 3.5rem;
+  text-align: left;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+label, button, p, a {
+  font-family: "Bangers", cursive;
+  font-size: 1.5rem;
+  letter-spacing: 1.2px;
+  color: white;
+  font-weight: 100;
+}
+
+.instructions {
+  font-family: "Mukta", sans-serif;
+  text-align: left;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  margin: 20px;
+}
+
+.landingPage {
+  background-image: url(/robo-trivia-header-image.jpg);
+  height: 50vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .App {

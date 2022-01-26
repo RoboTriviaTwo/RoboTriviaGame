@@ -8,7 +8,7 @@ function App() {
   return (
     <div>
       <header>
-        <h1>RoboTrivia</h1>
+        <h1 className='wrapper'>RoboTrivia</h1>
       </header>
       {/* <UserSelectionForm
         submitHandler={submitHandler}

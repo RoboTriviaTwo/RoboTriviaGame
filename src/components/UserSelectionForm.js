@@ -3,7 +3,7 @@ import axios from 'axios';
 import PlayerNames from './PlayerNames.js';
 import Quiz from './Quiz.js';
 
-  const UserSelectionForm = () => {
+const UserSelectionForm = () => {
 
   const difficultyArr = ["easy", "medium", "hard"];
   // api call for category
@@ -22,8 +22,8 @@ import Quiz from './Quiz.js';
   // const [allPlayersArrCounter, setAllPlayerArrCounter] = useState(0);
   const [allPlayersArr, setAllPlayersArr] = useState([
     {
-      playerName:"",
-      score:0
+      playerName: "",
+      score: 0
     },
     // // @@@ for multiplayer
     // {
@@ -39,7 +39,7 @@ import Quiz from './Quiz.js';
     //   score: 0
     // },
   ]);
-  
+
 
   // const handlePlayerNumber = (event) => {
   //   setNumOfPlayers(event.target.value);
@@ -61,7 +61,7 @@ import Quiz from './Quiz.js';
 
   const handleUserName = (event) => {
     setUserName(event.target.value)
-    
+
     // console.log(userName)
   }
 
@@ -120,7 +120,7 @@ import Quiz from './Quiz.js';
 
     return array;
   }
-    
+
   // useEffect for axios - put this info in dropdown
   // associate id and name of category
   useEffect(() => {
@@ -163,8 +163,8 @@ import Quiz from './Quiz.js';
           combinedAnswerArr.forEach((quizObject) => {
             const quizAnswers = [quizObject.correct_answer, ...quizObject.incorrect_answers];
             const updatedQuizAnswers = quizAnswers.map((quiz) => {
-              if(quiz === quizObject.correct_answer){
-                return{
+              if (quiz === quizObject.correct_answer) {
+                return {
                   name: quiz,
                   isCorrect: true,
                 }
@@ -179,7 +179,7 @@ import Quiz from './Quiz.js';
           })
 
           setQuizQuestions(combinedAnswerArr);
-          
+
         })
         .catch((err) => {
           console.log(err);
@@ -188,17 +188,23 @@ import Quiz from './Quiz.js';
   }, [submitButton]);
 
   return (
-    <>
-      <form
-        action=""
-        onSubmit={(event) => {
-          submitHandler(event);
-        }}
-      >
-        <fieldset>
-          <label htmlFor="playerNumbers">Choose the Number of Players</label>
-          {/* @@@ for multiplayer
-          <select
+    <main>
+      <section className="wrapper">
+        <h2>Welcome to our TRIVIA QUIZ!</h2>
+        <p className='instructions'>Let your nerd flags fly! Select the number of friends you want to play with, choose your category and the level of difficulty then hit the submit button.</p>
+        <form
+        className='choicesForm'
+          action=""
+          onSubmit={(event) => {
+            submitHandler(event);
+          }}
+        >
+
+          <fieldset>
+            <div className='playerChoiceCard'>
+              <label htmlFor="playerNumbers">Choose the Number of Players</label>
+              {/* @@@ for multiplayer
+          <select 
             name="playerNumbers"
             id="playerNumbers"
             onChange={handlePlayerNumber}
@@ -212,59 +218,70 @@ import Quiz from './Quiz.js';
             <option value={3}>3</option>
             <option value={4}>4</option>
           </select> */}
+            </div>
 
-          <label htmlFor="categoryType">Choose Your Category</label>
-          <select
-            name="categoryType"
-            id="categoryType"
-            onChange={handleCategoryChoice}
-            value={userCategory}
-          >
-            <option value="placeholder" default hidden>
-              Pick One
-            </option>
-            {categoryArr.map((categoryObj) => {
-              return (
-                <option key={categoryObj.id} value={categoryObj.id}>
-                  {`${categoryObj.name}`}
+            <div className='playerChoiceCard'>
+              <label htmlFor="categoryType">Choose Your Category</label>
+              <select
+                name="categoryType"
+                id="categoryType"
+                onChange={handleCategoryChoice}
+                value={userCategory}
+              >
+                <option value="placeholder" default hidden>
+                  Pick One
                 </option>
-              );
-            })}
-          </select>
+                {categoryArr.map((categoryObj) => {
+                  return (
+                    <option key={categoryObj.id} value={categoryObj.id}>
+                      {`${categoryObj.name}`}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
 
-          <label htmlFor="difficulties">Choose Your Difficulty</label>
-          <select
-            name="difficulties"
-            id="difficulties"
-            onChange={handleDifficultyChoice}
-            value={userDifficulty}
-          >
-            <option value="placeholder" default hidden>
-              Pick One
-            </option>
-            {difficultyArr.map((difficultyItem) => {
-              return (
-                <option key={difficultyItem} value={difficultyItem}>
-                  {`${difficultyItem}`}
+            <div className='playerChoiceCard'>
+              <label htmlFor="difficulties">Choose Your Difficulty</label>
+              <select
+                name="difficulties"
+                id="difficulties"
+                onChange={handleDifficultyChoice}
+                value={userDifficulty}
+              >
+                <option value="placeholder" default hidden>
+                  Pick One
                 </option>
-              );
-            })}
-          </select>
+                {difficultyArr.map((difficultyItem) => {
+                  return (
+                    <option key={difficultyItem} value={difficultyItem}>
+                      {`${difficultyItem}`}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+
+
+          </fieldset>
           <button type="submit">Submit</button>
-        </fieldset>
-      </form>
-      
-      <PlayerNames 
-        handleUserName={handleUserName}
-        userName={userName}
-        handleNameSubmit={handleNameSubmit}
-        handleAvatarSubmit={handleAvatarSubmit}
-        avatarImage={avatarImage}
-      />
-      <Quiz quizQuestions={quizQuestions} />
+        </form>
+      </section>
 
-    {/* {submitButton ? <Link to={`/playernames/${numOfPlayers}`}>Continue player names</Link> : null} */}
-    </>
+      <section className="wrapper">
+        <PlayerNames
+          handleUserName={handleUserName}
+          userName={userName}
+          handleNameSubmit={handleNameSubmit}
+          handleAvatarSubmit={handleAvatarSubmit}
+          avatarImage={avatarImage}
+        />
+      </section>
+      <section className="wrapper">
+        <Quiz quizQuestions={quizQuestions} />
+      </section>
+      {/* {submitButton ? <Link to={`/playernames/${numOfPlayers}`}>Continue player names</Link> : null} */}
+    </main>
   );
 };
 
