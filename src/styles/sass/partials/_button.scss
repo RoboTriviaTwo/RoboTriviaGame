@@ -44,6 +44,7 @@ select {
     width: 200px;
     font-family: 'Mukta', sans-serif;
     color: white;
+    border: 2px solid white;
     border-radius: 25px;
 }
 
@@ -52,7 +53,7 @@ button {
     width: 200px;
     height: 50px; 
     background-color: royalblue;
-    border-style: none;
+    border: 2px solid white;
     border-radius: 25px;
     
 }
@@ -72,7 +73,7 @@ h2 {
 }
 
 
-label, button, p {
+label, button, p, a {
     font-family: 'Bangers', cursive;
     font-size: 1.5rem;
     color: white;
