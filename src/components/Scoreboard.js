@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const Scoreboard = (props) => {
   // firebase data - for userObj
   const [userObj, setUserObj] = useState([]);
-  const [newUserObj, setnewUserObj] = useState([]);
+  // const [newUserObj, setnewUserObj] = useState([]);
 
   // button to activate it
   // const [scoreButton, setScoreButton] = useState(false);
@@ -44,13 +44,13 @@ const Scoreboard = (props) => {
   // };
 
   // useEffect to push
-  useEffect(() => {
-    const database = getDatabase(firebase);
-    // reference database
-    const dbRef = ref(database);
+  // useEffect(() => {
+  //   const database = getDatabase(firebase);
+  //   // reference database
+  //   const dbRef = ref(database);
 
-    push(dbRef, newUserObj);
-  }, [newUserObj]);
+  //   push(dbRef, newUserObj);
+  // }, [newUserObj]);
 
   return (props.trigger) ? (
     <div className="popup">

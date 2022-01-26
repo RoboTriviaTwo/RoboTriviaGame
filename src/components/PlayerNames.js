@@ -45,7 +45,7 @@ const PlayerNames = (props) => {
 
         {props.avatarImage !== '' ?
         // <p>Hello, {userName}, please meet your avatar</p>
-            <img src={`https://robohash.org/${props.avatarImage}.png`}></img> : null}      
+            <img src={`https://robohash.org/${props.avatarImage}.png`} alt='your avatar image'></img> : null}      
             {/* need to get the image url in the image property of object */}
         </>
 
