@@ -19,10 +19,6 @@ const PlayerNames = (props) => {
 
     
 
-    
-
-
-
     // const handleUserName = (event) => {
     //     setUserName(event.target.value)
     //     // console.log(userName)
@@ -59,8 +55,6 @@ const PlayerNames = (props) => {
         </>
 
 
-
-      
         // <h1>Here is {num}</h1>
         // <form action="">
         //     <label htmlFor="playerName">Please enter your name:</label>

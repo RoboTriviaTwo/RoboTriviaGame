@@ -45,8 +45,6 @@ import Quiz from './Quiz.js';
   //   setNumOfPlayers(event.target.value);
   // };
 
-
-
   const handleCategoryChoice = (event) => {
     setUserCategory(event.target.value);
   };
@@ -74,22 +72,22 @@ import Quiz from './Quiz.js';
     // setAvatarUrl(`https://robohash.org/${avatarImage}.png`)
   };
 
-    const AllPlayerArrUpdate = () => {
-      // // @@@ for multiplayer
-      // let tempAllPlayersArr = [...allPlayersArr];
-      // tempAllPlayersArr[allPlayersArrCounter] = {
-      //   ...tempAllPlayersArr[allPlayersArrCounter],
-      //   playerName: userName
-      // }
-      // setAllPlayersArr(tempAllPlayersArr);
+  const AllPlayerArrUpdate = () => {
+    // // @@@ for multiplayer
+    // let tempAllPlayersArr = [...allPlayersArr];
+    // tempAllPlayersArr[allPlayersArrCounter] = {
+    //   ...tempAllPlayersArr[allPlayersArrCounter],
+    //   playerName: userName
+    // }
+    // setAllPlayersArr(tempAllPlayersArr);
 
-      let tempAllPlayersArr = [...allPlayersArr];
-      tempAllPlayersArr[0] = {
-        ...tempAllPlayersArr[0],
-        playerName: userName
-      }
-      setAllPlayersArr(tempAllPlayersArr);
+    let tempAllPlayersArr = [...allPlayersArr];
+    tempAllPlayersArr[0] = {
+      ...tempAllPlayersArr[0],
+      playerName: userName
     }
+    setAllPlayersArr(tempAllPlayersArr);
+  }
 
   const handleNameSubmit = () => {
     if (avatarImage) {
@@ -104,7 +102,6 @@ import Quiz from './Quiz.js';
     //   }
     // }  
   }
-  
 
   const shuffleArr = (array) => {
     let currentIndex = array.length, randomIndex;
@@ -124,7 +121,6 @@ import Quiz from './Quiz.js';
     return array;
   }
     
-
   // useEffect for axios - put this info in dropdown
   // associate id and name of category
   useEffect(() => {
@@ -159,7 +155,6 @@ import Quiz from './Quiz.js';
         .then((res) => {
           // questions array
           const returnedObject = res.data.results;
-
 
           // console.log(returnedObject);
 
