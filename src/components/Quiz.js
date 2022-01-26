@@ -1,4 +1,6 @@
 import { useState } from "react";
+// import scoreboard
+import Scoreboard from "./Scoreboard.js";
 
 
 const Quiz = (props) => {
@@ -8,6 +10,11 @@ const Quiz = (props) => {
   // let currentPlayerScore = 0; 
   // const [ isCorrect, setIsCorrect ] = useState(false);
   
+    // useState to show score
+  const [scoreboard, setScoreboard] = useState(false);
+  
+  // useState to set the popup of quiz done
+  const [popup, setPopup] = useState(false);
 
   const handleAnswerClick = (event, value) => {
     const userAnswer = event.target.value;
@@ -20,11 +27,12 @@ const Quiz = (props) => {
       // setIsCorrect(false);
     }
 
-    if (currentQuestion < props.quizQuestions.length - 1 ){
-      setCurrentQuestion(currentQuestion + 1)
-
+    if (currentQuestion < props.quizQuestions.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
     } else {
-      alert("end of quiz");
+      setScoreboard(true);
+      setPopup(true);
+      // alert("end of quiz");
     }
     
     // console.log(currentQuestion);
@@ -32,31 +40,33 @@ const Quiz = (props) => {
 
     return (
       <div>
-        {props.quizQuestions.length !== 0  ?
+         {props.quizQuestions.length !== 0 ? (
           <>
             <h2>quiz here</h2>
-            
-            <p>Question: {props.quizQuestions[currentQuestion].question}</p>
-            {
-              props.quizQuestions[currentQuestion].answerButtons.map((answerItem, index)=>{
-                return(
+            <p>Question: {(props.quizQuestions[currentQuestion].question).replace(/&quot;/g, '"').replace(/&rsquo;/g, "'").replace(/&Eacute;/g, "é").replace(/&#039;/g, "'").replace(/&shy;/g, "")}
+            </p>
+              {props.quizQuestions[currentQuestion].answerButtons.map(
+              (answerItem, index) => {
+                return (
                   <button
                     value={answerItem.name}
                     onClick={handleAnswerClick}
                     key={index}
-                    className={answerItem.isCorrect ? "correctAnswer" : "incorrectAnswer" }
+                  className={
+                      answerItem.isCorrect ? "correctAnswer" : "incorrectAnswer"
+                    }
                   >
-                    {answerItem.name}
+                    {(answerItem.name).replace(/&quot;/g, '"').replace(/&rsquo;/g, "'").replace(/&Eacute;/g, "é").replace(/&#039;/g, "'").replace(/&shy;/g, "")}
                   </button>
-                )
-              })
-            }
+                );
+              }
+            )}
             <p>{currentScore}</p>
            
             
           </>
-        :
-        null}
+          ) : null}
+        {scoreboard ? <Scoreboard currentScore={currentScore} trigger={popup} setTrigger={setPopup}/> : null}
       </div>
     );
 }

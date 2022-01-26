@@ -17,6 +17,30 @@ import Quiz from './Quiz.js';
   // setting state with quiz questions
   const [quizQuestions, setQuizQuestions] = useState([]);
 
+  const [avatarImage, setAvatarImage] = useState('');
+  const [userName, setUserName] = useState('');
+  // const [allPlayersArrCounter, setAllPlayerArrCounter] = useState(0);
+  const [allPlayersArr, setAllPlayersArr] = useState([
+    {
+      playerName:"",
+      score:0
+    },
+    // // @@@ for multiplayer
+    // {
+    //   playerName: "",
+    //   score: 0
+    // },
+    // {
+    //   playerName: "",
+    //   score: 0
+    // },
+    // {
+    //   playerName: "",
+    //   score: 0
+    // },
+  ]);
+  
+
   // const handlePlayerNumber = (event) => {
   //   setNumOfPlayers(event.target.value);
   // };
@@ -35,30 +59,68 @@ import Quiz from './Quiz.js';
     setSubmitButton(!submitButton);
   };
 
-  // const randomizer = () => {
-  //   return Math.floor(Math.random() * 4);
-  // };
+  const handleUserName = (event) => {
+    setUserName(event.target.value)
+    
+    // console.log(userName)
+  }
 
+  const handleAvatarSubmit = (event) => {
+    event.preventDefault()
+    // console.log(event)
+    setAvatarImage(userName)
+    // setAvatarUrl(`https://robohash.org/${avatarImage}.png`)
+  };
 
-    const shuffleArr = (array) => {
-      let currentIndex = array.length, randomIndex;
+  const AllPlayerArrUpdate = () => {
+    // // @@@ for multiplayer
+    // let tempAllPlayersArr = [...allPlayersArr];
+    // tempAllPlayersArr[allPlayersArrCounter] = {
+    //   ...tempAllPlayersArr[allPlayersArrCounter],
+    //   playerName: userName
+    // }
+    // setAllPlayersArr(tempAllPlayersArr);
 
-      // While there remain elements to shuffle...
-      while (currentIndex != 0) {
+    let tempAllPlayersArr = [...allPlayersArr];
+    tempAllPlayersArr[0] = {
+      ...tempAllPlayersArr[0],
+      playerName: userName
+    }
+    setAllPlayersArr(tempAllPlayersArr);
+  }
 
-        // Pick a remaining element...
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
+  const handleNameSubmit = () => {
+    if (avatarImage) {
+      AllPlayerArrUpdate()
+    }
+    // //@@@ for multiplayer
+    // if(avatarImage && allPlayersArrCounter < 4){
+    //   AllPlayerArrUpdate()
+    //   setAllPlayerArrCounter(allPlayersArrCounter + 1)
+    //   if(allPlayersArrCounter === 3){
+    //     setAllPlayerArrCounter(0);
+    //   }
+    // }  
+  }
 
-        // And swap it with the current element.
-        [array[currentIndex], array[randomIndex]] = [
-          array[randomIndex], array[currentIndex]];
-      }
+  const shuffleArr = (array) => {
+    let currentIndex = array.length, randomIndex;
 
-      return array;
+    // While there remain elements to shuffle...
+    while (currentIndex !== 0) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
     }
 
-
+    return array;
+  }
+    
   // useEffect for axios - put this info in dropdown
   // associate id and name of category
   useEffect(() => {
@@ -93,7 +155,6 @@ import Quiz from './Quiz.js';
         .then((res) => {
           // questions array
           const returnedObject = res.data.results;
-
 
           // console.log(returnedObject);
 
@@ -136,7 +197,8 @@ import Quiz from './Quiz.js';
       >
         <fieldset>
           <label htmlFor="playerNumbers">Choose the Number of Players</label>
-          {/* <select
+          {/* @@@ for multiplayer
+          <select
             name="playerNumbers"
             id="playerNumbers"
             onChange={handlePlayerNumber}
@@ -192,7 +254,13 @@ import Quiz from './Quiz.js';
         </fieldset>
       </form>
       
-      <PlayerNames />
+      <PlayerNames 
+        handleUserName={handleUserName}
+        userName={userName}
+        handleNameSubmit={handleNameSubmit}
+        handleAvatarSubmit={handleAvatarSubmit}
+        avatarImage={avatarImage}
+      />
       <Quiz quizQuestions={quizQuestions} />
 
     {/* {submitButton ? <Link to={`/playernames/${numOfPlayers}`}>Continue player names</Link> : null} */}
