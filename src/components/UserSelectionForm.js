@@ -17,6 +17,13 @@ import Quiz from './Quiz.js';
   // setting state with quiz questions
   const [quizQuestions, setQuizQuestions] = useState([]);
 
+  const [userName, setUserName] = useState('');
+  const [allPlayersArr, setAllPlayersArr] = useState([]);
+  const [playerOneObj, setPlayerOneObj] = useState({});
+  const [playerTwoObj, setPlayerTwoObj] = useState({});
+  const [playerThreeObj, setPlayerThreeObj] = useState({});
+  const [playerFourObj, setPlayerFourObj] = useState({});
+
   // const handlePlayerNumber = (event) => {
   //   setNumOfPlayers(event.target.value);
   // };
@@ -34,6 +41,11 @@ import Quiz from './Quiz.js';
     event.preventDefault();
     setSubmitButton(!submitButton);
   };
+
+  const handleUserName = (event) => {
+    setUserName(event.target.value)
+    // console.log(userName)
+  }
 
   // const randomizer = () => {
   //   return Math.floor(Math.random() * 4);
@@ -192,7 +204,10 @@ import Quiz from './Quiz.js';
         </fieldset>
       </form>
       
-      <PlayerNames />
+      <PlayerNames 
+        handleUserName={handleUserName}
+        userName={userName}
+      />
       <Quiz quizQuestions={quizQuestions} />
 
     {/* {submitButton ? <Link to={`/playernames/${numOfPlayers}`}>Continue player names</Link> : null} */}

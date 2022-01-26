@@ -15,6 +15,7 @@ function App() {
   // firebase data - for userObj
   const [userObj, setUserObj] = useState({});
   const [newUserObj, setnewUserObj] = useState([]);
+  
 
   // button to activate it
   // const [scoreButton, setScoreButton] = useState(false);

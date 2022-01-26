@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 
-const PlayerNames = () => {
+const PlayerNames = (props) => {
     // const [playerName, setPlayerName] = useState([]);
     
     // const {num} = useParams()
@@ -11,23 +11,32 @@ const PlayerNames = () => {
 
     // how do we append an object to the userNameArr?
     const userNameArr = [];
-    const [userName, setUserName] = useState('');
+    // const [userName, setUserName] = useState('');
     const [avatarImage, setAvatarImage] = useState([]);
+
+    const [allPlayersArrCounter, setAllPlayerArrCounter] = useState(0);
     // const [avatarUrl, setAvatarUrl] = useState('')
 
     const handleAvatarSubmit = (event) => {
         event.preventDefault()
         console.log(event)
-        setAvatarImage(userName)
+        setAvatarImage(props.userName)
         // setAvatarUrl(`https://robohash.org/${avatarImage}.png`)
     };
 
-
-
-    const handleUserName = (event) => {
-        setUserName(event.target.value)
-        // console.log(userName)
+    const handleNameSubmit = () => {
+        if (avatarImage){
+            setAllPlayerArrCounter(allPlayersArrCounter + 1)
+            console.log(allPlayersArrCounter);
+        }
     }
+
+
+
+    // const handleUserName = (event) => {
+    //     setUserName(event.target.value)
+    //     // console.log(userName)
+    // }
 
 
 
@@ -38,7 +47,7 @@ const PlayerNames = () => {
     // avatar: avatarImage,
     // score: 
 
-    userNameArr.push({name: userName, image: avatarImage })
+    userNameArr.push({name: props.userName, image: avatarImage })
     // console.log(userNameArr)
 
     return (
@@ -46,8 +55,11 @@ const PlayerNames = () => {
         <h2>Player Info</h2>
         <form onSubmit={handleAvatarSubmit} action="">
             <label htmlFor="playerName">Please Enter your Name</label>
-            <input onChange={handleUserName} type="text" id="playerName" value={userName}/>
+            <input onChange={props.handleUserName} type="text" id="playerName" value={props.userName}/>
             <button>Generate 🤖</button>
+            <button
+                onClick={handleNameSubmit}
+            >submit</button>
         </form>
 
         {avatarImage != '' ?
