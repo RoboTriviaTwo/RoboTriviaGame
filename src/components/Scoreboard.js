@@ -1,6 +1,6 @@
 // Scoreboard.js
 import firebase from "./../firebase.js";
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue, push } from "firebase/database";
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 
@@ -8,6 +8,7 @@ const Scoreboard = (props) => {
   // firebase data - for userObj
   const [userObj, setUserObj] = useState([]);
   const [combineMethod, setCombineMethod] = useState(false);
+  const [newUserObj, setNewUserObj] = useState([]);
 
   useEffect(() => {
     const database = getDatabase(firebase);
@@ -29,10 +30,17 @@ const Scoreboard = (props) => {
       setUserObj(newState[0]); 
       setCombineMethod(true);
     });
+
   }, []);
 
   // runs when setSubmit is true
   // removes lowest score from array of current users and db scores
+  let userObject = [];
+  // let userObject2 = [
+  //   {
+  //     playerName: "",
+  //     score: 0}
+  // ];
   if (combineMethod) {
     const allArray = (...array) => {
       return array;
@@ -62,6 +70,10 @@ const Scoreboard = (props) => {
 
     // removes player with lowest score
     allUsers.splice(index, 1);
+
+    userObject = [...allUsers]
+    console.log(userObject);
+    console.log(`this ${userObject}`)
   } 
 
   // ** console.log to access userObj and our players
@@ -86,16 +98,23 @@ const Scoreboard = (props) => {
     // empty current array from database
     // new allUsers array pushed
 
+
+  const [testFlipValue, setTestFlipValue] = useState(false);
+  
+  const testFLiper = () => {
+    setTestFlipValue(!testFlipValue)
+  }
+
   
 
   // ** function to push to db
-  // useEffect(() => {
-  //   const database = getDatabase(firebase);
-  //   // reference database
-  //   const dbRef = ref(database);
+  useEffect(() => {
+    const database = getDatabase(firebase);
+    // reference database
+    const dbRef = ref(database);
 
-  //   push(dbRef, newUserObj);
-  // }, [newUserObj]);
+    push(dbRef, userObject);
+  }, [testFlipValue]);
 
   return (props.trigger) ? (
     <div className="popup">
@@ -113,6 +132,9 @@ const Scoreboard = (props) => {
       })}
       <button>Submit Score</button>
       <Link to='/'> Click here to play again</Link>
+      <button
+        onClick={testFLiper}
+      >test</button>
     </div>
     </div>
   ) : '';
