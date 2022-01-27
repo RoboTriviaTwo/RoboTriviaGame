@@ -37,23 +37,20 @@ const PlayerNames = (props) => {
         <h2>Player Info</h2>
         <div className="playerInfoCard">
             <form onSubmit={props.handleAvatarSubmit} action="">
-            <label htmlFor="playerName">Please Enter your Name</label>
-            <input onChange={props.handleUserName} type="text" id="playerName" value={props.userName}/>
-            <button
-                onClick={props.handleNameSubmit}
-                >🤖 Generate 🤖</button>
-        </form>
-
-        
-        {props.avatarImage !== '' ?
+                <label htmlFor="playerName">Please Enter your Name</label>
+                <input onChange={props.handleUserName} type="text" id="playerName" value={props.userName}/>
+                <button onClick={props.handleNameSubmit}>🤖 Generate 🤖</button>
+            </form>
+            
+            {props.avatarImage !== '' ?
             <div className="avatarContainer">
-        <p>Hello, {props.userName}, please meet your avatar</p>
-        <div className="avatarImageContainer">
-            <img src={`https://robohash.org/${props.avatarImage}.png`} alt='your avatar'></img> </div></div> : null}      
-            {/* need to get the image url in the image property of object */}
+            <p>Hello, {props.userName}, please meet your avatar</p>
+                <div className="avatarImageContainer">
+                    <img src={`https://robohash.org/${props.avatarImage}.png`} alt='your avatar'></img>
+                </div>
+            </div> : null}      
         </div>
         </>
-
 
         // <h1>Here is {num}</h1>
         // <form action="">
@@ -63,7 +60,6 @@ const PlayerNames = (props) => {
         // </form>
     )
 }
-
 
 export default PlayerNames;
 

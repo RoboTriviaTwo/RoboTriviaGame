@@ -239,7 +239,7 @@ const UserSelectionForm = () => {
         <p className='instructions'>Let your nerd flags fly! Select the number of friends you want to play with, choose your category and the level of difficulty then hit the submit button.</p>
         <h3>Choose your Options Below:</h3>
         <form
-        className='choicesForm'
+          className='choicesForm'
           action=""
           onSubmit={(event) => {
             submitHandler(event);

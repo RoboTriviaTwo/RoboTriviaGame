@@ -46,8 +46,7 @@ const Quiz = (props) => {
             <p className="playerCurrentScore">Your Current Score is <span>{currentScore}</span></p>
           </div>
           <div className="quizContainer">
-            <p className="currentQuestion">Question: {(props.quizQuestions[currentQuestion].question).replace(/&quot;/g, '"').replace(/&rsquo;/g, "'").replace(/&Eacute;/g, "é").replace(/&#039;/g, "'").replace(/&shy;/g, "")}
-            </p>
+            <p className="currentQuestion">Question: {(props.quizQuestions[currentQuestion].question).replace(/&quot;/g, '"').replace(/&rsquo;/g, "'").replace(/&Eacute;/g, "é").replace(/&#039;/g, "'").replace(/&shy;/g, "")}</p>
 
             <div className="answerContainer">
             {props.quizQuestions[currentQuestion].answerButtons.map(
@@ -68,14 +67,13 @@ const Quiz = (props) => {
             )}
             </div>   
           </div>
-          </>
-          ) : null}
+          </>) : null}
+
           {scoreboard ? <Scoreboard 
           currentScore={currentScore} 
           trigger={popup} 
           setTrigger={setPopup}
-          allPlayersArr={props.allPlayersArr}
-        /> : null}
+          allPlayersArr={props.allPlayersArr}/> : null}
       </div>
     );
 }
