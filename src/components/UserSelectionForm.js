@@ -8,8 +8,8 @@ const UserSelectionForm = () => {
   const difficultyArr = ["easy", "medium", "hard"];
   // api call for category
   const [categoryArr, setCategoryArr] = useState([]);
+  
   // useStates from form component - for second api call
-  // const [numOfPlayers, setNumOfPlayers] = useState(0);
   const [userCategory, setUserCategory] = useState("");
   const [userDifficulty, setUserDifficulty] = useState("");
   const [submitButton, setSubmitButton] = useState(false);
@@ -17,53 +17,19 @@ const UserSelectionForm = () => {
   // setting state with quiz questions
   const [quizQuestions, setQuizQuestions] = useState([]);
 
-  // const [hasReachedEndOfQuiz, setHasReachedEndOfQuiz] = useState(false);
-  // const [nextPlayer, setNextPlayer] = useState(1);
-  // const [reachedPlayerFour, setReachedPlayerFour] = useState(false);
-  const [currentPlayer, setCurrentPlayer] = useState(1);
+  // setting state with player score
   const [currentPlayerScore, setCurrentPlayerScore] = useState(0);
 
-  const [avatarImage, setAvatarImage] = useState('');
+  // collect user name and produce avatar
   const [userName, setUserName] = useState('');
-  // const [allPlayersArrCounter, setAllPlayerArrCounter] = useState(0);
+  const [avatarImage, setAvatarImage] = useState('');
+  
   const [allPlayersArr, setAllPlayersArr] = useState([
     {
       playerName: "",
       score: 0
     },
-    // // @@@ for multiplayer
-    // {
-    //   playerName: "",
-    //   score: 0
-    // },
-    // {
-    //   playerName: "",
-    //   score: 0
-    // },
-    // {
-    //   playerName: "",
-    //   score: 0
-    // },
   ]);
-
-
-  // const handlePlayerNumber = (event) => {
-  //   setNumOfPlayers(event.target.value);
-  // };
-
-
-  // @@@ for multiplayer
-  // const handleNextPlayer = () => {
-  //     axiosTrigger();
-  // }
-
-  // const axiosTrigger = () => {
-  //   if (currentPlayer < numOfPlayers){
-  //   setCurrentPlayer(currentPlayer + 1);
-  //   console.log(currentPlayer);
-  //   }
-  // }
-  
 
   const handleCategoryChoice = (event) => {
     setUserCategory(event.target.value);
@@ -71,7 +37,6 @@ const UserSelectionForm = () => {
 
   const handleDifficultyChoice = (event) => {
     setUserDifficulty(event.target.value);
-    // console.log(userDifficulty);
   };
 
   const submitHandler = (event) => {
@@ -81,8 +46,6 @@ const UserSelectionForm = () => {
 
   const handleUserName = (event) => {
     setUserName(event.target.value)
-
-    // console.log(userName)
   }
 
   const scoreSetter = (score) => {
@@ -95,20 +58,10 @@ const UserSelectionForm = () => {
 
   const handleAvatarSubmit = (event) => {
     event.preventDefault()
-    // console.log(event)
     setAvatarImage(userName)
-    // setAvatarUrl(`https://robohash.org/${avatarImage}.png`)
   };
 
     const AllPlayerArrUpdate = () => {
-      // // @@@ for multiplayer
-      // let tempAllPlayersArr = [...allPlayersArr];
-      // tempAllPlayersArr[allPlayersArrCounter] = {
-      //   ...tempAllPlayersArr[allPlayersArrCounter],
-      //   playerName: userName
-      // }
-      // setAllPlayersArr(tempAllPlayersArr);
-
       let tempAllPlayersArr = [...allPlayersArr];
       tempAllPlayersArr[0] = {
         ...tempAllPlayersArr[0],
@@ -118,14 +71,6 @@ const UserSelectionForm = () => {
     }
 
     const scoreUpdate = () => {
-      // // @@@ for multiplayer
-      // let tempAllPlayersArr = [...allPlayersArr];
-      // tempAllPlayersArr[allPlayersArrCounter] = {
-      //   ...tempAllPlayersArr[allPlayersArrCounter],
-      //   playerName: userName
-      // }
-      // setAllPlayersArr(tempAllPlayersArr);
-
       let tempAllPlayersArr = [...allPlayersArr];
       tempAllPlayersArr[0] = {
         ...tempAllPlayersArr[0],
@@ -135,20 +80,9 @@ const UserSelectionForm = () => {
     }
 
   const handleNameSubmit = () => {
- 
-      AllPlayerArrUpdate()
-
-    // //@@@ for multiplayer
-    // if(avatarImage && allPlayersArrCounter < 4){
-    //   AllPlayerArrUpdate()
-    //   setAllPlayerArrCounter(allPlayersArrCounter + 1)
-    //   if(allPlayersArrCounter === 3){
-    //     setAllPlayerArrCounter(0);
-    //   }
-    // }  
+       AllPlayerArrUpdate()
   }
-  
-
+ 
   const shuffleArr = (array) => {
     let currentIndex = array.length, randomIndex;
 
@@ -163,7 +97,6 @@ const UserSelectionForm = () => {
       [array[currentIndex], array[randomIndex]] = [
         array[randomIndex], array[currentIndex]];
     }
-
     return array;
   }
 
@@ -185,7 +118,6 @@ const UserSelectionForm = () => {
   }, []);
 
   useEffect(() => {
-    // console.log("app is running");
     if (userCategory !== "") {
       axios({
         url: "https://opentdb.com/api.php",
@@ -201,9 +133,6 @@ const UserSelectionForm = () => {
         .then((res) => {
           // questions array
           const returnedObject = res.data.results;
-
-          // console.log(returnedObject);
-
           const combinedAnswerArr = [...returnedObject];
 
           combinedAnswerArr.forEach((quizObject) => {
@@ -223,18 +152,15 @@ const UserSelectionForm = () => {
             })
             quizObject.answerButtons = shuffleArr(updatedQuizAnswers);
           })
-
           setQuizQuestions(combinedAnswerArr);
-
         })
         .catch((err) => {
           console.log(err);
         });
     }
-  }, [submitButton, currentPlayer]);
+  }, [submitButton]);
 
   return (
-
     <main>
       <section className="wrapper">
         <h2>Welcome to our TRIVIA QUIZ!</h2>
@@ -244,30 +170,11 @@ const UserSelectionForm = () => {
           className='choicesForm'
           action=""
           onSubmit={(event) => {
-            submitHandler(event);
+          submitHandler(event);
           }}
         >
 
           <fieldset>
-            <div className='playerChoiceCard'>
-              <label htmlFor="playerNumbers">Players</label>
-              {/* @@@ for multiplayer
-          <select 
-            name="playerNumbers"
-            id="playerNumbers"
-            onChange={handlePlayerNumber}
-            value={numOfPlayers}
-          >
-            <option value="placeholder" default hidden>
-              Pick One
-            </option>
-            <option value={1}>1</option>
-            <option value={2}>2</option>
-            <option value={3}>3</option>
-            <option value={4}>4</option>
-          </select> */}
-            </div>
-
             <div className='playerChoiceCard'>
               <label htmlFor="categoryType">Category</label>
               <select
@@ -311,11 +218,12 @@ const UserSelectionForm = () => {
               </select>
             </div>
 
-
           </fieldset>
+
           <div className='formSubmit'>
             <button type="submit">Submit</button>
           </div>
+
         </form>
       </section>
 
@@ -331,19 +239,11 @@ const UserSelectionForm = () => {
       <section className="wrapper">
       <Quiz 
         quizQuestions={quizQuestions}
-        // numOfPlayers={numOfPlayers}
-        // handleNextPlayer={handleNextPlayer}
-        // nextPlayer={nextPlayer}
-        // reachedPlayerFour={reachedPlayerFour}
-        // axiosTrigger={axiosTrigger}
         scoreSetter={scoreSetter}
         allPlayersArr={allPlayersArr}
-        // hasReachedEndOfQuiz={hasReachedEndOfQuiz}
       />
       </section>
-      {/* {submitButton ? <Link to={`/playernames/${numOfPlayers}`}>Continue player names</Link> : null} */}
-    </main>
-         
+   </main>       
   );
 };
 

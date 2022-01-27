@@ -14,14 +14,12 @@ const Scoreboard = (props) => {
   // useEffect to get firebase data
   useEffect(() => {
     const database = getDatabase(firebase);
-
     const dbRef = ref(database);
 
     // add an event listener to call data 'response'
     onValue(dbRef, (response) => {
       // storing new state
       const newState = [];
-
       const data = response.val();
 
       // for in loop to access player obj
@@ -31,9 +29,8 @@ const Scoreboard = (props) => {
 
       setUserObj(newState[0].name);
       setUserKey(newState[0].key);
-
       // runs combine method
-        // compares current score with db scores to remove min score
+      // compares current score with db scores to remove min score
       setCombineMethod(true);
     });
   }, []);
@@ -73,7 +70,6 @@ const Scoreboard = (props) => {
 
     // splice removes from array
     allUsers.splice(index, 1);
-
     userObject = [...allUsers];
   }
 

@@ -1,9 +1,7 @@
 import { useState } from "react";
-// import scoreboard
 import Scoreboard from "./Scoreboard.js";
 
 const Quiz = (props) => {
-
   // useState to track question numbers
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
@@ -74,10 +72,3 @@ const Quiz = (props) => {
 }
 
 export default Quiz;
-
-
-
-// props.quizQuestions[currentQuestion].incorrect_answers
-// {style it red} on button click
-// props.quizQuestions[currentQuestion].correct_answer
-// {style it green} on button click
