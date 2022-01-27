@@ -17,15 +17,15 @@ const UserSelectionForm = () => {
   // setting state with quiz questions
   const [quizQuestions, setQuizQuestions] = useState([]);
 
-  const [hasReachedEndOfQuiz, setHasReachedEndOfQuiz] = useState(false);
-  const [nextPlayer, setNextPlayer] = useState(1);
-  const [reachedPlayerFour, setReachedPlayerFour] = useState(false);
+  // const [hasReachedEndOfQuiz, setHasReachedEndOfQuiz] = useState(false);
+  // const [nextPlayer, setNextPlayer] = useState(1);
+  // const [reachedPlayerFour, setReachedPlayerFour] = useState(false);
   const [currentPlayer, setCurrentPlayer] = useState(1);
   const [currentPlayerScore, setCurrentPlayerScore] = useState(0);
 
   const [avatarImage, setAvatarImage] = useState('');
   const [userName, setUserName] = useState('');
-  const [allPlayersArrCounter, setAllPlayerArrCounter] = useState(0);
+  // const [allPlayersArrCounter, setAllPlayerArrCounter] = useState(0);
   const [allPlayersArr, setAllPlayersArr] = useState([
     {
       playerName: "",
@@ -47,9 +47,9 @@ const UserSelectionForm = () => {
   ]);
 
 
-  const handlePlayerNumber = (event) => {
-    setNumOfPlayers(event.target.value);
-  };
+  // const handlePlayerNumber = (event) => {
+  //   setNumOfPlayers(event.target.value);
+  // };
 
   const handleNextPlayer = () => {
       axiosTrigger();
@@ -331,8 +331,8 @@ const UserSelectionForm = () => {
         quizQuestions={quizQuestions}
         numOfPlayers={numOfPlayers}
         handleNextPlayer={handleNextPlayer}
-        nextPlayer={nextPlayer}
-        reachedPlayerFour={reachedPlayerFour}
+        // nextPlayer={nextPlayer}
+        // reachedPlayerFour={reachedPlayerFour}
         axiosTrigger={axiosTrigger}
         scoreSetter={scoreSetter}
         allPlayersArr={allPlayersArr}

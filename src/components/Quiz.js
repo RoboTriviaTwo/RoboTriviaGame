@@ -2,43 +2,38 @@ import { useState } from "react";
 // import scoreboard
 import Scoreboard from "./Scoreboard.js";
 
-
 const Quiz = (props) => {
 
+  // useState to track question numbers
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [currentScore, setCurrentScore] = useState(0);
-  // let currentPlayerScore = 0; 
-  // const [ isCorrect, setIsCorrect ] = useState(false);
 
+  // useState to track score
+  const [currentScore, setCurrentScore] = useState(0);
+  
   // useState to show score
   const [scoreboard, setScoreboard] = useState(false);
 
   // useState to set the popup of quiz done
   const [popup, setPopup] = useState(false);
 
-  const handleAnswerClick = (event, value) => {
+  // handleClick to update score, advance question and show score at the end of the game
+  const handleAnswerClick = (event) => {
     const userAnswer = event.target.value;
     if (userAnswer === props.quizQuestions[currentQuestion].correct_answer) {
-      console.log("Correct!");
       setCurrentScore(currentScore + 10);
-      // setIsCorrect(true);  
-    } else {
-      console.log("Nope!");
-      // setIsCorrect(false);
-    }
-
+    } 
     if (currentQuestion < props.quizQuestions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       setScoreboard(true);
       setPopup(true);
       props.scoreSetter(currentScore);
-      // alert("end of quiz");
-    }
+     }
   }
 
   return (
     <div className="quiz">
+      {/* if the set of questions is not zero */}
       {props.quizQuestions.length !== 0 ? (
         <>
           <div className="quizTitleContainer">
