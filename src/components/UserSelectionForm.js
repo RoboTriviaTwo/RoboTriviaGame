@@ -192,6 +192,7 @@ const UserSelectionForm = () => {
       <section className="wrapper">
         <h2>Welcome to our TRIVIA QUIZ!</h2>
         <p className='instructions'>Let your nerd flags fly! Select the number of friends you want to play with, choose your category and the level of difficulty then hit the submit button.</p>
+        <h3>Choose your Options Below:</h3>
         <form
         className='choicesForm'
           action=""
@@ -202,7 +203,7 @@ const UserSelectionForm = () => {
 
           <fieldset>
             <div className='playerChoiceCard'>
-              <label htmlFor="playerNumbers">Choose the Number of Players</label>
+              <label htmlFor="playerNumbers">Players</label>
               {/* @@@ for multiplayer
           <select 
             name="playerNumbers"
@@ -221,7 +222,7 @@ const UserSelectionForm = () => {
             </div>
 
             <div className='playerChoiceCard'>
-              <label htmlFor="categoryType">Choose Your Category</label>
+              <label htmlFor="categoryType">Category</label>
               <select
                 name="categoryType"
                 id="categoryType"
@@ -242,7 +243,7 @@ const UserSelectionForm = () => {
             </div>
 
             <div className='playerChoiceCard'>
-              <label htmlFor="difficulties">Choose Your Difficulty</label>
+              <label htmlFor="difficulties">Difficulty</label>
               <select
                 name="difficulties"
                 id="difficulties"
@@ -264,7 +265,9 @@ const UserSelectionForm = () => {
 
 
           </fieldset>
-          <button type="submit">Submit</button>
+          <div className='formSubmit'>
+            <button type="submit">Submit</button>
+          </div>
         </form>
       </section>
 

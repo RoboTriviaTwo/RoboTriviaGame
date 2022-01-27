@@ -1,0 +1,9 @@
+.correctAnswer:active {
+    // border: 2px solid green;
+    background-color: rgb(100, 220, 50);
+}
+
+.incorrectAnswer:active {
+    // border: 2px solid red;
+    background-color: red;
+}
