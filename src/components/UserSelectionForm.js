@@ -9,7 +9,7 @@ const UserSelectionForm = () => {
   // api call for category
   const [categoryArr, setCategoryArr] = useState([]);
   // useStates from form component - for second api call
-  const [numOfPlayers, setNumOfPlayers] = useState(0);
+  // const [numOfPlayers, setNumOfPlayers] = useState(0);
   const [userCategory, setUserCategory] = useState("");
   const [userDifficulty, setUserDifficulty] = useState("");
   const [submitButton, setSubmitButton] = useState(false);
@@ -51,16 +51,18 @@ const UserSelectionForm = () => {
   //   setNumOfPlayers(event.target.value);
   // };
 
-  const handleNextPlayer = () => {
-      axiosTrigger();
-  }
 
-  const axiosTrigger = () => {
-    if (currentPlayer < numOfPlayers){
-    setCurrentPlayer(currentPlayer + 1);
-    console.log(currentPlayer);
-    }
-  }
+  // @@@ for multiplayer
+  // const handleNextPlayer = () => {
+  //     axiosTrigger();
+  // }
+
+  // const axiosTrigger = () => {
+  //   if (currentPlayer < numOfPlayers){
+  //   setCurrentPlayer(currentPlayer + 1);
+  //   console.log(currentPlayer);
+  //   }
+  // }
   
 
   const handleCategoryChoice = (event) => {
@@ -133,9 +135,9 @@ const UserSelectionForm = () => {
     }
 
   const handleNameSubmit = () => {
-    if (avatarImage) {
+ 
       AllPlayerArrUpdate()
-    }
+
     // //@@@ for multiplayer
     // if(avatarImage && allPlayersArrCounter < 4){
     //   AllPlayerArrUpdate()
@@ -329,11 +331,11 @@ const UserSelectionForm = () => {
       <section className="wrapper">
       <Quiz 
         quizQuestions={quizQuestions}
-        numOfPlayers={numOfPlayers}
-        handleNextPlayer={handleNextPlayer}
+        // numOfPlayers={numOfPlayers}
+        // handleNextPlayer={handleNextPlayer}
         // nextPlayer={nextPlayer}
         // reachedPlayerFour={reachedPlayerFour}
-        axiosTrigger={axiosTrigger}
+        // axiosTrigger={axiosTrigger}
         scoreSetter={scoreSetter}
         allPlayersArr={allPlayersArr}
         // hasReachedEndOfQuiz={hasReachedEndOfQuiz}
