@@ -3,13 +3,13 @@ const PlayerNames = (props) => {
     
     return (
         <>
-        <h2>Player Info</h2>
+
         <div className="playerInfoCard">
             {/* Form to gather user name and produce avatar */}
             <form onSubmit={props.handleAvatarSubmit} action="">
                 <label htmlFor="playerName">Enter your Name to Get your Robot!</label>
-                <input onChange={props.handleUserName} type="text" id="playerName" value={props.userName}/>
-                <button onClick={props.handleNameSubmit}>🤖 Generate 🤖</button>
+                <input required onChange={props.handleUserName} type="text" id="playerName" value={props.userName}/>
+                <button onClick={props.handleNameSubmit}>Generate 🤖</button>
             </form>
             
             {/* If username is set within setAvatarImage, provide an avatar */}

@@ -118,7 +118,7 @@ const UserSelectionForm = () => {
   }, []);
 
   useEffect(() => {
-    if (userCategory !== "") {
+    if (userCategory !== "" && avatarImage !== "") {
       axios({
         url: "https://opentdb.com/api.php",
         method: "GET",
@@ -165,7 +165,14 @@ const UserSelectionForm = () => {
       <section className="wrapper">
         <h2>Welcome to our TRIVIA QUIZ!</h2>
         <p className='instructions'>Let your nerd flags fly! Select the number of friends you want to play with, choose your category and the level of difficulty then hit the submit button.</p>
-        <h3>Choose your Options Below:</h3>
+        <div className='userInputs'>
+          <PlayerNames
+            handleUserName={handleUserName}
+            userName={userName}
+            handleNameSubmit={handleNameSubmit}
+            handleAvatarSubmit={handleAvatarSubmit}
+            avatarImage={avatarImage}
+          />
         <form
           className='choicesForm'
           action=""
@@ -177,7 +184,7 @@ const UserSelectionForm = () => {
           <fieldset>
             <div className='playerChoiceCard'>
               <label htmlFor="categoryType">Category</label>
-              <select
+              <select 
                 name="categoryType"
                 id="categoryType"
                 onChange={handleCategoryChoice}
@@ -198,7 +205,7 @@ const UserSelectionForm = () => {
 
             <div className='playerChoiceCard'>
               <label htmlFor="difficulties">Difficulty</label>
-              <select
+              <select 
                 name="difficulties"
                 id="difficulties"
                 onChange={handleDifficultyChoice}
@@ -221,21 +228,19 @@ const UserSelectionForm = () => {
           </fieldset>
 
           <div className='formSubmit'>
-            <button type="submit">Submit</button>
+              <button type="submit">Submit 🤖 </button>
           </div>
+          {
+            quizQuestions === [] ? <p>Please enter your name to play</p> : null
+          }
 
         </form>
+
+        </div>
       </section>
 
-      <section className="wrapper">
-        <PlayerNames
-          handleUserName={handleUserName}
-          userName={userName}
-          handleNameSubmit={handleNameSubmit}
-          handleAvatarSubmit={handleAvatarSubmit}
-          avatarImage={avatarImage}
-        />
-      </section>
+      {/* <section className="wrapper">
+      </section> */}
       <section className="wrapper">
       <Quiz 
         quizQuestions={quizQuestions}
