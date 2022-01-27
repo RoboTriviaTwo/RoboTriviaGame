@@ -23,7 +23,7 @@ const UserSelectionForm = () => {
   const [currentPlayer, setCurrentPlayer] = useState(1);
   const [currentPlayerScore, setCurrentPlayerScore] = useState(0);
 
-  const [avatarImage, setAvatarImage] = useState([]);
+  const [avatarImage, setAvatarImage] = useState('');
   const [userName, setUserName] = useState('');
   const [allPlayersArrCounter, setAllPlayerArrCounter] = useState(0);
   const [allPlayersArr, setAllPlayersArr] = useState([
