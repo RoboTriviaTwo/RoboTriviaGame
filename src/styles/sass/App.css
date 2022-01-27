@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Bangers&family=Mukta:wght@300&family=Orbitron&family=Press+Start+2P&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Mukta:wght@200&display=swap");
+
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -232,39 +235,6 @@ html {
 }
 
 .correctAnswer:active {
-  background: green;
-}
-
-.incorrectAnswer:active {
-  background: red;
-}
-
-.popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.popupInner {
-  position: relative;
-  padding: 10%;
-  width: 50%;
-  background-color: #d1cde4;
-}
-
-.popupInner .closeButton {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-}
-
-.correctAnswer:active {
   background-color: #64dc32;
 }
 
@@ -272,10 +242,21 @@ html {
   background-color: red;
 }
 
-.root {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.wrapper {
+  margin: 0 auto;
+  width: 1200px;
+  max-width: 80%;
+}
+
+.startingLink {
+  margin-top: 25px;
+}
+.startingLink a {
+  font-size: 50px;
+}
+
+html {
+  font-size: 125%;
 }
 
 body {
@@ -283,9 +264,13 @@ body {
   background-color: #e6b923;
 }
 
+header {
+  margin: 50px;
+}
+
 fieldset {
   display: flex;
-  flex-direction: column;
+
   justify-content: center;
   align-items: center;
   border-style: none;
@@ -316,21 +301,21 @@ button {
   border-radius: 25px;
 }
 
-button.correctAnswer,
-button.incorrectAnswer {
-  height: 100px;
-  width: 250px;
-  font-size: 1.25rem;
-  border-radius: 50px;
+
+.playerChoiceCard {
+  width: calc((100% / 3) - 20px);
 }
 
 h1, h2 {
   font-family: "Bangers", cursive;
+  font-weight: 100;
+  letter-spacing: 5px;
   color: white;
 }
 
 h1 {
   font-size: 3.5rem;
+  text-align: left;
 }
 
 h2 {
@@ -340,11 +325,33 @@ h2 {
 label, button, p, a {
   font-family: "Bangers", cursive;
   font-size: 1.5rem;
+  letter-spacing: 1.2px;
   color: white;
+  font-weight: 100;
+}
+
+.instructions {
+  font-family: "Mukta", sans-serif;
+  text-align: left;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
 }
 
 form {
   margin: 20px;
+}
+
+.landingPage {
+  background-image: url(/robo-trivia-header-image.jpg);
+  height: 50vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .App {

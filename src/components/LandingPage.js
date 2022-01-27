@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom';
 
 const LandingPage = (() => {
-    return(
+    return (
         <>
-        <Link to='/welcome'>Click here to begin</Link>
+            <div className="landingPage">
+            </div>
+            <div className='startingLink'>
+                <Link to='/welcome'>Click here to begin</Link>
+            </div>
         </>
     )
 })

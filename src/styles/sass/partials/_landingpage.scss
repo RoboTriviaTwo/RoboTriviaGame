@@ -1,0 +1,23 @@
+
+header {
+    margin: 50px;
+}
+
+.landingPage {
+    background-image: url(/robo-trivia-header-image.jpg);
+    height: 50vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+}
+
+.startingLink {
+    margin-top: 25px;
+    text-align: center;
+    a {
+        font-size: 50px;
+    }
+}

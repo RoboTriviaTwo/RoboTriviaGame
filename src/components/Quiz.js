@@ -9,16 +9,16 @@ const Quiz = (props) => {
   const [currentScore, setCurrentScore] = useState(0);
   // let currentPlayerScore = 0; 
   // const [ isCorrect, setIsCorrect ] = useState(false);
-  
-    // useState to show score
+
+  // useState to show score
   const [scoreboard, setScoreboard] = useState(false);
-  
+
   // useState to set the popup of quiz done
   const [popup, setPopup] = useState(false);
 
   const handleAnswerClick = (event, value) => {
     const userAnswer = event.target.value;
-    if (userAnswer === props.quizQuestions[currentQuestion].correct_answer){
+    if (userAnswer === props.quizQuestions[currentQuestion].correct_answer) {
       console.log("Correct!");
       setCurrentScore(currentScore + 10);
       // setIsCorrect(true);  
@@ -37,21 +37,27 @@ const Quiz = (props) => {
     }
   }
 
-    return (
-      <div>
-         {props.quizQuestions.length !== 0 ? (
-          <>
-            <h2>quiz here</h2>
-            <p>Question: {(props.quizQuestions[currentQuestion].question).replace(/&quot;/g, '"').replace(/&rsquo;/g, "'").replace(/&Eacute;/g, "é").replace(/&#039;/g, "'").replace(/&shy;/g, "")}
+  return (
+    <div className="quiz">
+      {props.quizQuestions.length !== 0 ? (
+        <>
+          <div className="quizTitleContainer">
+            <h2>Time for that <span>Nerd Flag to Fly</span></h2>
+            <p className="playerCurrentScore">Your Current Score is <span>{currentScore}</span></p>
+          </div>
+          <div className="quizContainer">
+            <p className="currentQuestion">Question: {(props.quizQuestions[currentQuestion].question).replace(/&quot;/g, '"').replace(/&rsquo;/g, "'").replace(/&Eacute;/g, "é").replace(/&#039;/g, "'").replace(/&shy;/g, "")}
             </p>
-              {props.quizQuestions[currentQuestion].answerButtons.map(
+
+            <div className="answerContainer">
+            {props.quizQuestions[currentQuestion].answerButtons.map(
               (answerItem, index) => {
                 return (
                   <button
                     value={answerItem.name}
                     onClick={handleAnswerClick}
                     key={index}
-                  className={
+                    className={
                       answerItem.isCorrect ? "correctAnswer" : "incorrectAnswer"
                     }
                   >
@@ -60,9 +66,8 @@ const Quiz = (props) => {
                 );
               }
             )}
-            <p>{currentScore}</p>
-           
-            
+            </div>   
+          </div>
           </>
           ) : null}
           {scoreboard ? <Scoreboard 
