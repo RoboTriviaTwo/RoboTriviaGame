@@ -86,6 +86,7 @@ import Quiz from './Quiz.js';
   const scoreSetter = (score) => {
     setCurrentPlayerScore(score)
   }
+
   useEffect(() => {
     scoreUpdate()
   }, [currentPlayerScore])

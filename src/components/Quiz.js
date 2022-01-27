@@ -20,7 +20,7 @@ const Quiz = (props) => {
     const userAnswer = event.target.value;
     if (userAnswer === props.quizQuestions[currentQuestion].correct_answer){
       console.log("Correct!");
-      setCurrentScore(currentScore + 100);
+      setCurrentScore(currentScore + 10);
       // setIsCorrect(true);  
     } else {
       console.log("Nope!");
@@ -32,11 +32,9 @@ const Quiz = (props) => {
     } else {
       setScoreboard(true);
       setPopup(true);
-      props.scoreSetter(currentScore)
+      props.scoreSetter(currentScore);
       // alert("end of quiz");
     }
-    
-    // console.log(currentQuestion);
   }
 
     return (
@@ -67,7 +65,7 @@ const Quiz = (props) => {
             
           </>
           ) : null}
-        {scoreboard ? <Scoreboard 
+          {scoreboard ? <Scoreboard 
           currentScore={currentScore} 
           trigger={popup} 
           setTrigger={setPopup}
