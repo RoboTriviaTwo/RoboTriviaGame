@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Mukta:wght@300&family=Orbitron&family=Press+Start+2P&display=swap");
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -231,11 +232,119 @@ html {
 }
 
 .correctAnswer:active {
-  border: 2px solid green;
+  background: green;
 }
 
 .incorrectAnswer:active {
-  border: 2px solid red;
+  background: red;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popupInner {
+  position: relative;
+  padding: 10%;
+  width: 50%;
+  background-color: #d1cde4;
+}
+
+.popupInner .closeButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.correctAnswer:active {
+  background-color: #64dc32;
+}
+
+.incorrectAnswer:active {
+  background-color: red;
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+body {
+  text-align: center;
+  background-color: #e6b923;
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-style: none;
+}
+
+label {
+  margin: 10px;
+}
+
+select {
+  text-align: center;
+  margin: 10px;
+  background-color: royalblue;
+  border-style: none;
+  width: 200px;
+  font-family: "Mukta", sans-serif;
+  color: white;
+  border: 2px solid white;
+  border-radius: 25px;
+}
+
+button {
+  margin: 20px;
+  width: 200px;
+  height: 50px;
+  background-color: royalblue;
+  border: 2px solid white;
+  border-radius: 25px;
+}
+
+button.correctAnswer,
+button.incorrectAnswer {
+  height: 100px;
+  width: 250px;
+  font-size: 1.25rem;
+  border-radius: 50px;
+}
+
+h1, h2 {
+  font-family: "Bangers", cursive;
+  color: white;
+}
+
+h1 {
+  font-size: 3.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+label, button, p, a {
+  font-family: "Bangers", cursive;
+  font-size: 1.5rem;
+  color: white;
+}
+
+form {
+  margin: 20px;
 }
 
 .App {
