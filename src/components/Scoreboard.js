@@ -1,93 +1,72 @@
 // Scoreboard.js
 import firebase from "./../firebase.js";
-import { getDatabase, ref, push, onValue } from "firebase/database";
+import { getDatabase, ref, onValue } from "firebase/database";
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 
 const Scoreboard = (props) => {
   // firebase data - for userObj
   const [userObj, setUserObj] = useState([]);
-  // const [newUserObj, setnewUserObj] = useState([]);
-
-  // button to activate it
-  // const [scoreButton, setScoreButton] = useState(false);
+  const [combineMethod, setCombineMethod] = useState(false);
 
   useEffect(() => {
     const database = getDatabase(firebase);
-    // reference database
+
     const dbRef = ref(database);
 
     // add an event listener to call data 'response'
     onValue(dbRef, (response) => {
       // storing new state
       const newState = [];
-      // storing in variable
+      // storing in data variable
       const data = response.val();
 
-      // for in loop to access data property
+      // for in loop to access player obj
       for (let player in data) {
         newState.push(data[player]);
       }
       // setState by accessing first array from firebase
       setUserObj(newState[0]); 
-      // console.log(newState[0]); -- console log here
+      setCombineMethod(true);
     });
   }, []);
 
-  // sample firebase handler for testing
-  // const scoreButtonHandler = () => {
-  //   setnewUserObj([
-  //     { playerName: "Imitiaz", score: 99, avatar: "avatarUrl" },
-  //     { playerName: "Joey", score: 62, avatar: "avatarUrl" },
-  //     { playerName: "Laura", score: 80, avatar: "avatarUrl" },
-  //   ]);
-  // };
+  // runs when setSubmit is true
+  // removes lowest score from array of current users and db scores
+  if (combineMethod) {
+    const allArray = (...array) => {
+      return array;
+    };
 
-  // our new array
-  // allPlayersArr;
-  console.log(userObj); // our firebase array
-  console.log(props.allPlayersArr); // our array 
+    const allUsers = allArray(
+      userObj[0],
+      userObj[1],
+      userObj[2],
+      props.allPlayersArr[0]
+    );
 
-  // compare current scores to firebase to maintain 3 highscores in firebase
-  const allArray = (...array) => {
-    return array;
-  }
-
-  const allUsers = allArray(
-    userObj[0],
-    userObj[1],
-    userObj[2],
-    props.allPlayersArr[0]
-  );
-
-  const compareUserObj = () => {
     const scoreArr = allUsers.map((user) => {
-      return user.score
-  });
+      const score = user.score;
+      return score;
+    });
 
-  const minScore = Math.min(...scoreArr);  
+    const minScore = Math.min(...scoreArr);
 
-  // returns obj with lowest score
-  const result = allUsers.find(item => {
-    return item.score === minScore;
-  })
+    // returns obj with lowest score
+    const result = allUsers.find((item) => {
+      return item.score === minScore;
+    });
 
-  // the index of min score
-  const index = allUsers.indexOf(result);
+    // the index of min score
+    const index = allUsers.indexOf(result);
 
-  // removes player with lowest score
-  allUsers.splice(index, 1);
-  }
+    // removes player with lowest score
+    allUsers.splice(index, 1);
+  } 
 
-  // filter the array and slice 
-
-
-
-
-  // combined index array.score
-  // call the function
-  compareUserObj();
-
+  // ** console.log to access userObj and our players
+  // console.log(userObj); // our firebase array
+  // console.log(props.allPlayersArr); // our array 
 
   // scenario to compare
   // we have a new array containing current user 
@@ -95,24 +74,21 @@ const Scoreboard = (props) => {
 
   // pseudocode
   // 1. userObj - is the array in firebase
-    // create logic on the object's score property
+    // access score property
+    // perform math.min function on the array of scores
+    // match current array against lowest score
 
-    // compare with current user score property
-
-    // pick out the index containing largest
-
-  // 2. display
-    // show scoreboard after filtering
+  // 2. display to users
+    // show top three players
 
   // 3. push to firebase 
     // on user click of 'submit score' button
-    // empty current arrays 
-    // current user scores get pushed with new top 3 players
+    // empty current array from database
+    // new allUsers array pushed
 
   
-    
 
-  // useEffect to push
+  // ** function to push to db
   // useEffect(() => {
   //   const database = getDatabase(firebase);
   //   // reference database

@@ -115,8 +115,6 @@ import Quiz from './Quiz.js';
     }
 
     const scoreUpdate = () => {
-      console.log("im running")
-      console.log(currentPlayerScore)
       // // @@@ for multiplayer
       // let tempAllPlayersArr = [...allPlayersArr];
       // tempAllPlayersArr[allPlayersArrCounter] = {
