@@ -56,16 +56,16 @@ const Scoreboard = (props) => {
     <div className="popup">
       <div className="popupInner">
       <h1>High Scores</h1>
-      <p>Your Score is: {props.currentScore} / 10.</p>
+      <p>Your Score is: {props.currentScore} / 100.</p>
       <p>Top players</p>
-      {userObj.map((user, index) => {
+      {/* {userObj.map((user, index) => {
         return (
           <li key={index}>
             <p>{user.playerName}</p>
             <p>Score: {user.score} / 100</p>
           </li>
         );
-      })}
+      })} */}
       <Link to='/'> Click here to play again</Link>
     </div>
     </div>
