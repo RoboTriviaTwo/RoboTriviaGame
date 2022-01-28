@@ -36,7 +36,7 @@ const Quiz = (props) => {
         <>
           <div className="quizTitleContainer">
             {/* <h2>Time for that <span>Nerd Flag to Fly</span></h2> */}
-            <p className="playerCurrentScore">Your Current Score is <span>{currentScore}</span></p>
+            <p className="playerCurrentScore">Current Score <span>{currentScore}</span></p>
           </div>
           <div className="quizContainer">
             <p className="currentQuestion">Question: {(props.quizQuestions[currentQuestion].question).replace(/&quot;/g, '"').replace(/&rsquo;/g, "'").replace(/&Eacute;/g, "é").replace(/&#039;/g, "'").replace(/&shy;/g, "")}</p>

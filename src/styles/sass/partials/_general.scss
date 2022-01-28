@@ -1,5 +1,5 @@
 // Typography and General Styles
-@import url('https://fonts.googleapis.com/css2?family=Exo:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo:wght@400;500;700;800&display=swap');
 
 $primary-color: #1c0452;
 $secondary-color: #7AFED6;
@@ -49,6 +49,6 @@ label {
 
 .wrapper {
     margin: 0 auto;
-    width: 1200px;
-    max-width: 80%;
+    max-width: 1200px;
+    width: 80%;
 }
