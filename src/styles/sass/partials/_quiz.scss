@@ -21,8 +21,9 @@
 .quizContainer {
     display: flex;
     padding-bottom: 50px;
+    justify-content: space-between;
         p {
-            width: 50%;
+            width: 45%;
             align-self: center;
             font-size: 1.5rem;
         }
@@ -41,7 +42,7 @@
 .answerContainer {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 45%;
 }
 
 
