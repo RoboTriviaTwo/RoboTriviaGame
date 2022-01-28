@@ -35,7 +35,7 @@ const Quiz = (props) => {
       {props.quizQuestions.length !== 0 ? (
         <>
           <div className="quizTitleContainer">
-            <h2>Time for that <span>Nerd Flag to Fly</span></h2>
+            {/* <h2>Time for that <span>Nerd Flag to Fly</span></h2> */}
             <p className="playerCurrentScore">Your Current Score is <span>{currentScore}</span></p>
           </div>
           <div className="quizContainer">

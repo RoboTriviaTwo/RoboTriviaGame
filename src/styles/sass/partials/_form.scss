@@ -8,6 +8,7 @@
 
 .userInputs {
     display: flex;
+    flex-direction: column;
 }
 
 fieldset {
@@ -27,11 +28,11 @@ label {
 select {
     text-align: center;
     margin: 10px;
-    background-color: royalblue;
+    background-color: white;
     border-style: none;
     width: 200px;
     font-family: 'Mukta', sans-serif;
-    color: white;
+    color: #252525;
     border: 2px solid white;
     border-radius: 25px;
 }
@@ -53,9 +54,11 @@ select {
 
 .playerInfoCard {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     width: 100%;
+    background-color: #64DFDF;
+    color: #252525;
     form {
         display: flex;
         flex-direction: column;
@@ -63,6 +66,7 @@ select {
         width: 75%;
             label {
                 font-size: 1rem;
+                text-align: left;
             }
             input {
                 width: 50%;
@@ -71,8 +75,15 @@ select {
             button {
                 width: 50%;
                 align-self: center;
+                background-color: #6930C3;
+                color: white;
             }
     }
+}
+
+.avatarGenerator {
+    display: flex;
+    flex-direction: row;
 }
 
 .avatarContainer {
@@ -85,8 +96,9 @@ select {
             font-size: 1rem;
         }
         .avatarImageContainer {
-            border: 2px solid black;
-            width: 50%;
+            border: 2px solid #6930C3;
+            border-radius: 100px;
+            background-color: #6930C3;
                 img {
                     height: 200px;
                 }
@@ -98,6 +110,8 @@ select {
     flex-direction: column;
     justify-content: space-evenly;
     width: 100%;
+    margin: 20px 0;
+    border: 2px solid #64DFDF;
         fieldset {
             flex-direction: column;
         }
