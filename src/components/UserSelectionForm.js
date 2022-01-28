@@ -181,9 +181,9 @@ const UserSelectionForm = () => {
 
   return (
     <main>
-      <section className="wrapper">
-        <h2>Welcome to our TRIVIA QUIZ!</h2>
-        <p className='instructions'>Let your nerd flags fly! Select the number of friends you want to play with, choose your category and the level of difficulty then hit the submit button.</p>
+      <section>
+        {/* <h2>Welcome to our TRIVIA QUIZ!</h2>
+        <p className='instructions'>Let your nerd flags fly! Select the number of friends you want to play with, choose your category and the level of difficulty then hit the submit button.</p> */}
         <div className='userInputs'>
           <PlayerNames
             handleUserName={handleUserName}
@@ -201,7 +201,7 @@ const UserSelectionForm = () => {
         >
 
           <fieldset>
-            <div className='playerChoiceCard'>
+            <div className='playerChoiceCard wrapper'>
               <label htmlFor="categoryType">Category</label>
               <select 
                 name="categoryType"

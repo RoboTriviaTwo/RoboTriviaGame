@@ -8,7 +8,7 @@ function App() {
   return (
     <div>
       <header>
-        <h1 className='wrapper'>RoboTrivia</h1>
+        <h1 className='wrapper'>Robo<span>Trivia</span></h1>
       </header>
    
       {/* Routes to the landing page and quiz */}
