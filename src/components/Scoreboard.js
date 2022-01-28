@@ -90,7 +90,7 @@ const Scoreboard = (props) => {
       <div className="popupInner">
         <h1>High Scores</h1>
         <p>Your Score is: {props.currentScore} / 100.</p>
-        <p>Top players</p>
+        <p className="topPlayers">Top players</p>
 
         {userObj.map((user, index) => {
           return (

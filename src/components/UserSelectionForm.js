@@ -51,6 +51,11 @@ const UserSelectionForm = () => {
     if (avatarImage === '') {
       setNameChecker(true)
     }
+    window.scrollTo({
+      top: 1000,
+      left: 100,
+      behavior: 'smooth'
+    });
   };
   
   useEffect(() => {
@@ -191,6 +196,7 @@ const UserSelectionForm = () => {
             handleNameSubmit={handleNameSubmit}
             handleAvatarSubmit={handleAvatarSubmit}
             avatarImage={avatarImage}
+            nameChecker={nameChecker}
           />
         <form
           className='choicesForm'
@@ -245,18 +251,16 @@ const UserSelectionForm = () => {
             </div>
 
           </fieldset>
-
+            {
+              arrayChecker ? <p className='errorMessage'>Oops - there was an error!  The trivia wizards need you to pick another category.</p> : null
+            }
           <div className='formSubmit'>
               <button                      
                 type="submit">Submit 🤖 </button>
           </div>
 
-            {
-              arrayChecker ? <p>Oops - there was an error!  The trivia wizards need you to pick another category.</p> : null
-            }
-            {
-              nameChecker ? <p>Oops - Don't forget to fill out your name to meet your robot</p> : null
-            }
+            
+            
 
         </form>
 

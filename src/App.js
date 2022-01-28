@@ -16,7 +16,9 @@ function App() {
         <Route path='/' element={<LandingPage />} />
         <Route path='/welcome' element={<UserSelectionForm />}/>
       </Routes>
-
+      <footer>
+        <p>Created at <a href='www.junoCollege.com'>Juno College</a> 2022</p>
+      </footer>
     </div>
   );
 }
