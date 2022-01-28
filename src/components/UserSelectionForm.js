@@ -31,6 +31,9 @@ const UserSelectionForm = () => {
     },
   ]);
 
+  const [arrayChecker, setArrayChecker] = useState(false);
+  const [nameChecker, setNameChecker] = useState(false);
+
   const handleCategoryChoice = (event) => {
     setUserCategory(event.target.value);
   };
@@ -38,11 +41,26 @@ const UserSelectionForm = () => {
   const handleDifficultyChoice = (event) => {
     setUserDifficulty(event.target.value);
   };
-
+//  useEffect with useEffect?
   const submitHandler = (event) => {
     event.preventDefault();
     setSubmitButton(!submitButton);
+    if (quizQuestions.length === 0){
+      setArrayChecker(true);
+    }
+    if (avatarImage === '') {
+      setNameChecker(true)
+    }
   };
+  
+  useEffect(() => {
+    if (quizQuestions.length > 0) {
+      setArrayChecker(false)
+    }
+    if (avatarImage !== '') {
+      setNameChecker (false)
+    }
+  }, [quizQuestions])
 
   const handleUserName = (event) => {
     setUserName(event.target.value)
@@ -59,6 +77,7 @@ const UserSelectionForm = () => {
   const handleAvatarSubmit = (event) => {
     event.preventDefault()
     setAvatarImage(userName)
+    setNameChecker(false)
   };
 
     const AllPlayerArrUpdate = () => {
@@ -118,7 +137,7 @@ const UserSelectionForm = () => {
   }, []);
 
   useEffect(() => {
-    if (userCategory !== "" && avatarImage !== "") {
+    if (userCategory !== "" && avatarImage !== '') {
       axios({
         url: "https://opentdb.com/api.php",
         method: "GET",
@@ -228,11 +247,16 @@ const UserSelectionForm = () => {
           </fieldset>
 
           <div className='formSubmit'>
-              <button type="submit">Submit 🤖 </button>
+              <button                      
+                type="submit">Submit 🤖 </button>
           </div>
-          {
-            quizQuestions === [] ? <p>Please enter your name to play</p> : null
-          }
+
+            {
+              arrayChecker ? <p>Oops - there was an error!  The trivia wizards need you to pick another category.</p> : null
+            }
+            {
+              nameChecker ? <p>Oops - Don't forget to fill out your name to meet your robot</p> : null
+            }
 
         </form>
 
