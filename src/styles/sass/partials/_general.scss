@@ -1,27 +1,35 @@
 // Typography and General Styles
+@import url('https://fonts.googleapis.com/css2?family=Exo:wght@400;700;800&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Mukta:wght@300&family=Orbitron&family=Press+Start+2P&display=swap');
+$primary-color: #1c0452;
+$secondary-color: #7AFED6;
+$tertiary-color: #6930C3;
+$accent-color: #BC9EFC;
 
 html {
     font-size: 125%;
-    color: #80FFDB;
-    font-family: 'Bangers', cursive;
+    color: $secondary-color;
+    font-family: 'Exo', sans-serif;
 }
 
 body {
-    background-color: #1c0452;
+    background-color: $primary-color;
 }
 
 h1, 
 h2,
 h3 {
-    font-weight: 100;
     letter-spacing: 5px;
 }
 
 h1 {
     font-size: 3.5rem;
     text-align: center;
+    font-weight: 800;
+    text-transform: uppercase;
+    span {
+        color: $accent-color;
+    }
 }
 
 h2, 
@@ -33,15 +41,10 @@ h3 {
     text-align: center;
 }
 
-
-// *********** Might make more dry
-label, 
-button, 
-p, 
-a {
-    font-size: 1.5rem;
-    letter-spacing: 1.2px;
-    font-weight: 100;
+label {
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1.4rem;
 }
 
 .wrapper {

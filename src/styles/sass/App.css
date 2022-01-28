@@ -1,7 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Mukta:wght@300&family=Orbitron&family=Press+Start+2P&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Mukta:wght@200&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Exo:wght@400;700;800&display=swap");
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -234,12 +231,45 @@ html {
   overflow: hidden;
 }
 
-.correctAnswer:active {
-  background-color: #64dc32;
+html {
+  font-size: 125%;
+  color: #7AFED6;
+  font-family: "Exo", sans-serif;
 }
 
-.incorrectAnswer:active {
-  background-color: red;
+body {
+  background-color: #1c0452;
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: 5px;
+}
+
+h1 {
+  font-size: 3.5rem;
+  text-align: center;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+h1 span {
+  color: #BC9EFC;
+}
+
+h2,
+h3 {
+  font-size: 2rem;
+}
+
+h3 {
+  text-align: center;
+}
+
+label {
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 1.4rem;
 }
 
 .wrapper {
@@ -248,29 +278,23 @@ html {
   max-width: 80%;
 }
 
-.startingLink {
-  margin-top: 25px;
-}
-.startingLink a {
-  font-size: 50px;
-}
-
-html {
-  font-size: 125%;
-}
-
-body {
-  text-align: center;
-  background-color: #e6b923;
+button {
+  margin: 20px;
+  padding: 12px;
+  color: #252525;
+  background-color: #64DFDF;
+  border-style: none;
+  border-radius: 15px;
+  font-family: "Exo", sans-serif;
 }
 
-header {
-  margin: 50px;
+.userInputs {
+  display: flex;
+  flex-direction: column;
 }
 
 fieldset {
   display: flex;
-
   justify-content: center;
   align-items: center;
   border-style: none;
@@ -278,70 +302,96 @@ fieldset {
 
 label {
   margin: 10px;
+  text-align: center;
 }
 
 select {
   text-align: center;
   margin: 10px;
-  background-color: royalblue;
+  background-color: white;
   border-style: none;
   width: 200px;
-  font-family: "Mukta", sans-serif;
-  color: white;
+  color: #252525;
   border: 2px solid white;
   border-radius: 25px;
 }
-
-button {
-  margin: 20px;
-  width: 200px;
-  height: 50px;
-  background-color: royalblue;
-  border: 2px solid white;
-  border-radius: 25px;
-}
-
 
 .playerChoiceCard {
-  width: calc((100% / 3) - 20px);
-}
-
-h1, h2 {
-  font-family: "Bangers", cursive;
-  font-weight: 100;
-  letter-spacing: 5px;
-  color: white;
-}
-
-h1 {
-  font-size: 3.5rem;
-  text-align: left;
-}
-
-h2 {
-  font-size: 2rem;
-}
-
-label, button, p, a {
-  font-family: "Bangers", cursive;
-  font-size: 1.5rem;
-  letter-spacing: 1.2px;
-  color: white;
-  font-weight: 100;
-}
-
-.instructions {
-  font-family: "Mukta", sans-serif;
-  text-align: left;
-}
-
-label {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formSubmit {
+  display: flex;
+  justify-content: center;
+}
+
+.playerInfoCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  border: 2px solid #7AFED6;
+  padding: 50px;
+  color: #7AFED6;
+}
+.playerInfoCard form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 75%;
+}
+.playerInfoCard form input {
+  width: 50%;
+  align-self: center;
+}
+.playerInfoCard form button {
+  width: 50%;
+  align-self: center;
+  background-color: #7AFED6;
+  color: #1c0452;
+  font-family: "Exo", sans-serif;
+}
+
+.avatarGenerator {
+  display: flex;
+  flex-direction: row;
+}
+
+.avatarContainer {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.avatarContainer p {
+  font-size: 1rem;
+}
+.avatarContainer .avatarImageContainer {
+  border-radius: 100px;
+  background-color: #6930C3;
+}
+.avatarContainer .avatarImageContainer img {
+  height: 200px;
+  border-radius: 100px;
+}
+
+.choicesForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+  margin: 20px 0;
+  color: #1c0452;
+  background-color: #7AFED6;
+}
+.choicesForm fieldset {
   flex-direction: column;
 }
 
-form {
-  margin: 20px;
+header {
+  margin: 50px;
 }
 
 .landingPage {
@@ -354,50 +404,81 @@ form {
   justify-content: flex-end;
 }
 
-.App {
+.startingLink {
+  margin-top: 25px;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.startingLink a {
+  font-size: 50px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    -webkit-animation: App-logo-spin infinite 20s linear;
-            animation: App-logo-spin infinite 20s linear;
-  }
+.quizTitleContainer {
+  display: flex;
+  justify-content: center;
 }
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.quizTitleContainer p {
+  font-size: 1.5rem;
+}
+.quizTitleContainer p span {
+  text-align: center;
+}
+.quizTitleContainer span {
+  display: block;
+}
+
+.quizContainer {
+  display: flex;
+  padding-bottom: 50px;
+}
+.quizContainer p {
+  width: 40%;
+  padding-right: 40px;
+  align-self: center;
+  font-size: 1.5rem;
+}
+
+.currentQuestion {
+  border: 2px solid #64DFDF;
+  text-align: center;
+  padding: 15px 0;
+}
+
+.answerContainer {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 60%;
+}
+
+.correctAnswer:active {
+  background-color: #64dc32;
+}
+
+.incorrectAnswer:active {
+  background-color: red;
+}
+
+/* Pupup Styling */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.popupInner {
+  position: relative;
+  padding: 10%;
+  width: 50%;
+  background-color: #d1cde4;
 }
 
-@-webkit-keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.popupInner .closeButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
 }/*# sourceMappingURL=App.css.map */

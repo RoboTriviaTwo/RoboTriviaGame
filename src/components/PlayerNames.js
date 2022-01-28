@@ -4,7 +4,7 @@ const PlayerNames = (props) => {
     return (
         <>
 
-            <div className="playerInfoCard">
+            <div className="playerInfoCard wrapper">
                 {/* Form to gather user name and produce avatar */}
                 <form onSubmit={props.handleAvatarSubmit} action="">
                     <label htmlFor="playerName">Enter your Name to Get your Robot!</label>
