@@ -52,3 +52,11 @@ label {
     max-width: 1200px;
     width: 80%;
 }
+
+footer {
+    text-align: center;
+    padding-top: 50px;
+    a {
+        color: $secondary-color;
+    }
+}

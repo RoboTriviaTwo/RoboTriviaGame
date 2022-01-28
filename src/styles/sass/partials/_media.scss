@@ -1,0 +1,49 @@
+@media (max-width: 951px) {
+    .playerInfoCard {
+        form {
+            input,
+            button {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .avatarGenerator {
+        flex-direction: column;
+    }
+
+    .quizContainer {
+        flex-direction: column;
+    }
+
+    .answerContainer {
+        width: 100%;
+    }
+}
+
+@media (max-width: 575px) {
+    header {
+        span {
+            display: block;
+        }
+        h1 {
+            font-size: 2.5rem;
+        }
+    }
+
+    .quizContainer p {
+        width: 90%;
+    }
+
+    select {
+        width: 200px;
+    }
+
+    .playerInfoCard {
+        padding: 40px 0;
+    }
+}
+
+

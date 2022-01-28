@@ -278,6 +278,14 @@ label {
   width: 80%;
 }
 
+footer {
+  text-align: center;
+  padding-top: 50px;
+}
+footer a {
+  color: #7AFED6;
+}
+
 button {
   margin: 20px;
   padding: 12px;
@@ -405,12 +413,16 @@ select {
   flex-direction: column;
 }
 
+.errorMessage {
+  text-align: center;
+}
+
 header {
   margin: 50px;
 }
 
 .landingPage {
-  background-image: url(/robo-trivia-header-image.jpg);
+  background-image: url(/robo-trivia-header-image.png);
   height: 50vh;
   background-repeat: no-repeat;
   background-position: center;
@@ -424,7 +436,11 @@ header {
   text-align: center;
 }
 .startingLink a {
-  font-size: 50px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: #7AFED6;
 }
 
 .quizTitleContainer {
@@ -494,12 +510,73 @@ header {
 .popupInner {
   position: relative;
   padding: 10%;
-  width: 50%;
-  background-color: #d1cde4;
+  width: 70%;
+  background-color: #1c0452;
+  border: 10px solid white;
+  text-align: center;
+}
+.popupInner .topPlayers {
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+}
+.popupInner li {
+  list-style: none;
+}
+.popupInner a {
+  padding: 12px;
+  border-radius: 15px;
+  text-decoration: none;
+  background-color: #64DFDF;
+  color: #252525;
+  display: block;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 
 .popupInner .closeButton {
   position: absolute;
   top: 16px;
   right: 16px;
+}
+
+@media (max-width: 951px) {
+  .playerInfoCard form input,
+.playerInfoCard form button {
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .avatarGenerator {
+    flex-direction: column;
+  }
+
+  .quizContainer {
+    flex-direction: column;
+  }
+
+  .answerContainer {
+    width: 100%;
+  }
+}
+@media (max-width: 575px) {
+  header span {
+    display: block;
+  }
+  header h1 {
+    font-size: 2.5rem;
+  }
+
+  .quizContainer p {
+    width: 90%;
+  }
+
+  select {
+    width: 200px;
+  }
+
+  .playerInfoCard {
+    padding: 40px 0;
+  }
 }/*# sourceMappingURL=App.css.map */
