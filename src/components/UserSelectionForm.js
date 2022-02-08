@@ -41,7 +41,7 @@ const UserSelectionForm = () => {
   const handleDifficultyChoice = (event) => {
     setUserDifficulty(event.target.value);
   };
-//  useEffect with useEffect?
+
   const submitHandler = (event) => {
     event.preventDefault();
     setSubmitButton(!submitButton);
@@ -52,7 +52,7 @@ const UserSelectionForm = () => {
       setNameChecker(true)
     }
     window.scrollTo({
-      top: 1000,
+      top: 2000,
       left: 100,
       behavior: 'smooth'
     });
@@ -85,41 +85,37 @@ const UserSelectionForm = () => {
     setNameChecker(false)
   };
 
-    const AllPlayerArrUpdate = () => {
-      let tempAllPlayersArr = [...allPlayersArr];
-      tempAllPlayersArr[0] = {
-        ...tempAllPlayersArr[0],
-        playerName: userName
-      }
-      setAllPlayersArr(tempAllPlayersArr);
+  const AllPlayerArrUpdate = () => {
+    let tempAllPlayersArr = [...allPlayersArr];
+    tempAllPlayersArr[0] = {
+      ...tempAllPlayersArr[0],
+      playerName: userName
     }
+    setAllPlayersArr(tempAllPlayersArr);
+  }
 
-    const scoreUpdate = () => {
-      let tempAllPlayersArr = [...allPlayersArr];
-      tempAllPlayersArr[0] = {
-        ...tempAllPlayersArr[0],
-        score: currentPlayerScore
-      }
-      setAllPlayersArr(tempAllPlayersArr);
+  const scoreUpdate = () => {
+    let tempAllPlayersArr = [...allPlayersArr];
+    tempAllPlayersArr[0] = {
+      ...tempAllPlayersArr[0],
+      score: currentPlayerScore
     }
+    setAllPlayersArr(tempAllPlayersArr);
+  }
 
   const handleNameSubmit = () => {
-       AllPlayerArrUpdate()
+        AllPlayerArrUpdate()
   }
  
   const shuffleArr = (array) => {
     let currentIndex = array.length, randomIndex;
-
     // While there remain elements to shuffle...
     while (currentIndex != 0) {
-
-      // Pick a remaining element...
+    // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-
       // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
+      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
     }
     return array;
   }
@@ -187,8 +183,6 @@ const UserSelectionForm = () => {
   return (
     <main>
       <section>
-        {/* <h2>Welcome to our TRIVIA QUIZ!</h2>
-        <p className='instructions'>Let your nerd flags fly! Select the number of friends you want to play with, choose your category and the level of difficulty then hit the submit button.</p> */}
         <div className='userInputs'>
           <PlayerNames
             handleUserName={handleUserName}
@@ -198,34 +192,31 @@ const UserSelectionForm = () => {
             avatarImage={avatarImage}
             nameChecker={nameChecker}
           />
-        <form
-          className='choicesForm'
-          action=""
-          onSubmit={(event) => {
-          submitHandler(event);
-          }}
-        >
-
-          <fieldset>
-            <div className='playerChoiceCard wrapper'>
-              <label htmlFor="categoryType">Category</label>
-              <select 
-                name="categoryType"
-                id="categoryType"
-                onChange={handleCategoryChoice}
-                value={userCategory}
-              >
-                <option value="placeholder" default hidden>
-                  Pick One
-                </option>
+          <form
+            className='choicesForm'
+            action=""
+            onSubmit={(event) => {
+            submitHandler(event);
+            }}
+          >
+            <fieldset>
+              <div className='playerChoiceCard wrapper'>
+                <label htmlFor="categoryType">Category</label>
+                <select 
+                  name="categoryType"
+                  id="categoryType"
+                  onChange={handleCategoryChoice}
+                  value={userCategory}
+                >
+                <option value="placeholder" default hidden>Pick One</option>
                 {categoryArr.map((categoryObj) => {
                   return (
-                    <option key={categoryObj.id} value={categoryObj.id}>
-                      {`${categoryObj.name}`}
-                    </option>
-                  );
-                })}
-              </select>
+                      <option key={categoryObj.id} value={categoryObj.id}>
+                        {`${categoryObj.name}`}
+                      </option>
+                    );
+                  })}
+                </select>
             </div>
 
             <div className='playerChoiceCard'>
@@ -236,45 +227,33 @@ const UserSelectionForm = () => {
                 onChange={handleDifficultyChoice}
                 value={userDifficulty}
               >
-                <option value="placeholder" default hidden>
-                  Pick One
-                </option>
+                <option value="placeholder" default hidden>Pick One</option>
 
                 {difficultyArr.map((difficultyItem) => {
                   return (
-                    <option key={difficultyItem} value={difficultyItem}>
-                      {`${difficultyItem}`}
-                    </option>
+                    <option key={difficultyItem} value={difficultyItem}>{`${difficultyItem}`}</option>
                   );
                 })}
               </select>
             </div>
 
-          </fieldset>
+            </fieldset>
             {
               arrayChecker ? <p className='errorMessage'>Oops - there was an error!  The trivia wizards need you to pick another category.</p> : null
             }
-          <div className='formSubmit'>
-              <button                      
-                type="submit">Submit 🤖 </button>
-          </div>
-
-            
-            
-
-        </form>
-
+            <div className='formSubmit'>
+                <button type="submit">Submit 🤖 </button>
+            </div>
+          </form>
         </div>
       </section>
 
-      {/* <section className="wrapper">
-      </section> */}
       <section className="wrapper">
-      <Quiz 
-        quizQuestions={quizQuestions}
-        scoreSetter={scoreSetter}
-        allPlayersArr={allPlayersArr}
-      />
+        <Quiz 
+          quizQuestions={quizQuestions}
+          scoreSetter={scoreSetter}
+          allPlayersArr={allPlayersArr}
+        />
       </section>
    </main>       
   );

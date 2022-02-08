@@ -579,4 +579,18 @@ header {
   .playerInfoCard {
     padding: 40px 0;
   }
+
+  .popupInner {
+    padding: 8%;
+  }
+  .popupInner h1 {
+    font-size: 2rem;
+    margin-top: 0;
+  }
+  .popupInner .topPlayers {
+    font-size: 1.5rem;
+  }
+  .popupInner button {
+    margin: 10px;
+  }
 }/*# sourceMappingURL=App.css.map */

@@ -58,14 +58,13 @@ const Scoreboard = (props) => {
     });
     
     const minScore = Math.min(...scoreArr);
-
     // finds obj with low score
     const minScoreUser = allUsers.find((item) => {
       return item.score === minScore;
     });
 
     // finds index of min score
-      // from our allUsers array
+    // from our allUsers array
     const index = allUsers.indexOf(minScoreUser);
 
     // splice removes from array
@@ -74,7 +73,6 @@ const Scoreboard = (props) => {
   }
 
   const submitHandler = () => {
-
     setInitialClick(initialClick + 1);
 
     // replaces existing values at child
