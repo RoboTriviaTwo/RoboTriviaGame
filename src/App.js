@@ -5,7 +5,7 @@ import './styles/sass/App.scss';
 
 function App() {
   return (
-    <div>
+    <div className="app">
       <header>
         <h1 className='wrapper'>Robo<span>Trivia</span></h1>
       </header> 
