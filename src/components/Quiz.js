@@ -3,6 +3,18 @@ import ReactModal from "react-modal";
 import Scoreboard from "./Scoreboard.js";
 
 const Quiz = (props) => {
+
+    const scoreSetter = (score) => {
+
+      let tempAllPlayersArr = [...allPlayersArr];
+      tempAllPlayersArr[0] = {
+        ...tempAllPlayersArr[0],
+        score: score
+      }
+      props.addScoreToObj(tempAllPlayersArr);
+
+  }
+
   const { allPlayersArr } = props;
   // useState to track question numbers
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -31,7 +43,7 @@ const Quiz = (props) => {
     } else {
       handleOpenScoreModal();
 
-      props.scoreSetter(currentScore);
+      scoreSetter(currentScore);
      }
   }
 
