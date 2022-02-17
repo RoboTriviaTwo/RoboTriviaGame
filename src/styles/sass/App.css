@@ -422,7 +422,7 @@ header {
 }
 
 .landingPage {
-  background-image: url(/robo-trivia-header-image.png);
+  background-image: url(../../../assets/robo-trivia-header-image.png);
   height: 50vh;
   background-repeat: no-repeat;
   background-position: center;
@@ -494,51 +494,42 @@ header {
   background-color: red;
 }
 
-/* Pupup Styling */
-.popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .popupInner {
-  position: relative;
-  padding: 10%;
+  margin: 10vh auto;
+  padding: 1rem 2.5rem 3rem 2.5rem;
   width: 70%;
   background-color: #1c0452;
   border: 10px solid white;
   text-align: center;
 }
+.popupInner .playScore {
+  text-align: right;
+  margin: 10px;
+}
 .popupInner .topPlayers {
   text-align: center;
   font-weight: 700;
   text-transform: uppercase;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+}
+.popupInner h1 {
+  font-size: calc(2rem + 2vw);
 }
 .popupInner li {
   list-style: none;
+  display: flex;
+  justify-content: center;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
 }
 .popupInner a {
   padding: 12px;
   border-radius: 15px;
   text-decoration: none;
-  background-color: #64DFDF;
-  color: #252525;
+  color: #7AFED6;
   display: block;
   text-transform: uppercase;
   font-weight: 500;
-}
-
-.popupInner .closeButton {
-  position: absolute;
-  top: 16px;
-  right: 16px;
 }
 
 @media (max-width: 951px) {
@@ -559,6 +550,20 @@ header {
   .answerContainer {
     width: 100%;
   }
+
+  .popupInner {
+    padding: 8%;
+  }
+  .popupInner h1 {
+    font-size: calc(1rem + 5vw);
+    margin-top: 0;
+  }
+  .popupInner p {
+    font-size: calc(0.4rem + 1.5vw);
+  }
+  .popupInner button {
+    margin: 10px;
+  }
 }
 @media (max-width: 575px) {
   header span {
@@ -578,19 +583,5 @@ header {
 
   .playerInfoCard {
     padding: 40px 0;
-  }
-
-  .popupInner {
-    padding: 8%;
-  }
-  .popupInner h1 {
-    font-size: 2rem;
-    margin-top: 0;
-  }
-  .popupInner .topPlayers {
-    font-size: 1.5rem;
-  }
-  .popupInner button {
-    margin: 10px;
   }
 }/*# sourceMappingURL=App.css.map */

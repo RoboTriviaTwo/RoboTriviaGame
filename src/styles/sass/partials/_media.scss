@@ -21,6 +21,19 @@
     .answerContainer {
         width: 100%;
     }
+    .popupInner {
+        padding: 8%;
+            h1 {
+                font-size: calc(1rem + 5vw);
+                margin-top: 0;
+            }
+            p {
+                font-size: calc(0.4rem + 1.5vw);             
+            }
+            button {
+                margin: 10px;
+            }
+    }
 }
 
 @media (max-width: 575px) {
@@ -43,20 +56,6 @@
 
     .playerInfoCard {
         padding: 40px 0;
-    }
-
-    .popupInner {
-        padding: 8%;
-            h1 {
-                font-size: 2rem;
-                margin-top: 0;
-            }
-            .topPlayers {
-                font-size: 1.5rem;
-            }
-            button {
-                margin: 10px;
-            }
     }
 }
 

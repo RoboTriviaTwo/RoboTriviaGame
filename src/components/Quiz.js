@@ -1,16 +1,26 @@
 import { useState } from "react";
+import ReactModal from "react-modal";
 import Scoreboard from "./Scoreboard.js";
 
 const Quiz = (props) => {
+  const { allPlayersArr } = props;
   // useState to track question numbers
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  // useState to track score
   const [currentScore, setCurrentScore] = useState(0);
-  // useState to show score
-  const [scoreboard, setScoreboard] = useState(false);
-  // useState to set the popup of quiz done
-  const [popup, setPopup] = useState(false);
-  // handleClick to update score, advance question and show score at the end of the game
+
+  // react modal
+  const [showScoreModal, setShowScoreModal] = useState(false);
+
+  // function to handle open
+  const handleOpenScoreModal = () => {
+    setShowScoreModal(true);
+  }
+
+  // function to handle close
+  const handleCloseScoreModal = () => {
+    setShowScoreModal(false);
+  }
+
   const handleAnswerClick = (event) => {
     const userAnswer = event.target.value;
     if (userAnswer === props.quizQuestions[currentQuestion].correct_answer) {
@@ -19,8 +29,8 @@ const Quiz = (props) => {
     if (currentQuestion < props.quizQuestions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
-      setScoreboard(true);
-      setPopup(true);
+      handleOpenScoreModal();
+
       props.scoreSetter(currentScore);
      }
   }
@@ -53,12 +63,12 @@ const Quiz = (props) => {
           </div>   
         </div>
       </>) : null}
+      
+      <ReactModal isOpen={showScoreModal} onRequestClose={handleCloseScoreModal} className={"popupInner"}style={{overlay: {background: "rgba(0, 0, 0, 0.2)"}}} appElement={document.getElementsByClassName('app')}>
+        {/* <button onClick={handleCloseScoreModal}>X</button> */}
+        <Scoreboard currentScore={currentScore} allPlayersArr={allPlayersArr}/>
+      </ReactModal>
 
-      {scoreboard ? <Scoreboard 
-      currentScore={currentScore} 
-      trigger={popup} 
-      setTrigger={setPopup}
-      allPlayersArr={props.allPlayersArr}/> : null}
     </div>
   );
 }

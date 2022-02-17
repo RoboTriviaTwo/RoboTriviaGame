@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 
 const Scoreboard = (props) => {
+  const { allPlayersArr, currentScore } = props;
+
   // firebase data - for userObj
   const [userObj, setUserObj] = useState([]);
   const [userKey, setUserKey] = useState([]);
@@ -48,7 +50,7 @@ const Scoreboard = (props) => {
       userObj[0],
       userObj[1],
       userObj[2],
-      props.allPlayersArr[0]
+      allPlayersArr[0]
     );
 
     // using new array, return scoreArr
@@ -83,24 +85,24 @@ const Scoreboard = (props) => {
     }
   };
 
-  return props.trigger && (
+  return (
     <div className="popup">
-      <div className="popupInner">
+      <div>
+        <p className="playScore">Score {currentScore} / 100</p>
         <h1>High Scores</h1>
-        <p>Your Score is: {props.currentScore} / 100.</p>
-        <p className="topPlayers">Top players</p>
+        <p className="topPlayers">Player Names</p>
 
         {userObj.map((user, index) => {
           return (
             <li key={index}>
               <p>{user.playerName}</p>
-              <p>Score: {user.score} / 100</p>
+              <p>{user.score} / 100</p>
             </li>
           );
         })}
         
         <button onClick={submitHandler}>Submit Score</button>
-        <Link to="/">Click here to play again</Link>
+        <Link to="/">Play again</Link>
 
       </div>
     </div>
