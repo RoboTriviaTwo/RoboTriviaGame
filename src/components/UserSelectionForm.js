@@ -10,15 +10,18 @@ const UserSelectionForm = () => {
   const [categoryArr, setCategoryArr] = useState([]);
   
   // useStates from form component - for second api call
-  const [userCategory, setUserCategory] = useState("");
-  const [userDifficulty, setUserDifficulty] = useState("");
-  const [submitButton, setSubmitButton] = useState(false);
+  const [userChoiceObject, setUserChoiceObject] = useState({
+    userCategory: '',
+    userDifficulty: '',
+
+  })
+
 
   // setting state with quiz questions
   const [quizQuestions, setQuizQuestions] = useState([]);
 
   // setting state with player score
-  const [currentPlayerScore, setCurrentPlayerScore] = useState(0);
+  // const [currentPlayerScore, setCurrentPlayerScore] = useState(0);
 
   // collect user name and produce avatar
   const [userName, setUserName] = useState('');
@@ -31,25 +34,34 @@ const UserSelectionForm = () => {
     },
   ]);
 
-  const [arrayChecker, setArrayChecker] = useState(false);
-  const [nameChecker, setNameChecker] = useState(false);
+  const addScoreToObj = (param) => {
+    setAllPlayersArr(param)
+  }
 
+  const [selectionError, setSelectionError] = useState(false);
+  const [avatarError, setAvatarError] = useState(false);
+
+  // Start of User Selections
   const handleCategoryChoice = (event) => {
-    setUserCategory(event.target.value);
+    setUserChoiceObject((prevState) => {
+      return {...prevState, userCategory: event.target.value}
+    })
+
   };
 
   const handleDifficultyChoice = (event) => {
-    setUserDifficulty(event.target.value);
+    setUserChoiceObject((prevState) => {
+      return {...prevState, userDifficulty: event.target.value}
+    })
+
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
-    setSubmitButton(!submitButton);
-    if (quizQuestions.length === 0){
-      setArrayChecker(true);
-    }
+    secondAPICall();
+
     if (avatarImage === '') {
-      setNameChecker(true)
+      setAvatarError(true)
     }
     window.scrollTo({
       top: 2000,
@@ -58,31 +70,24 @@ const UserSelectionForm = () => {
     });
   };
   
-  useEffect(() => {
-    if (quizQuestions.length > 0) {
-      setArrayChecker(false)
-    }
-    if (avatarImage !== '') {
-      setNameChecker (false)
-    }
-  }, [quizQuestions])
+
 
   const handleUserName = (event) => {
     setUserName(event.target.value)
   }
 
-  const scoreSetter = (score) => {
-    setCurrentPlayerScore(score)
-  }
+  // const scoreSetter = (score) => {
+  //   setCurrentPlayerScore(score)
+  // }
 
-  useEffect(() => {
-    scoreUpdate()
-  }, [currentPlayerScore])
+  // useEffect(() => {
+  //   scoreUpdate()
+  // }, [currentPlayerScore])
 
   const handleAvatarSubmit = (event) => {
     event.preventDefault()
     setAvatarImage(userName)
-    setNameChecker(false)
+    setAvatarError(false)
   };
 
   const AllPlayerArrUpdate = () => {
@@ -94,14 +99,14 @@ const UserSelectionForm = () => {
     setAllPlayersArr(tempAllPlayersArr);
   }
 
-  const scoreUpdate = () => {
-    let tempAllPlayersArr = [...allPlayersArr];
-    tempAllPlayersArr[0] = {
-      ...tempAllPlayersArr[0],
-      score: currentPlayerScore
-    }
-    setAllPlayersArr(tempAllPlayersArr);
-  }
+  // const scoreUpdate = () => {
+  //   let tempAllPlayersArr = [...allPlayersArr];
+  //   tempAllPlayersArr[0] = {
+  //     ...tempAllPlayersArr[0],
+  //     score: currentPlayerScore
+  //   }
+  //   setAllPlayersArr(tempAllPlayersArr);
+  // }
 
   const handleNameSubmit = () => {
         AllPlayerArrUpdate()
@@ -137,21 +142,23 @@ const UserSelectionForm = () => {
       });
   }, []);
 
-  useEffect(() => {
-    if (userCategory !== "" && avatarImage !== '') {
+
+  const secondAPICall = () => {
+    if (userChoiceObject.userCategory !== "" && avatarImage !== '') {
       axios({
         url: "https://opentdb.com/api.php",
         method: "GET",
         responseType: "json",
         params: {
           amount: 10,
-          category: userCategory,
+          category: userChoiceObject.userCategory,
           type: "multiple",
-          difficulty: userDifficulty,
+          difficulty: userChoiceObject.userDifficulty,
         },
       })
         .then((res) => {
           // questions array
+
           const returnedObject = res.data.results;
           const combinedAnswerArr = [...returnedObject];
 
@@ -173,12 +180,24 @@ const UserSelectionForm = () => {
             quizObject.answerButtons = shuffleArr(updatedQuizAnswers);
           })
           setQuizQuestions(combinedAnswerArr);
+
+          return res
+
+        })
+        .then((res) => {
+          if (res.data.results.length === 0) {
+            setSelectionError(true);
+          } else {
+            setSelectionError(false);
+          }
         })
         .catch((err) => {
           console.log(err);
         });
     }
-  }, [submitButton]);
+
+  }
+
 
   return (
     <main>
@@ -190,7 +209,7 @@ const UserSelectionForm = () => {
             handleNameSubmit={handleNameSubmit}
             handleAvatarSubmit={handleAvatarSubmit}
             avatarImage={avatarImage}
-            nameChecker={nameChecker}
+            avatarError={avatarError}
           />
           <form
             className='choicesForm'
@@ -206,7 +225,7 @@ const UserSelectionForm = () => {
                   name="categoryType"
                   id="categoryType"
                   onChange={handleCategoryChoice}
-                  value={userCategory}
+                  value={userChoiceObject.userCategory}
                 >
                 <option value="placeholder" default hidden>Pick One</option>
                 {categoryArr.map((categoryObj) => {
@@ -225,7 +244,7 @@ const UserSelectionForm = () => {
                 name="difficulties"
                 id="difficulties"
                 onChange={handleDifficultyChoice}
-                value={userDifficulty}
+                  value={userChoiceObject.userDifficulty}
               >
                 <option value="placeholder" default hidden>Pick One</option>
 
@@ -239,7 +258,7 @@ const UserSelectionForm = () => {
 
             </fieldset>
             {
-              arrayChecker ? <p className='errorMessage'>Oops - there was an error!  The trivia wizards need you to pick another category.</p> : null
+              selectionError ? <p className='errorMessage'>Oops - there was an error!  The trivia wizards need you to pick another category.</p> : null
             }
             <div className='formSubmit'>
                 <button type="submit">Submit 🤖 </button>
@@ -251,7 +270,8 @@ const UserSelectionForm = () => {
       <section className="wrapper">
         <Quiz 
           quizQuestions={quizQuestions}
-          scoreSetter={scoreSetter}
+          addScoreToObj={addScoreToObj}
+          // scoreSetter={scoreSetter}
           allPlayersArr={allPlayersArr}
         />
       </section>

@@ -22,7 +22,7 @@ const PlayerNames = (props) => {
                 </div> : null}
                 {/* End of Avatar Image div */}
                 {
-                    props.nameChecker ? <p className="errorMessage">Oops - Don't forget to fill out your name to meet your robot.</p> : null
+                    props.avatarError ? <p className="errorMessage">Oops - Don't forget to fill out your name to meet your robot.</p> : null
                 }
             </div>
             {/* End of Player Info Card div */}    
