@@ -6,7 +6,6 @@ import PlayerNames from './PlayerNames.js';
 const UserSelectionForm = (props) => {
 
   const difficultyArr = ["easy", "medium", "hard"];
-  // api call for category
   const [categoryArr, setCategoryArr] = useState([]);
   
   // useStates from form component - for second api call
@@ -16,17 +15,11 @@ const UserSelectionForm = (props) => {
 
   })
 
+  // only using for ternary for link to quiz
+  const [quizQuestions, setQuizQuestions] = useState(false);
 
-  // setting state with quiz questions
-  const [quizQuestions, setQuizQuestions] = useState([]);
-
-  // setting state with player score
-  // const [currentPlayerScore, setCurrentPlayerScore] = useState(0);
-
-  // collect user name and produce avatar
   const [userName, setUserName] = useState('');
   const [avatarImage, setAvatarImage] = useState('');
-  
   const [allPlayersArr, setAllPlayersArr] = useState([
     {
       playerName: "",
@@ -34,55 +27,32 @@ const UserSelectionForm = (props) => {
     },
   ]);
 
-  // const addScoreToObj = (param) => {
-  //   setAllPlayersArr(param)
-  // }
-
   const [selectionError, setSelectionError] = useState(false);
   const [avatarError, setAvatarError] = useState(false);
 
-  // Start of User Selections
   const handleCategoryChoice = (event) => {
     setUserChoiceObject((prevState) => {
       return {...prevState, userCategory: event.target.value}
     })
-
   };
 
   const handleDifficultyChoice = (event) => {
     setUserChoiceObject((prevState) => {
       return {...prevState, userDifficulty: event.target.value}
     })
-
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
     secondAPICall();
-
     if (avatarImage === '') {
       setAvatarError(true)
     }
-    window.scrollTo({
-      top: 2000,
-      left: 100,
-      behavior: 'smooth'
-    });
   };
   
-
-
   const handleUserName = (event) => {
     setUserName(event.target.value)
   }
-
-  // const scoreSetter = (score) => {
-  //   setCurrentPlayerScore(score)
-  // }
-
-  // useEffect(() => {
-  //   scoreUpdate()
-  // }, [currentPlayerScore])
 
   const handleAvatarSubmit = (event) => {
     event.preventDefault()
@@ -90,7 +60,7 @@ const UserSelectionForm = (props) => {
     setAvatarError(false)
   };
 
-  const AllPlayerArrUpdate = () => {
+  const allPlayerArrUpdate = () => {
     let tempAllPlayersArr = [...allPlayersArr];
     tempAllPlayersArr[0] = {
       ...tempAllPlayersArr[0],
@@ -99,18 +69,6 @@ const UserSelectionForm = (props) => {
     setAllPlayersArr(tempAllPlayersArr);
   }
 
-  // const scoreUpdate = () => {
-  //   let tempAllPlayersArr = [...allPlayersArr];
-  //   tempAllPlayersArr[0] = {
-  //     ...tempAllPlayersArr[0],
-  //     score: currentPlayerScore
-  //   }
-  //   setAllPlayersArr(tempAllPlayersArr);
-  // }
-
-  const handleNameSubmit = () => {
-        AllPlayerArrUpdate()
-  }
  
   const shuffleArr = (array) => {
     let currentIndex = array.length, randomIndex;
@@ -125,8 +83,6 @@ const UserSelectionForm = (props) => {
     return array;
   }
 
-  // useEffect for axios - put this info in dropdown
-  // associate id and name of category
   useEffect(() => {
     axios({
       url: "https://opentdb.com/api_category.php",
@@ -142,7 +98,6 @@ const UserSelectionForm = (props) => {
       });
   }, []);
 
-
   const secondAPICall = () => {
     if (userChoiceObject.userCategory !== "" && avatarImage !== '') {
       axios({
@@ -157,8 +112,6 @@ const UserSelectionForm = (props) => {
         },
       })
         .then((res) => {
-          // questions array
-
           const returnedObject = res.data.results;
           const combinedAnswerArr = [...returnedObject];
 
@@ -179,14 +132,17 @@ const UserSelectionForm = (props) => {
             })
             quizObject.answerButtons = shuffleArr(updatedQuizAnswers);
           })
-          setQuizQuestions(combinedAnswerArr);
+          setQuizQuestions(true);
           props.collectQuizQuestions(combinedAnswerArr, allPlayersArr);
           return res;
         })
         .then((res) => {
+          console.log(res)
           if (res.data.results.length === 0) {
+            console.log('it is 0')
             setSelectionError(true);
           } else {
+            console.log('it is not 0')
             setSelectionError(false);
           }
         })
@@ -203,7 +159,7 @@ const UserSelectionForm = (props) => {
           <PlayerNames
             handleUserName={handleUserName}
             userName={userName}
-            handleNameSubmit={handleNameSubmit}
+            allPlayerArrUpdate={allPlayerArrUpdate}
             handleAvatarSubmit={handleAvatarSubmit}
             avatarImage={avatarImage}
             avatarError={avatarError}
@@ -241,7 +197,7 @@ const UserSelectionForm = (props) => {
                   name="difficulties"
                   id="difficulties"
                   onChange={handleDifficultyChoice}
-                    value={userChoiceObject.userDifficulty}
+                  value={userChoiceObject.userDifficulty}
                 >
                   <option value="placeholder" default hidden>Pick One</option>
 
@@ -259,23 +215,12 @@ const UserSelectionForm = (props) => {
             }
             <div className='formSubmit'>
                 <button type="submit">Submit 🤖 </button>
-
-                {/* Link to show onclick */}
-                {quizQuestions.length > 0 ? <Link to='/quiz'>Next</Link> : null}
+                
+                {quizQuestions ? <Link to='/quiz'>Next</Link> : null}
                 
             </div>
           </form>
         </div>
-      </section>
-
-      <section className="wrapper">
-        {/* Pass the allPlayersArr to Quiz */}
-        {/* <Quiz 
-          quizQuestions={quizQuestions}
-          addScoreToObj={addScoreToObj}
-          // scoreSetter={scoreSetter}
-          allPlayersArr={allPlayersArr}
-        /> */}
       </section>
    </main>       
   );

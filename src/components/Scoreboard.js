@@ -23,7 +23,6 @@ const Scoreboard = (props) => {
       // storing new state
       const newState = [];
       const data = response.val();
-
       // for in loop to access player obj
       for (let key in data) {
         newState.push({ key: key, name: data[key] });

@@ -3,16 +3,7 @@ import { useState } from 'react';
 import LandingPage from './components/LandingPage';
 import UserSelectionForm from './components/UserSelectionForm';
 import Quiz from './components/Quiz';
-
 import './styles/sass/App.scss';
-
-// state of quiz questions
-
-// function
-  // set state with the parameters
-
-// for route
-// quizQuestions={quizQuestions} addScoreToObj={addScoreToObj} allPlayersArr={allPlayersArr}
 
 function App() {
   const [quizQuestions, setQuizQuestions] = useState([]);
@@ -23,12 +14,13 @@ function App() {
     },
   ]);
 
-  const addScoreToObj = (param) => {
-    setAllPlayersArr(param)
+
+  // function to update with player's updated score on their object
+  const updatePlayerArr = (userObj) => {
+    setAllPlayersArr(userObj)
   }
 
   const collectQuizQuestions = (quizQuestions, allPlayersArr) => {
-    console.log(quizQuestions, allPlayersArr);
     setQuizQuestions(quizQuestions);
     setAllPlayersArr(allPlayersArr);
   }
@@ -38,11 +30,11 @@ function App() {
       <header>
         <h1 className='wrapper'>Robo<span>Trivia</span></h1>
       </header> 
-      {/* Routes to the landing page and quiz */}
+
       <Routes>
         <Route path='/' element={<LandingPage />} />
-        <Route path='/welcome' element={<UserSelectionForm collectQuizQuestions={collectQuizQuestions}/>}/>
-        <Route path='/quiz' element={<Quiz quizQuestions={quizQuestions} addScoreToObj={addScoreToObj} allPlayersArr={allPlayersArr}/>}/>     
+        <Route path='/welcome' element={<UserSelectionForm collectQuizQuestions={collectQuizQuestions} allPlayersArr={allPlayersArr} updatePlayerArr={updatePlayerArr}/>}/>
+        <Route path='/quiz' element={<Quiz quizQuestions={quizQuestions} updatePlayerArr={updatePlayerArr} allPlayersArr={allPlayersArr}/>}/>     
       </Routes>
 
       <footer>
