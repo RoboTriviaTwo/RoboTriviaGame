@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import PlayerNames from './PlayerNames.js';
-import Quiz from './Quiz.js';
 
-const UserSelectionForm = () => {
+const UserSelectionForm = (props) => {
 
   const difficultyArr = ["easy", "medium", "hard"];
   // api call for category
@@ -34,9 +34,9 @@ const UserSelectionForm = () => {
     },
   ]);
 
-  const addScoreToObj = (param) => {
-    setAllPlayersArr(param)
-  }
+  // const addScoreToObj = (param) => {
+  //   setAllPlayersArr(param)
+  // }
 
   const [selectionError, setSelectionError] = useState(false);
   const [avatarError, setAvatarError] = useState(false);
@@ -180,9 +180,8 @@ const UserSelectionForm = () => {
             quizObject.answerButtons = shuffleArr(updatedQuizAnswers);
           })
           setQuizQuestions(combinedAnswerArr);
-
-          return res
-
+          props.collectQuizQuestions(combinedAnswerArr, allPlayersArr);
+          return res;
         })
         .then((res) => {
           if (res.data.results.length === 0) {
@@ -195,9 +194,7 @@ const UserSelectionForm = () => {
           console.log(err);
         });
     }
-
   }
-
 
   return (
     <main>
@@ -236,44 +233,49 @@ const UserSelectionForm = () => {
                     );
                   })}
                 </select>
-            </div>
+              </div>
 
-            <div className='playerChoiceCard'>
-              <label htmlFor="difficulties">Difficulty</label>
-              <select 
-                name="difficulties"
-                id="difficulties"
-                onChange={handleDifficultyChoice}
-                  value={userChoiceObject.userDifficulty}
-              >
-                <option value="placeholder" default hidden>Pick One</option>
+              <div className='playerChoiceCard'>
+                <label htmlFor="difficulties">Difficulty</label>
+                <select 
+                  name="difficulties"
+                  id="difficulties"
+                  onChange={handleDifficultyChoice}
+                    value={userChoiceObject.userDifficulty}
+                >
+                  <option value="placeholder" default hidden>Pick One</option>
 
-                {difficultyArr.map((difficultyItem) => {
-                  return (
-                    <option key={difficultyItem} value={difficultyItem}>{`${difficultyItem}`}</option>
-                  );
-                })}
-              </select>
-            </div>
-
+                  {difficultyArr.map((difficultyItem) => {
+                    return (
+                      <option key={difficultyItem} value={difficultyItem}>{`${difficultyItem}`}</option>
+                    );
+                  })}
+                </select>
+              </div>
             </fieldset>
+
             {
               selectionError ? <p className='errorMessage'>Oops - there was an error!  The trivia wizards need you to pick another category.</p> : null
             }
             <div className='formSubmit'>
                 <button type="submit">Submit 🤖 </button>
+
+                {/* Link to show onclick */}
+                {quizQuestions.length > 0 ? <Link to='/quiz'>Next</Link> : null}
+                
             </div>
           </form>
         </div>
       </section>
 
       <section className="wrapper">
-        <Quiz 
+        {/* Pass the allPlayersArr to Quiz */}
+        {/* <Quiz 
           quizQuestions={quizQuestions}
           addScoreToObj={addScoreToObj}
           // scoreSetter={scoreSetter}
           allPlayersArr={allPlayersArr}
-        />
+        /> */}
       </section>
    </main>       
   );

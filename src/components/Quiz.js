@@ -12,7 +12,6 @@ const Quiz = (props) => {
         score: score
       }
       props.addScoreToObj(tempAllPlayersArr);
-
   }
 
   const { allPlayersArr } = props;
