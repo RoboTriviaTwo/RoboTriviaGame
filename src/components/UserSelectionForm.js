@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import PlayerNames from './PlayerNames.js';
-import Quiz from './Quiz.js';
 
 const UserSelectionForm = (props) => {
 
