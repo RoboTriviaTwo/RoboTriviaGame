@@ -2,19 +2,17 @@ header {
     margin: 50px;
 }
 
-.landingPage {
+.headerImage {
     background-image: url(../../../assets/robo-trivia-header-image.png);
-    height: 50vh;
+    height: 40vh;
+    width: 100%;
     background-repeat: no-repeat;
     background-position: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    background-size: contain;
 }
 
 .startingLink {
-    margin-top: 25px;
-    text-align: center;
+    margin-top: 35px;
     a {
         font-weight: 700;
         text-transform: uppercase;

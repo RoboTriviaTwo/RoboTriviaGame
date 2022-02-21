@@ -166,7 +166,7 @@ const UserSelectionForm = (props) => {
   return (
     <main>
       <section>
-        <div className='userInputs'>
+        <div className='userFormContainer'>
           <PlayerNames
             handleUserName={handleUserName}
             userName={userName}
@@ -176,7 +176,7 @@ const UserSelectionForm = (props) => {
             avatarError={avatarError}
           />
           <form
-            className='choicesForm'
+            className='userSelectionContainer'
             action=""
             onSubmit={(event) => {
             submitHandler(event);

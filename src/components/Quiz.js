@@ -42,12 +42,12 @@ const Quiz = (props) => {
     <div className="quiz wrapper">
       {props.quizQuestions.length !== 0 ? (
       <>
-        <div className="quizTitleContainer">
-          <p className="playerCurrentScore">Current Score <span>{currentScore}</span></p>
+        <div className="quizScoreContainer">
+          <h2 className="playerCurrentScore">Current Score <span>{currentScore}</span></h2>
         </div>
 
         <div className="quizContainer">
-          <p className="currentQuestion">Question: {(props.quizQuestions[currentQuestion].question).replace(/&ldquo;/g, '"').replace(/&rdquo;/g, '"').replace(/&quot;/g, '"').replace(/&rsquo;/g, "'").replace(/&Eacute;/g, "é").replace(/&#039;/g, "'").replace(/&shy;/g, "")}</p>
+          <h2 className="currentQuestion">Question: {(props.quizQuestions[currentQuestion].question).replace(/&ldquo;/g, '"').replace(/&rdquo;/g, '"').replace(/&quot;/g, '"').replace(/&rsquo;/g, "'").replace(/&Eacute;/g, "é").replace(/&#039;/g, "'").replace(/&shy;/g, "")}</h2>
 
           <div className="answerContainer">
             {props.quizQuestions[currentQuestion].answerButtons.map((answerItem, index) => {
@@ -66,7 +66,7 @@ const Quiz = (props) => {
         </div>
       </>) : null}
       
-      <ReactModal isOpen={showScoreModal} className={"popupInner"}style={{overlay: {background: "rgba(0, 0, 0, 0.2)"}}} appElement={document.getElementsByClassName('app')}>
+      <ReactModal isOpen={showScoreModal} className={"scoreModal"}style={{overlay: {background: "rgba(0, 0, 0, 0.2)"}}} appElement={document.getElementsByClassName('app')}>
         <Scoreboard currentScore={currentScore} allPlayersArr={allPlayersArr}/>
       </ReactModal>
 

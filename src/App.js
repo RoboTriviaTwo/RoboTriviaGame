@@ -26,8 +26,8 @@ function App() {
 
   return (
     <div className="app">
-      <header>
-        <h1 className='wrapper'>Robo<span>Trivia</span></h1>
+      <header className='wrapper'>
+        <h1>Robo<span>Trivia</span></h1>
       </header> 
 
       <Routes>

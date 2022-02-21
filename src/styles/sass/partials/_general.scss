@@ -8,49 +8,44 @@ $accent-color: #BC9EFC;
 
 html {
     font-size: 125%;
-    color: $secondary-color;
-    font-family: 'Exo', sans-serif;
 }
 
 body {
+    font-family: 'Exo', sans-serif;
+    text-align: center;
+    color: $secondary-color;
     background-color: $primary-color;
-}
-
-h1, 
-h2,
-h3 {
-    letter-spacing: 5px;
-}
-
-h1 {
-    font-size: 3.5rem;
-    text-align: center;
-    font-weight: 800;
-    text-transform: uppercase;
-    span {
-        color: $accent-color;
-    }
-}
-
-h2, 
-h3 {
-    font-size: 2rem;
-}
-
-h3 {
-    text-align: center;
-}
-
-label {
-    font-weight: 800;
-    text-transform: uppercase;
-    font-size: 1.4rem;
 }
 
 .wrapper {
     margin: 0 auto;
     max-width: 1200px;
     width: 80%;
+}
+
+h1, 
+h2,
+h3 {
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    span {
+        color: $accent-color;
+    }
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+label {
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1.4rem;
 }
 
 footer {
