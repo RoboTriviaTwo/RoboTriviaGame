@@ -29,6 +29,7 @@ const UserSelectionForm = (props) => {
 
   const [selectionError, setSelectionError] = useState(false);
   const [avatarError, setAvatarError] = useState(false);
+  const [networkErrorMsg, setNetworkErrorMsg] = useState(false);
 
   const handleCategoryChoice = (event) => {
     setUserChoiceObject((prevState) => {
@@ -44,9 +45,14 @@ const UserSelectionForm = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    secondAPICall();
     if (avatarImage === '') {
       setAvatarError(true)
+    } 
+    if (userChoiceObject.userCategory && userChoiceObject.userDifficulty) {
+      secondAPICall();
+      setSelectionError(false);
+    } else {
+      setSelectionError(true);
     }
   };
   
@@ -69,7 +75,6 @@ const UserSelectionForm = (props) => {
     setAllPlayersArr(tempAllPlayersArr);
   }
 
- 
   const shuffleArr = (array) => {
     let currentIndex = array.length, randomIndex;
     // While there remain elements to shuffle...
@@ -89,12 +94,18 @@ const UserSelectionForm = (props) => {
       method: "GET",
       responseType: "json",
       params: {},
-    })
-      .then((res) => {
+    }).then((res) => {
+      if (res.statusText === "OK") {
+        return res;
+      } else {
+        throw new Error();
+      }
+    }).then((res) => {
         setCategoryArr(res.data.trivia_categories);
-      })
-      .catch((err) => {
-        console.log(err);
+      }).catch((err) => {
+        if (err.message === "Network Error") {
+          setNetworkErrorMsg(true); 
+        }
       });
   }, []);
 
@@ -110,48 +121,48 @@ const UserSelectionForm = (props) => {
           type: "multiple",
           difficulty: userChoiceObject.userDifficulty,
         },
-      })
-        .then((res) => {
-          const returnedObject = res.data.results;
-          const combinedAnswerArr = [...returnedObject];
-
-          combinedAnswerArr.forEach((quizObject) => {
-            const quizAnswers = [quizObject.correct_answer, ...quizObject.incorrect_answers];
-            const updatedQuizAnswers = quizAnswers.map((quiz) => {
-              if (quiz === quizObject.correct_answer) {
-                return {
-                  name: quiz,
-                  isCorrect: true,
-                }
-              } else {
-                return {
-                  name: quiz,
-                  isCorrect: false,
-                }
-              }
-            })
-            quizObject.answerButtons = shuffleArr(updatedQuizAnswers);
-          })
-          setQuizQuestions(true);
-          props.collectQuizQuestions(combinedAnswerArr, allPlayersArr);
+      }).then((res) => {
+        if (res.statusText === "OK") {
           return res;
-        })
-        .then((res) => {
-          console.log(res)
-          if (res.data.results.length === 0) {
-            console.log('it is 0')
-            setSelectionError(true);
+        } else {
+          throw new Error();
+        }
+      }).then((res) => {
+          const returnedObject = res.data.results;
+
+          if (returnedObject.length) {
+            const combinedAnswerArr = [...returnedObject];
+            combinedAnswerArr.forEach((quizObject) => {
+              const quizAnswers = [quizObject.correct_answer, ...quizObject.incorrect_answers];
+              const updatedQuizAnswers = quizAnswers.map((quiz) => {
+                if (quiz === quizObject.correct_answer) {
+                  return {
+                    name: quiz,
+                    isCorrect: true,
+                  }
+                } else {
+                  return {
+                    name: quiz,
+                    isCorrect: false,
+                  }
+                }
+              })
+              quizObject.answerButtons = shuffleArr(updatedQuizAnswers);
+            })
+            setQuizQuestions(true);
+            props.collectQuizQuestions(combinedAnswerArr, allPlayersArr);
           } else {
-            console.log('it is not 0')
-            setSelectionError(false);
+            setQuizQuestions(false);         
+            setSelectionError(true);           
           }
-        })
-        .catch((err) => {
-          console.log(err);
+          return res;
+        }).catch((err) => {
+          if (err.message === "Network Error") {
+            setNetworkErrorMsg(true); 
+          }
         });
     }
   }
-
   return (
     <main>
       <section>
@@ -213,6 +224,11 @@ const UserSelectionForm = (props) => {
             {
               selectionError ? <p className='errorMessage'>Oops - there was an error!  The trivia wizards need you to pick another category.</p> : null
             }
+
+            {
+              networkErrorMsg ? <p className='errorMessage'>Sorry – there was an issue while making the request. Please check again later.</p> : null
+            }
+
             <div className='formSubmit'>
                 <button type="submit">Submit 🤖 </button>
                 

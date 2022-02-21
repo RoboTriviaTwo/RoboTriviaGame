@@ -22,7 +22,6 @@ const PlayerNames = (props) => {
                     props.avatarError ? <p className="errorMessage">Oops - Don't forget to fill out your name to meet your robot.</p> : null
                 }
             </div>
-  
         </>
     )
 }

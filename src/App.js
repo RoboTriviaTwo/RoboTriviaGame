@@ -14,7 +14,6 @@ function App() {
     },
   ]);
 
-
   // function to update with player's updated score on their object
   const updatePlayerArr = (userObj) => {
     setAllPlayersArr(userObj)

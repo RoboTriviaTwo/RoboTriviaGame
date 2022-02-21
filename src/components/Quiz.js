@@ -58,7 +58,7 @@ const Quiz = (props) => {
                     onClick={handleAnswerClick}
                     key={index}
                     className={answerItem.isCorrect ? "correctAnswer" : "incorrectAnswer"}
-                  >{(answerItem.name).replace(/&quot;/g, '"').replace(/&rsquo;/g, "'").replace(/&Eacute;/g, "é").replace(/&#039;/g, "'").replace(/&shy;/g, "")}
+                  >{(answerItem.name).replace(/&quot;/g, '"').replace(/&eacute;/g, "é").replace(/&rsquo;/g, "'").replace(/&amp;/g, "&").replace(/&Eacute;/g, "é").replace(/&#039;/g, "'").replace(/&shy;/g, "")}
                   </button>
                 );
               }

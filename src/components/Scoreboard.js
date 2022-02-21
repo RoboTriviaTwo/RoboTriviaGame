@@ -65,7 +65,7 @@ const Scoreboard = (props) => {
     });
 
     // finds index of min score
-    // from our allUsers array
+    // from allUsers array
     const index = allUsers.indexOf(minScoreUser);
 
     // splice removes from array
