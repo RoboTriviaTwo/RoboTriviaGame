@@ -11,3 +11,13 @@ button {
     font-weight: 500;
 }
 
+.quizRouterBtn {
+    margin: 20px;
+    a {
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: $primary-color;
+    }
+}

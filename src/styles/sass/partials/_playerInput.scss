@@ -39,6 +39,8 @@ select {
 .formSubmit {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
     button {
         width: 350px;
         background-color: $tertiary-color;

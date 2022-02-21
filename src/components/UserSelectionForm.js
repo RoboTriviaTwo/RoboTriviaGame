@@ -231,9 +231,9 @@ const UserSelectionForm = (props) => {
 
             <div className='formSubmit'>
                 <button type="submit">Submit 🤖 </button>
-                
-                {quizQuestions ? <Link to='/quiz'>Next</Link> : null}
-                
+                <div className="quizRouterBtn">
+                  {quizQuestions ? <Link to='/quiz'>Next</Link> : null}
+                </div>
             </div>
           </form>
         </div>
