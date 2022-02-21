@@ -1,8 +1,7 @@
 @media (max-width: 951px) {
-    .playerInfoCard {
+    .playerRoboInfo {
         form {
-            input,
-            button {
+            input, button {
                 width: 100%;
             }
         }
@@ -10,29 +9,25 @@
 }
 
 @media (max-width: 768px) {
-    .avatarGenerator {
+    .avatarGenerator, .quizContainer {
         flex-direction: column;
     }
 
-    .quizContainer {
-        flex-direction: column;
-    }
-
-    .answerContainer {
+    .answerContainer, .quizContainer p {
         width: 100%;
     }
-    .popupInner {
-        padding: 8%;
-            h1 {
-                font-size: calc(1rem + 5vw);
-                margin-top: 0;
-            }
-            p {
-                font-size: calc(0.4rem + 1.5vw);             
-            }
-            button {
-                margin: 10px;
-            }
+
+    .scoreModal {
+        padding: 1rem;
+        h1 {
+            font-size: calc(1rem + 5vw);
+        }
+        p {
+            font-size: calc(0.4rem + 1.5vw);             
+        }
+        button {
+            margin: 20px;
+        }
     }
 }
 
@@ -46,15 +41,24 @@
         }
     }
 
-    .quizContainer p {
-        width: 90%;
+    .playerRoboInfo {
+        padding: 50px 20px;
+    }
+
+    label {
+        font-size: calc(1rem + 2vw);
+        padding-bottom: 20px;
     }
 
     select {
-        width: 200px;
+        width: 250px; 
     }
 
-    .playerInfoCard {
+    .quizContainer h2 {
+        width: 90%;
+    }
+
+    .playerRoboInfo {
         padding: 40px 0;
     }
 }

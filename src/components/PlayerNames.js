@@ -2,7 +2,7 @@
 const PlayerNames = (props) => {
     return (
         <>
-            <div className="playerInfoCard wrapper">
+            <div className="playerRoboInfo wrapper">
                 <form onSubmit={props.handleAvatarSubmit} action="">
                     <label htmlFor="playerName">Enter your Name to Get your Robot!</label>
                     <div className="avatarGenerator">
@@ -22,7 +22,6 @@ const PlayerNames = (props) => {
                     props.avatarError ? <p className="errorMessage">Oops - Don't forget to fill out your name to meet your robot.</p> : null
                 }
             </div>
-  
         </>
     )
 }
