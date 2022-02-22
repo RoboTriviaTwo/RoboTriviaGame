@@ -95,7 +95,7 @@ const UserSelectionForm = (props) => {
       responseType: "json",
       params: {},
     }).then((res) => {
-      if (res.statusText === "OK") {
+      if (res.statusText === "OK" || res.status === 200) {
         return res;
       } else {
         throw new Error();
@@ -122,7 +122,7 @@ const UserSelectionForm = (props) => {
           difficulty: userChoiceObject.userDifficulty,
         },
       }).then((res) => {
-        if (res.statusText === "OK") {
+        if (res.statusText === "OK" || res.status === 200) {
           return res;
         } else {
           throw new Error();
