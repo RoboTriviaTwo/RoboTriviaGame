@@ -68,9 +68,11 @@ const UserSelectionForm = (props) => {
 
   const allPlayerArrUpdate = () => {
     let tempAllPlayersArr = [...allPlayersArr];
+    console.log(tempAllPlayersArr)
     tempAllPlayersArr[0] = {
       ...tempAllPlayersArr[0],
-      playerName: userName
+      playerName: userName,
+      avatar: `https://robohash.org/${userName}.png`
     }
     setAllPlayersArr(tempAllPlayersArr);
   }

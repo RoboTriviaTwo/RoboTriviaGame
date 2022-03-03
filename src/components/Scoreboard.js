@@ -87,21 +87,25 @@ const Scoreboard = (props) => {
   return (
     <div className="popup">
       <div>
-        <p className="playScore">Score {currentScore} / 100</p>
+        <div className="currentPlayerInfo">
+          <p className="playScore">Score: {currentScore} / 100</p>
+        </div>
         <h1>High Scores</h1>
-        <p className="topPlayers">Player Names</p>
-
+        <ul className="highScores">
         {userObj.map((user, index) => {
           return (
             <li key={index}>
-              <p>{user.playerName}</p>
-              <p>{user.score} / 100</p>
+                <p className="scoreName">{user.playerName}</p>
+                <p>{user.score} / 100</p>
+              <div className="scoreAvatar">
+                <img src={user.avatar} alt="Your avatar" />
+              </div>
             </li>
           );
         })}
-        
+        </ul>
         <button onClick={submitHandler}>Submit Score</button>
-        <Link to="/">Play again</Link>
+        <Link to="/" className="playAgainBtn">Play again</Link>
 
       </div>
     </div>

@@ -31,7 +31,8 @@
     .scoreModal {
         padding: 1rem;
         h1 {
-            font-size: calc(1rem + 5vw);
+            font-size: calc(1rem + 3vw);
+            letter-spacing: 1px;
         }
         p {
             font-size: calc(0.4rem + 1.5vw);             
@@ -40,6 +41,11 @@
             margin: 20px;
         }
     }
+
+    .scoreAvatar {
+        margin-left: 0px;
+    }
+
 }
 
 @media (max-width: 575px) {
@@ -56,8 +62,26 @@
         }
     }
 
+    .userSelectionContainer {
+        align-items: center;
+    }
+    
     .playerRoboInfo {
         padding: 50px 20px;
+    }
+
+    .quizContainer {
+        h2 {
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+    }
+
+    .answerContainer {
+        button {
+            font-size: 0.8rem;
+            padding: 20px 0;
+        }
     }
 
     label {
@@ -74,9 +98,57 @@
         width: 90%;
     }
 
+    .formSubmit {
+        button {
+            width: 150px;
+        }
+    }
     .playerRoboInfo {
         padding: 40px 0;
     }
+
+    .scoreModal {
+        h1 {
+            margin-top: 30px;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+        }
+        ul {
+            padding: 0;
+        }
+        li {
+            width: 60%;
+        }
+        .scoreName {
+            text-align: left;
+        }
+        button {
+            margin: 10px;
+        }
+    }
+
+    .scoreAvatar {
+        img {
+            width: 50px;
+          }
+    }
+
+    button, .playAgainBtn {
+        font-size: 0.8rem;
+    }
+
+    .mobileUser {
+        display: flex;
+        text-align: left;
+        flex-direction: column;
+    }
 }
 
+@media (max-width: 380px) {
+    .scoreModal {
+        li {
+            width: 90%;
+        }
+    }
+}
 
