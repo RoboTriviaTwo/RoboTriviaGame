@@ -164,6 +164,7 @@ const UserSelectionForm = (props) => {
     }
   }
   return (
+    <>
     <main>
       <section>
         <div className='userFormContainer'>
@@ -238,7 +239,11 @@ const UserSelectionForm = (props) => {
           </form>
         </div>
       </section>
-   </main>       
+   </main>      
+   <footer>
+        <p>Created at <a href='www.junoCollege.com'>Juno College</a> 2022</p>
+    </footer> 
+    </>
   );
 };
 

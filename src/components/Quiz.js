@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactModal from "react-modal";
 import Scoreboard from "./Scoreboard.js";
 
@@ -8,6 +8,7 @@ const Quiz = (props) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [currentScore, setCurrentScore] = useState(0);
   const [showScoreModal, setShowScoreModal] = useState(false);
+  const [timer, setTimer] = useState(20);
 
   const handleAnswerClick = (event) => {
     const userAnswer = event.target.value;
@@ -28,6 +29,19 @@ const Quiz = (props) => {
      }
   }
 
+
+
+// timer
+useEffect(() => {
+  if (timer > 0) {
+    setTimeout(() => setTimer(timer - 1), 1000)
+  } else {
+    setCurrentQuestion(currentQuestion + 1);
+    setTimer(20);
+  }
+}, [timer])
+
+
   const addScoreToObj = (score) => {
     let tempAllPlayersArr = [...allPlayersArr];
     tempAllPlayersArr[0] = {
@@ -38,16 +52,20 @@ const Quiz = (props) => {
   }
 
   return (
-    <div className="quiz wrapper">
+    <div className="wrapper">
+      <p>{timer}</p>
+      <div className="quiz">
       {props.quizQuestions.length !== 0 ? (
       <>
         <div className="quizScoreContainer">
-          <h2 className="playerCurrentScore">Current Score <span>{currentScore}</span></h2>
+          <h2 className="playerCurrentScore">Score {currentScore}</h2>
         </div>
 
         <div className="quizContainer">
-            <h2 className="currentQuestion">Question: {(props.quizQuestions[currentQuestion].question).replace(/&ldquo;/g, '"').replace(/&rdquo;/g, '"').replace(/&quot;/g, '"').replace(/&rsquo;/g, "'").replace(/&Eacute;/g, "é").replace(/&#039;/g, "'").replace(/&shy;/g, "").replace(/&hellip;/g, "...").replace(/&auml;/g, "Ä").replace(/&ouml;/g, "Ö").replace(/&uuml;/g, "ü").replace(/&Ouml;/g, "Ö")}</h2>
-
+          <div className="questionContainer">
+            <p>Question {currentQuestion+ 1}</p>
+            <h2 className="currentQuestion">{(props.quizQuestions[currentQuestion].question).replace(/&ldquo;/g, '"').replace(/&rdquo;/g, '"').replace(/&quot;/g, '"').replace(/&rsquo;/g, "'").replace(/&Eacute;/g, "é").replace(/&#039;/g, "'").replace(/&shy;/g, "").replace(/&hellip;/g, "...").replace(/&auml;/g, "Ä").replace(/&ouml;/g, "Ö").replace(/&uuml;/g, "ü").replace(/&Ouml;/g, "Ö")}</h2>
+          </div>
           <div className="answerContainer">
             {props.quizQuestions[currentQuestion].answerButtons.map((answerItem, index) => {
                 return (
@@ -68,8 +86,8 @@ const Quiz = (props) => {
       <ReactModal isOpen={showScoreModal} className={"scoreModal"}style={{overlay: {background: "rgba(0, 0, 0, 0.2)"}}} appElement={document.getElementsByClassName('app')}>
         <Scoreboard currentScore={currentScore} allPlayersArr={allPlayersArr}/>
       </ReactModal>
-
     </div>
+  </div>
   );
 }
 

@@ -275,10 +275,15 @@ label {
 
 footer {
   text-align: center;
+  padding: 8px;
   font-size: 0.85rem;
 }
 footer a {
   color: #67e2c8;
+  text-decoration: none;
+}
+footer a:hover {
+  color: #20a98c;
 }
 
 button {
@@ -429,7 +434,7 @@ select {
   flex-direction: column;
   justify-content: space-evenly;
   width: 100%;
-  margin: 20px 0;
+  margin-top: 20px;
   padding: 25px;
   color: #1c0452;
   background-color: #67e2c8;
@@ -478,14 +483,11 @@ header h1 {
   padding-bottom: 10px;
 }
 .quizScoreContainer .playerCurrentScore {
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   font-weight: 800;
   text-transform: uppercase;
   text-align: center;
   letter-spacing: 1px;
-}
-.quizScoreContainer .playerCurrentScore span {
-  text-align: center;
 }
 .quizScoreContainer span {
   display: block;
@@ -500,7 +502,6 @@ header h1 {
   font-size: 1.5rem;
   font-weight: 500;
   letter-spacing: 0px;
-  width: 45%;
   text-transform: none;
   align-self: center;
 }
@@ -509,6 +510,12 @@ header h1 {
   border: 2px solid #64DFDF;
   padding: 25px;
   line-height: 1.2;
+  border-radius: 8px;
+}
+
+.questionContainer {
+  width: 45%;
+  margin-left: 25px;
 }
 
 .answerContainer {
@@ -517,11 +524,20 @@ header h1 {
   width: 45%;
 }
 
-.correctAnswer:active {
+.quiz {
+  padding: 20px;
+  border: 2px solid #330796;
+  border-radius: 10px;
+}
+.quiz button:hover {
+  background-color: #28d4b0;
+}
+
+.correctAnswer:active.correctAnswer:hover {
   background-color: #64dc32;
 }
 
-.incorrectAnswer:active {
+.incorrectAnswer:active.incorrectAnswer:hover {
   background-color: red;
 }
 
@@ -565,7 +581,7 @@ header h1 {
 
 @media (max-width: 951px) {
   .headerImage {
-    height: 40vh;
+    height: 50vh;
   }
 
   .playerRoboInfo form input, .playerRoboInfo form button {
@@ -573,12 +589,20 @@ header h1 {
   }
 }
 @media (max-width: 768px) {
+  .headerImage {
+    height: 35vh;
+  }
+
   .avatarGenerator, .quizContainer {
     flex-direction: column;
   }
 
   .answerContainer, .quizContainer p {
     width: 100%;
+  }
+
+  .questionContainer {
+    width: 90%;
   }
 
   .scoreModal {
@@ -595,6 +619,10 @@ header h1 {
   }
 }
 @media (max-width: 575px) {
+  .headerImage {
+    height: 25vh;
+  }
+
   header span {
     display: block;
   }
@@ -615,7 +643,8 @@ header h1 {
     width: 250px;
   }
 
-  .quizContainer h2 {
+  .questionContainer {
+    margin: 0 auto;
     width: 90%;
   }
 

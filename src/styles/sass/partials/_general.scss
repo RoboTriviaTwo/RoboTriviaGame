@@ -50,8 +50,13 @@ label {
 
 footer {
     text-align: center;
+    padding: 8px;
     font-size: 0.85rem;
     a {
         color: $secondary-color;
+        text-decoration: none;
+        &:hover {
+            color: darken($secondary-color, 25%);
+        }
     }
 }
