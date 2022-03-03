@@ -29,7 +29,6 @@ const Quiz = (props) => {
   }
 
   const addScoreToObj = (score) => {
-    console.log(score);
     let tempAllPlayersArr = [...allPlayersArr];
     tempAllPlayersArr[0] = {
       ...tempAllPlayersArr[0],
@@ -47,7 +46,7 @@ const Quiz = (props) => {
         </div>
 
         <div className="quizContainer">
-            <h2 className="currentQuestion">Question: {(props.quizQuestions[currentQuestion].question).replace(/&ldquo;/g, '"').replace(/&rdquo;/g, '"').replace(/&quot;/g, '"').replace(/&rsquo;/g, "'").replace(/&Eacute;/g, "é").replace(/&#039;/g, "'").replace(/&shy;/g, "").replace(/&hellip;/g, "...").replace(/&auml;/g, "Ä").replace(/&ouml;/g, "Ö")}</h2>
+            <h2 className="currentQuestion">Question: {(props.quizQuestions[currentQuestion].question).replace(/&ldquo;/g, '"').replace(/&rdquo;/g, '"').replace(/&quot;/g, '"').replace(/&rsquo;/g, "'").replace(/&Eacute;/g, "é").replace(/&#039;/g, "'").replace(/&shy;/g, "").replace(/&hellip;/g, "...").replace(/&auml;/g, "Ä").replace(/&ouml;/g, "Ö").replace(/&uuml;/g, "ü").replace(/&Ouml;/g, "Ö")}</h2>
 
           <div className="answerContainer">
             {props.quizQuestions[currentQuestion].answerButtons.map((answerItem, index) => {

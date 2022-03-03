@@ -233,24 +233,31 @@ html {
 
 html {
   font-size: 125%;
-  color: #7AFED6;
-  font-family: "Exo", sans-serif;
 }
 
 body {
+  font-family: "Exo", sans-serif;
+  text-align: center;
+  color: #67e2c8;
   background-color: #1c0452;
 }
 
+.wrapper {
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 80%;
+}
+
 h1,
-h2 {
+h2,
+h3 {
+  text-transform: uppercase;
   letter-spacing: 5px;
-  text-align: center;
 }
 
 h1 {
   font-size: 3.5rem;
   font-weight: 800;
-  text-transform: uppercase;
 }
 h1 span {
   color: #BC9EFC;
@@ -266,33 +273,38 @@ label {
   font-size: 1.4rem;
 }
 
-.wrapper {
-  margin: 0 auto;
-  max-width: 1200px;
-  width: 80%;
-}
-
 footer {
   text-align: center;
-  padding-top: 50px;
+  font-size: 0.85rem;
 }
 footer a {
-  color: #7AFED6;
+  color: #67e2c8;
 }
 
 button {
+  font-family: "Exo", sans-serif;
+  text-transform: uppercase;
   margin: 20px;
   padding: 12px;
   color: #252525;
   background-color: #64DFDF;
   border-style: none;
-  border-radius: 15px;
-  font-family: "Exo", sans-serif;
-  text-transform: uppercase;
+  border-radius: 14px;
   font-weight: 500;
 }
 
-.userInputs {
+.quizRouterBtn {
+  margin: 20px;
+}
+.quizRouterBtn a {
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #1c0452;
+}
+
+.userFormContainer {
   display: flex;
   flex-direction: column;
 }
@@ -305,22 +317,26 @@ fieldset {
 }
 
 label {
+  font-size: 1.2rem;
   margin: 10px;
   text-align: center;
 }
 
-select {
-  text-align: center;
-  margin: 5px;
-  padding: 10px;
-  background-color: white;
-  border-style: none;
-  width: 350px;
+input, select {
   color: #4b4a4a;
-  border: 2px solid white;
   border-radius: 10px;
   font-family: "Exo", sans-serif;
+  padding: 10px;
   text-transform: uppercase;
+}
+
+select {
+  margin: 5px;
+  width: 350px;
+  background-color: white;
+  border-style: none;
+  border: 2px solid white;
+  text-align: center;
 }
 
 .playerChoiceCard {
@@ -333,41 +349,56 @@ select {
 .formSubmit {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 .formSubmit button {
   width: 350px;
   background-color: #6930C3;
   color: white;
+  transition: background-color 0.2s ease-in;
+}
+.formSubmit button:hover {
+  background-color: #53269a;
 }
 
-.playerInfoCard {
+.playerRoboInfo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid #7AFED6;
+  border: 2px solid #67e2c8;
   padding: 50px;
-  color: #7AFED6;
+  color: #67e2c8;
   margin-bottom: 50px;
+  border-radius: 10px;
 }
-.playerInfoCard form {
+.playerRoboInfo form {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 75%;
 }
-.playerInfoCard form input {
-  width: 50%;
+.playerRoboInfo form label {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+.playerRoboInfo form input {
+  padding-left: 12px;
+  width: 60%;
   align-self: center;
-  padding: 12px;
-  border-radius: 15px;
+  border-radius: 14px;
   border-style: none;
 }
-.playerInfoCard form button {
-  width: 50%;
+.playerRoboInfo form button {
+  width: 40%;
   align-self: center;
-  background-color: #7AFED6;
+  background-color: #67e2c8;
   color: #1c0452;
   font-family: "Exo", sans-serif;
+  transition: background-color 0.2s ease-in;
+}
+.playerRoboInfo form button:hover {
+  background-color: #28d4b0;
 }
 
 .avatarGenerator {
@@ -393,7 +424,7 @@ select {
   border-radius: 100px;
 }
 
-.choicesForm {
+.userSelectionContainer {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -401,9 +432,9 @@ select {
   margin: 20px 0;
   padding: 25px;
   color: #1c0452;
-  background-color: #7AFED6;
+  background-color: #67e2c8;
 }
-.choicesForm fieldset {
+.userSelectionContainer fieldset {
   flex-direction: column;
 }
 
@@ -411,46 +442,52 @@ select {
   text-align: center;
 }
 
+.quizRouterBtn a {
+  font-size: 1.1rem;
+}
+
 header {
   margin: 50px;
 }
+header h1 {
+  margin-bottom: 25px;
+}
 
-.landingPage {
+.headerImage {
   background-image: url(../../../assets/robo-trivia-header-image.png);
-  height: 50vh;
+  height: 65vh;
+  width: 100%;
   background-repeat: no-repeat;
   background-position: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  background-size: contain;
 }
 
 .startingLink {
-  margin-top: 25px;
-  text-align: center;
+  margin: 45px 0;
 }
 .startingLink a {
   font-weight: 700;
   text-transform: uppercase;
   font-size: 1.5rem;
   text-decoration: none;
-  color: #7AFED6;
+  color: #67e2c8;
 }
 
-.quizTitleContainer {
-  display: flex;
-  justify-content: center;
+.quizScoreContainer {
+  padding-top: 2px;
+  padding-bottom: 10px;
+}
+.quizScoreContainer .playerCurrentScore {
+  font-size: 1.5rem;
   font-weight: 800;
   text-transform: uppercase;
-  font-size: 1.4rem;
+  text-align: center;
+  letter-spacing: 1px;
 }
-.quizTitleContainer p {
-  font-size: 1.5rem;
-}
-.quizTitleContainer p span {
+.quizScoreContainer .playerCurrentScore span {
   text-align: center;
 }
-.quizTitleContainer span {
+.quizScoreContainer span {
   display: block;
 }
 
@@ -459,19 +496,19 @@ header {
   padding-bottom: 50px;
   justify-content: space-between;
 }
-.quizContainer p {
-  width: 45%;
-  align-self: center;
+.quizContainer h2 {
   font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0px;
+  width: 45%;
+  text-transform: none;
+  align-self: center;
 }
 
 .currentQuestion {
   border: 2px solid #64DFDF;
-  text-align: center;
   padding: 25px;
   line-height: 1.2;
-  font-weight: 500;
-  font-size: 1rem;
 }
 
 .answerContainer {
@@ -488,7 +525,7 @@ header {
   background-color: red;
 }
 
-.popupInner {
+.scoreModal {
   margin: 10vh auto;
   padding: 1rem 2.5rem 3rem 2.5rem;
   width: 70%;
@@ -496,67 +533,65 @@ header {
   border: 10px solid white;
   text-align: center;
 }
-.popupInner .playScore {
+.scoreModal .playScore {
   text-align: right;
   margin: 10px;
 }
-.popupInner .topPlayers {
+.scoreModal .topPlayers {
   text-align: center;
   font-weight: 700;
   text-transform: uppercase;
   font-size: 1.2rem;
 }
-.popupInner h1 {
+.scoreModal h1 {
   font-size: calc(2rem + 2vw);
 }
-.popupInner li {
+.scoreModal li {
   list-style: none;
   display: flex;
   justify-content: center;
   -moz-column-gap: 10px;
        column-gap: 10px;
 }
-.popupInner a {
+.scoreModal a {
   padding: 12px;
   border-radius: 15px;
   text-decoration: none;
-  color: #7AFED6;
+  color: #67e2c8;
   display: block;
   text-transform: uppercase;
   font-weight: 500;
 }
 
 @media (max-width: 951px) {
-  .playerInfoCard form input,
-.playerInfoCard form button {
+  .headerImage {
+    height: 40vh;
+  }
+
+  .playerRoboInfo form input, .playerRoboInfo form button {
     width: 100%;
   }
 }
 @media (max-width: 768px) {
-  .avatarGenerator {
+  .avatarGenerator, .quizContainer {
     flex-direction: column;
   }
 
-  .quizContainer {
-    flex-direction: column;
-  }
-
-  .answerContainer {
+  .answerContainer, .quizContainer p {
     width: 100%;
   }
 
-  .popupInner {
-    padding: 8%;
+  .scoreModal {
+    padding: 1rem;
   }
-  .popupInner h1 {
+  .scoreModal h1 {
     font-size: calc(1rem + 5vw);
-    margin-top: 0;
   }
-  .popupInner p {
+  .scoreModal p {
     font-size: calc(0.4rem + 1.5vw);
   }
-  .popupInner button {
-    margin: 10px;
+  .scoreModal button {
+    margin: 20px;
   }
 }
 @media (max-width: 575px) {
@@ -567,15 +602,24 @@ header {
     font-size: 2.5rem;
   }
 
-  .quizContainer p {
-    width: 90%;
+  .playerRoboInfo {
+    padding: 50px 20px;
+  }
+
+  label {
+    font-size: calc(1rem + 2vw);
+    padding-bottom: 20px;
   }
 
   select {
-    width: 200px;
+    width: 250px;
   }
 
-  .playerInfoCard {
+  .quizContainer h2 {
+    width: 90%;
+  }
+
+  .playerRoboInfo {
     padding: 40px 0;
   }
 }/*# sourceMappingURL=App.css.map */

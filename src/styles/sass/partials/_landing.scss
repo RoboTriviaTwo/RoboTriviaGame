@@ -1,10 +1,13 @@
 header {
     margin: 50px;
+    h1 {
+        margin-bottom: 25px;
+    }
 }
 
 .headerImage {
     background-image: url(../../../assets/robo-trivia-header-image.png);
-    height: 40vh;
+    height: 65vh;
     width: 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -12,7 +15,7 @@ header {
 }
 
 .startingLink {
-    margin-top: 35px;
+    margin: 45px 0;
     a {
         font-weight: 700;
         text-transform: uppercase;
