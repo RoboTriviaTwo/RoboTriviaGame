@@ -10,7 +10,8 @@ function App() {
   const [allPlayersArr, setAllPlayersArr] = useState([
     {
       playerName: "",
-      score: 0
+      score: 0,
+      avatar: ""
     },
   ]);
 

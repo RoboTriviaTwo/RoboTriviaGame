@@ -297,6 +297,9 @@ button {
   border-radius: 14px;
   font-weight: 500;
 }
+button:hover {
+  background-color: #28d4b0;
+}
 
 .quizRouterBtn {
   margin: 20px;
@@ -533,6 +536,10 @@ header h1 {
   background-color: #28d4b0;
 }
 
+.roboAvatar img {
+  width: 150px;
+}
+
 .correctAnswer:active.correctAnswer:hover {
   background-color: #64dc32;
 }
@@ -549,10 +556,6 @@ header h1 {
   border: 10px solid white;
   text-align: center;
 }
-.scoreModal .playScore {
-  text-align: right;
-  margin: 10px;
-}
 .scoreModal .topPlayers {
   text-align: center;
   font-weight: 700;
@@ -562,12 +565,21 @@ header h1 {
 .scoreModal h1 {
   font-size: calc(2rem + 2vw);
 }
+.scoreModal ul {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  align-items: center;
+  width: 100%;
+}
 .scoreModal li {
   list-style: none;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   -moz-column-gap: 10px;
        column-gap: 10px;
+  align-items: center;
+  width: 300px;
 }
 .scoreModal a {
   padding: 12px;
@@ -577,6 +589,26 @@ header h1 {
   display: block;
   text-transform: uppercase;
   font-weight: 500;
+}
+
+.scoreName {
+  font-weight: 800;
+}
+
+.scoreAvatar {
+  border-radius: 50%;
+  background-color: #6930C3;
+  border: 1px solid #3d09b3;
+}
+.scoreAvatar img {
+  width: 60px;
+  border-radius: 50%;
+}
+
+.currentPlayerInfo {
+  text-align: right;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
 }
 
 @media (max-width: 951px) {
@@ -609,13 +641,18 @@ header h1 {
     padding: 1rem;
   }
   .scoreModal h1 {
-    font-size: calc(1rem + 5vw);
+    font-size: calc(1rem + 3vw);
+    letter-spacing: 1px;
   }
   .scoreModal p {
     font-size: calc(0.4rem + 1.5vw);
   }
   .scoreModal button {
     margin: 20px;
+  }
+
+  .scoreAvatar {
+    margin-left: 0px;
   }
 }
 @media (max-width: 575px) {
@@ -630,8 +667,22 @@ header h1 {
     font-size: 2.5rem;
   }
 
+  .userSelectionContainer {
+    align-items: center;
+  }
+
   .playerRoboInfo {
     padding: 50px 20px;
+  }
+
+  .quizContainer h2 {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .answerContainer button {
+    font-size: 0.8rem;
+    padding: 20px 0;
   }
 
   label {
@@ -648,7 +699,48 @@ header h1 {
     width: 90%;
   }
 
+  .formSubmit button {
+    width: 150px;
+  }
+
   .playerRoboInfo {
     padding: 40px 0;
+  }
+
+  .scoreModal h1 {
+    margin-top: 30px;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+  }
+  .scoreModal ul {
+    padding: 0;
+  }
+  .scoreModal li {
+    width: 60%;
+  }
+  .scoreModal .scoreName {
+    text-align: left;
+  }
+  .scoreModal button {
+    margin: 10px;
+  }
+
+  .scoreAvatar img {
+    width: 50px;
+  }
+
+  button, .playAgainBtn {
+    font-size: 0.8rem;
+  }
+
+  .mobileUser {
+    display: flex;
+    text-align: left;
+    flex-direction: column;
+  }
+}
+@media (max-width: 380px) {
+  .scoreModal li {
+    width: 90%;
   }
 }/*# sourceMappingURL=App.css.map */

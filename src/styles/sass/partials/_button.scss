@@ -9,6 +9,9 @@ button {
     border-style: none;
     border-radius: 14px;
     font-weight: 500;
+    &:hover {
+        background-color: darken($secondary-color, 15%);
+    }
 }
 
 .quizRouterBtn {
