@@ -2,14 +2,11 @@
     padding-top: 2px;
     padding-bottom: 10px;
     .playerCurrentScore {
-        font-size: 1.5rem;
+        font-size: 1.35rem;
         font-weight: 800;
         text-transform: uppercase;
         text-align: center;
         letter-spacing: 1px;
-        span {
-            text-align: center;
-        }
     }
     span {
         display: block;
@@ -24,7 +21,6 @@
         font-size: 1.5rem;
         font-weight: 500;
         letter-spacing: 0px;
-        width: 45%;
         text-transform: none;
         align-self: center;
     }
@@ -34,6 +30,12 @@
     border: 2px solid #64DFDF;
     padding: 25px;
     line-height: 1.2;
+    border-radius: 8px;
+}
+
+.questionContainer {
+    width: 45%;
+    margin-left: 25px;
 }
 
 .answerContainer {
@@ -42,11 +44,26 @@
     width: 45%;
 }
 
+.quiz {
+    padding: 20px;
+    border: 2px solid lighten($primary-color, 14%);
+    border-radius: 10px;
+    button:hover {
+        background-color: darken($secondary-color, 15%);
+    }
+}
+
+.roboAvatar {
+    img {
+        width: 150px;
+    }
+}
+
 // Answers
-.correctAnswer:active {
+.correctAnswer:active.correctAnswer:hover {
     background-color: rgb(100, 220, 50);
 }
 
-.incorrectAnswer:active {
+.incorrectAnswer:active.incorrectAnswer:hover {
     background-color: red;
 }

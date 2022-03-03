@@ -4,22 +4,22 @@ const PlayerNames = (props) => {
         <>
             <div className="playerRoboInfo wrapper">
                 <form onSubmit={props.handleAvatarSubmit} action="">
-                    <label htmlFor="playerName">Enter your Name to Get your Robot!</label>
+                    <label htmlFor="playerName">Generate your player</label>
                     <div className="avatarGenerator">
-                        <input required onChange={props.handleUserName} type="text" id="playerName" value={props.userName} />
+                        <input required onChange={props.handleUserName} type="text" id="playerName" value={props.userName} placeholder="Your name"/>
                         <button onClick={() => {props.allPlayerArrUpdate()}}>Generate 🤖</button>
                     </div>
                 </form>
 
                 {props.avatarImage !== '' &&
                     <div className="avatarContainer">
-                        <p>Hello, {props.userName}, please meet your avatar</p>
+                        <p>Hello {props.userName}, please meet your avatar.</p>
                         <div className="avatarImageContainer">
                             <img src={`https://robohash.org/${props.avatarImage}.png`} alt='your avatar'></img>
                         </div>
                     </div> }
                 {
-                    props.avatarError ? <p className="errorMessage">Oops - Don't forget to fill out your name to meet your robot.</p> : null
+                    props.avatarError ? <p className="errorMessage">Oops - Please generate your avatar first.</p> : null
                 }
             </div>
         </>

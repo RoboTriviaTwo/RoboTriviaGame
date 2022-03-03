@@ -68,9 +68,11 @@ const UserSelectionForm = (props) => {
 
   const allPlayerArrUpdate = () => {
     let tempAllPlayersArr = [...allPlayersArr];
+    console.log(tempAllPlayersArr)
     tempAllPlayersArr[0] = {
       ...tempAllPlayersArr[0],
-      playerName: userName
+      playerName: userName,
+      avatar: `https://robohash.org/${userName}.png`
     }
     setAllPlayersArr(tempAllPlayersArr);
   }
@@ -122,7 +124,7 @@ const UserSelectionForm = (props) => {
           difficulty: userChoiceObject.userDifficulty,
         },
       }).then((res) => {
-        if (res.statusText === "OK" || res.status === 200) {
+        if (res.status === 200) {
           return res;
         } else {
           throw new Error();
@@ -164,6 +166,7 @@ const UserSelectionForm = (props) => {
     }
   }
   return (
+    <>
     <main>
       <section>
         <div className='userFormContainer'>
@@ -182,7 +185,7 @@ const UserSelectionForm = (props) => {
             submitHandler(event);
             }}
           >
-            <fieldset>
+            <fieldset className='formHeader'>
               <div className='playerChoiceCard wrapper'>
                 <label htmlFor="categoryType">Category</label>
                 <select 
@@ -222,7 +225,7 @@ const UserSelectionForm = (props) => {
             </fieldset>
 
             {
-              selectionError ? <p className='errorMessage'>Oops - there was an error!  The trivia wizards need you to pick another category.</p> : null
+              selectionError ? <p className='errorMessage'>Oops, the trivia wizards need you to pick another category.</p> : null
             }
 
             {
@@ -232,13 +235,17 @@ const UserSelectionForm = (props) => {
             <div className='formSubmit'>
                 <button type="submit">Submit 🤖 </button>
                 <div className="quizRouterBtn">
-                  {quizQuestions ? <Link to='/quiz'>Next</Link> : null}
+                  {quizQuestions ? <Link to='/quiz'>Next »</Link> : null}
                 </div>
             </div>
           </form>
         </div>
       </section>
-   </main>       
+   </main>      
+   <footer>
+        <p>Created at <a href='www.junoCollege.com'>Juno College</a> 2022</p>
+    </footer> 
+    </>
   );
 };
 

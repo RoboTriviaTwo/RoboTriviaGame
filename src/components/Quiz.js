@@ -29,7 +29,6 @@ const Quiz = (props) => {
   }
 
   const addScoreToObj = (score) => {
-    console.log(score);
     let tempAllPlayersArr = [...allPlayersArr];
     tempAllPlayersArr[0] = {
       ...tempAllPlayersArr[0],
@@ -39,16 +38,23 @@ const Quiz = (props) => {
   }
 
   return (
-    <div className="quiz wrapper">
+    <div className="wrapper">
+      <div className="roboAvatar">
+        <img src={allPlayersArr[0].avatar} alt="Your robo avatar"/>
+      </div>
+      <div className="quiz">
       {props.quizQuestions.length !== 0 ? (
       <>
         <div className="quizScoreContainer">
-          <h2 className="playerCurrentScore">Current Score <span>{currentScore}</span></h2>
+          <p>player: {allPlayersArr[0].playerName}</p>
+          <h2 className="playerCurrentScore">Score {currentScore}</h2>
         </div>
 
         <div className="quizContainer">
-            <h2 className="currentQuestion">Question: {(props.quizQuestions[currentQuestion].question).replace(/&ldquo;/g, '"').replace(/&rdquo;/g, '"').replace(/&quot;/g, '"').replace(/&rsquo;/g, "'").replace(/&Eacute;/g, "é").replace(/&#039;/g, "'").replace(/&shy;/g, "").replace(/&hellip;/g, "...").replace(/&auml;/g, "Ä").replace(/&ouml;/g, "Ö")}</h2>
-
+          <div className="questionContainer">
+            <p>Question {currentQuestion+ 1}</p>
+            <h2 className="currentQuestion">{(props.quizQuestions[currentQuestion].question).replace(/&ldquo;/g, '"').replace(/&rdquo;/g, '"').replace(/&quot;/g, '"').replace(/&rsquo;/g, "'").replace(/&Eacute;/g, "é").replace(/&#039;/g, "'").replace(/&shy;/g, "").replace(/&hellip;/g, "...").replace(/&auml;/g, "Ä").replace(/&ouml;/g, "Ö").replace(/&uuml;/g, "ü").replace(/&Ouml;/g, "Ö")}</h2>
+          </div>
           <div className="answerContainer">
             {props.quizQuestions[currentQuestion].answerButtons.map((answerItem, index) => {
                 return (
@@ -57,7 +63,7 @@ const Quiz = (props) => {
                     onClick={handleAnswerClick}
                     key={index}
                     className={answerItem.isCorrect ? "correctAnswer" : "incorrectAnswer"}
-                  >{(answerItem.name).replace(/&quot;/g, '"').replace(/&ntilde;/g, "ñ").replace(/&eacute;/g, "é").replace(/&rsquo;/g, "'").replace(/&amp;/g, "&").replace(/&Eacute;/g, "é").replace(/&#039;/g, "'").replace(/&shy;/g, "").replace(/&iacute;/g, "í").replace(/&oacute;/g, "Ó").replace(/&reg;/g, "®").replace(/&trade;/g, "™")}
+                  >{(answerItem.name).replace(/&quot;/g, '"').replace(/&ntilde;/g, "ñ").replace(/&eacute;/g, "é").replace(/&rsquo;/g, "'").replace(/&amp;/g, "&").replace(/&Eacute;/g, "é").replace(/&#039;/g, "'").replace(/&shy;/g, "").replace(/&iacute;/g, "í").replace(/&oacute;/g, "Ó").replace(/&reg;/g, "®").replace(/&trade;/g, "™").replace(/&lt;/g, "<")}
                   </button>
                 );
               }
@@ -69,8 +75,8 @@ const Quiz = (props) => {
       <ReactModal isOpen={showScoreModal} className={"scoreModal"}style={{overlay: {background: "rgba(0, 0, 0, 0.2)"}}} appElement={document.getElementsByClassName('app')}>
         <Scoreboard currentScore={currentScore} allPlayersArr={allPlayersArr}/>
       </ReactModal>
-
     </div>
+  </div>
   );
 }
 

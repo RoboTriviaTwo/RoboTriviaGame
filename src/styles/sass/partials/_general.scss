@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo:wght@400;500;700;800&display=swap');
 
 $primary-color: #1c0452;
-$secondary-color: #7AFED6;
+$secondary-color: #67e2c8;
 $tertiary-color: #6930C3;
 $accent-color: #BC9EFC;
 
@@ -50,8 +50,13 @@ label {
 
 footer {
     text-align: center;
-    padding-top: 50px;
+    padding: 8px;
+    font-size: 0.85rem;
     a {
         color: $secondary-color;
+        text-decoration: none;
+        &:hover {
+            color: darken($secondary-color, 25%);
+        }
     }
 }

@@ -10,7 +10,8 @@ function App() {
   const [allPlayersArr, setAllPlayersArr] = useState([
     {
       playerName: "",
-      score: 0
+      score: 0,
+      avatar: ""
     },
   ]);
 
@@ -35,10 +36,6 @@ function App() {
         <Route path='/welcome' element={<UserSelectionForm collectQuizQuestions={collectQuizQuestions} allPlayersArr={allPlayersArr} updatePlayerArr={updatePlayerArr}/>}/>
         <Route path='/quiz' element={<Quiz quizQuestions={quizQuestions} updatePlayerArr={updatePlayerArr} allPlayersArr={allPlayersArr}/>}/>     
       </Routes>
-
-      <footer>
-        <p>Created at <a href='www.junoCollege.com'>Juno College</a> 2022</p>
-      </footer>
     </div>
   );
 }
