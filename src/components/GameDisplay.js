@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ReactModal from "react-modal";
-import Scoreboard from "./Scoreboard.js";
+import UserScoreCard from "./UserScoreCard.js";
 
 const Quiz = (props) => {
   const { allPlayersArr } = props;
@@ -73,7 +73,7 @@ const Quiz = (props) => {
       </>) : null}
       
       <ReactModal isOpen={showScoreModal} className={"scoreModal"}style={{overlay: {background: "rgba(0, 0, 0, 0.2)"}}} appElement={document.getElementsByClassName('app')}>
-        <Scoreboard currentScore={currentScore} allPlayersArr={allPlayersArr}/>
+        <UserScoreCard currentScore={currentScore} allPlayersArr={allPlayersArr}/>
       </ReactModal>
     </div>
   </div>

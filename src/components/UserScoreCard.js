@@ -4,7 +4,7 @@ import { getDatabase, ref, onValue, set } from "firebase/database";
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 
-const Scoreboard = (props) => {
+const UserScoreCard = (props) => {
   const { allPlayersArr, currentScore } = props;
 
   // firebase data - for userObj
@@ -112,4 +112,4 @@ const Scoreboard = (props) => {
   );
 };
 
-export default Scoreboard;
+export default UserScoreCard;

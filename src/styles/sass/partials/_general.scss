@@ -1,9 +1,19 @@
 // Typography and General Styles
 @import url('https://fonts.googleapis.com/css2?family=Exo:wght@400;500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@700&display=swap');
+// $primary-color: #138f81;
+// $secondary-color: #fed2c9;
+// $tertiary-color: #FF5F40;
+// $accent-color: #C3EDEA;
 
-$primary-color: #1c0452;
-$secondary-color: #67e2c8;
-$tertiary-color: #6930C3;
+// $primary-color: #29556d;
+// $secondary-color: #A2CDCD;
+// $tertiary-color: #FAEDF0;
+// $accent-color: #BC9EFC;
+
+$primary-color: #1458a0;
+$secondary-color: #FFCBCB;
+$tertiary-color: #fae77d;
 $accent-color: #BC9EFC;
 
 html {
@@ -11,7 +21,8 @@ html {
 }
 
 body {
-    font-family: 'Exo', sans-serif;
+    font-family: 'Maven Pro', sans-serif;
+    font-weight: 800;
     text-align: center;
     color: $secondary-color;
     background-color: $primary-color;
@@ -27,12 +38,12 @@ h1,
 h2,
 h3 {
     text-transform: uppercase;
-    letter-spacing: 5px;
+    letter-spacing: 3px;
 }
 
 h1 {
     font-size: 3.5rem;
-    font-weight: 800;
+    font-weight: 700;
     span {
         color: $accent-color;
     }

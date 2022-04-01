@@ -1,0 +1,15 @@
+.playerCard {
+    display: flex;
+    column-gap: 20px;
+    .eachPlayerCard {
+        width: calc((100% / 4) - 20px);
+        .avatarImageContainer {
+            border-radius: 100px;
+            background-color: $tertiary-color;
+                img {
+                    height: 200px;
+                    border-radius: 100px;
+                }
+        }
+    }
+}

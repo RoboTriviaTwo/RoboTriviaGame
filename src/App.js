@@ -1,28 +1,37 @@
 import { Routes, Route} from 'react-router-dom';
 import { useState } from 'react';
 import LandingPage from './components/LandingPage';
-import UserSelectionForm from './components/UserSelectionForm';
-import Quiz from './components/Quiz';
+import UserSelection from './components/UserSelection';
+import Customization from './components/Customization.js';
+import GameDisplay from './components/GameDisplay';
 import './styles/sass/App.scss';
 
 function App() {
   const [quizQuestions, setQuizQuestions] = useState([]);
-  const [allPlayersArr, setAllPlayersArr] = useState([
-    {
-      playerName: "",
-      score: 0,
-      avatar: ""
-    },
-  ]);
+
+  // const [allPlayersArr, setAllPlayersArr] = useState([
+  //   {
+  //     playerName: "",
+  //     score: 0,
+  //     avatar: ""
+  //   },
+  // ]);
 
   // function to update with player's updated score on their object
-  const updatePlayerArr = (userObj) => {
-    setAllPlayersArr(userObj)
+  // const updatePlayerArr = (userObj) => {
+  //   setAllPlayersArr(userObj)
+  // }
+
+  const [playerInfo, setPlayerInfo] = useState([]); // new
+
+  const updatePlayerInfo = function(playerInfo) {
+    setPlayerInfo(playerInfo);
   }
 
-  const collectQuizQuestions = (quizQuestions, allPlayersArr) => {
-    setQuizQuestions(quizQuestions);
-    setAllPlayersArr(allPlayersArr);
+  const apiQuizSelect = (quizQuestions, allPlayersArr) => {
+    console.log("sets our quiz questions")
+    // setQuizQuestions(quizQuestions);
+    // setAllPlayersArr(allPlayersArr);
   }
 
   return (
@@ -33,8 +42,9 @@ function App() {
 
       <Routes>
         <Route path='/' element={<LandingPage />} />
-        <Route path='/welcome' element={<UserSelectionForm collectQuizQuestions={collectQuizQuestions} allPlayersArr={allPlayersArr} updatePlayerArr={updatePlayerArr}/>}/>
-        <Route path='/quiz' element={<Quiz quizQuestions={quizQuestions} updatePlayerArr={updatePlayerArr} allPlayersArr={allPlayersArr}/>}/>     
+        <Route path='/welcome' element={<UserSelection apiQuizSelect={apiQuizSelect}  updatePlayerInfo={updatePlayerInfo}/>}/>
+        <Route path='/customize' element={<Customization />}/>
+        {/* <Route path='/quiz' element={<GameDisplay quizQuestions={quizQuestions} updatePlayerArr={updatePlayerArr} allPlayersArr={allPlayersArr}/>}/>      */}
       </Routes>
     </div>
   );
