@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PlayerDisplay from './PlayerDisplay.js';
 
@@ -8,9 +8,6 @@ const UserSelectionForm = (props) => {
   const [playerNumber, setPlayerNumber] = useState(0);
   const [playerNameInput, setPlayerNameInput] = useState('');
   const [playerNumberSelect, setPlayerNumberSelect] = useState(0);
-
-  const [quizQuestions, setQuizQuestions] = useState(false);
-
 
   // functions to handle submit
   const handlePlayerNumSelect = (event) => {
@@ -27,19 +24,24 @@ const UserSelectionForm = (props) => {
     setPlayerNameInput(event.target.value);
   })
 
-  const handlePlayerNameSubmit = ((event) => {
+  const handleNewPlayerSubmit = ((event) => {
     event.preventDefault();
 
-      if (playerInfo.length < playerNumber) {
-      setPlayerInfo([...playerInfo, {
-        playerName: playerNameInput,
+    const newPlayerInfo = [
+      ...playerInfo,
+      {
+        name: playerNameInput,
+        score: 0,
         playerAvatar: `https://robohash.org/${playerNameInput}.png`
-      }])
+      }
+    ];
+
+    if (playerInfo.length <= playerNumber) {
+      setPlayerInfo(newPlayerInfo);
       setPlayerNameInput('');
+      props.updatePlayerInfo(newPlayerInfo);
     } else {
       alert("maximum numbers reached");
-      props.updatePlayerInfo(playerInfo);
-      setQuizQuestions(true);
     }
     
   })
@@ -59,7 +61,7 @@ const UserSelectionForm = (props) => {
             <button type="submit">Submit</button>
           </form>
 
-          <form onSubmit={handlePlayerNameSubmit}>
+          <form onSubmit={handleNewPlayerSubmit}>
             <label htmlFor="playerNameInput">Enter Player Names</label>
             <input type="text" id='playerNameInput' value={playerNameInput} onChange={handlePlayerNameInput} required/>
             <button type="submit">Submit</button>
@@ -68,14 +70,11 @@ const UserSelectionForm = (props) => {
 
 
           <div className="quizRouterBtn">
-            {quizQuestions ? <Link to='/customize'>Next »</Link> : null}
+            {playerInfo.length === playerNumber ? <Link to='/customize'>Next »</Link> : null}
           </div>
         </div>
       </section> 
    </main>      
-   <footer>
-        <p>Created at <a href='www.junoCollege.com'>Juno College</a> 2022</p>
-    </footer> 
     </>
   );
 };

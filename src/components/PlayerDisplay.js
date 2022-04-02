@@ -7,7 +7,8 @@ const PlayerDisplay = (prop) => {
             <div className="playerCard">
                 {prop.playerInfo.map((player, index) => 
                     <div className="eachPlayerCard" key={index}>
-                        <p>{player.playerName}</p>
+                        <p>{player.name}</p>
+                        <p>{player.score}</p>
                         <div className="avatarImageContainer">
                             <img src={player.playerAvatar} alt="Player Avatar" />
                         </div>

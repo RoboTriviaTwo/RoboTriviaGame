@@ -2,12 +2,12 @@
     display: flex;
     column-gap: 20px;
     .eachPlayerCard {
-        width: calc((100% / 4) - 20px);
+        width: calc(100px + 5vw);
         .avatarImageContainer {
             border-radius: 100px;
             background-color: $tertiary-color;
                 img {
-                    height: 200px;
+                    height: calc(100px + 5vw);
                     border-radius: 100px;
                 }
         }

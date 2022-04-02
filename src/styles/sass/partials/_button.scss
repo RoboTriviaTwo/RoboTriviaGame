@@ -24,3 +24,11 @@ button {
         color: $secondary-color;
     }
 }
+
+.formSubmit {
+    .quizRouterBtn {
+        a {
+            color: $primary-color;
+        }
+    } 
+}

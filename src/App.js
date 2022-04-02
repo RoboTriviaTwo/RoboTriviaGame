@@ -9,29 +9,14 @@ import './styles/sass/App.scss';
 function App() {
   const [quizQuestions, setQuizQuestions] = useState([]);
 
-  // const [allPlayersArr, setAllPlayersArr] = useState([
-  //   {
-  //     playerName: "",
-  //     score: 0,
-  //     avatar: ""
-  //   },
-  // ]);
-
-  // function to update with player's updated score on their object
-  // const updatePlayerArr = (userObj) => {
-  //   setAllPlayersArr(userObj)
-  // }
-
-  const [playerInfo, setPlayerInfo] = useState([]); // new
+  const [appPlayerInfo, setAppPlayerInfo] = useState([]); // new
 
   const updatePlayerInfo = function(playerInfo) {
-    setPlayerInfo(playerInfo);
+    setAppPlayerInfo(playerInfo);
   }
 
-  const apiQuizSelect = (quizQuestions, allPlayersArr) => {
-    console.log("sets our quiz questions")
-    // setQuizQuestions(quizQuestions);
-    // setAllPlayersArr(allPlayersArr);
+  const addQuizQuestions = (quizQuestions) => {
+    setQuizQuestions(quizQuestions);
   }
 
   return (
@@ -42,10 +27,13 @@ function App() {
 
       <Routes>
         <Route path='/' element={<LandingPage />} />
-        <Route path='/welcome' element={<UserSelection apiQuizSelect={apiQuizSelect}  updatePlayerInfo={updatePlayerInfo}/>}/>
-        <Route path='/customize' element={<Customization />}/>
-        {/* <Route path='/quiz' element={<GameDisplay quizQuestions={quizQuestions} updatePlayerArr={updatePlayerArr} allPlayersArr={allPlayersArr}/>}/>      */}
+        <Route path='/welcome' element={<UserSelection updatePlayerInfo={updatePlayerInfo}/>}/>
+        <Route path='/customize' element={<Customization addQuizQuestions={addQuizQuestions}/>}/>
+        <Route path='/quiz' element={<GameDisplay quizQuestions={quizQuestions} updatePlayerInfo={updatePlayerInfo} appPlayerInfo={appPlayerInfo}/>}/>     
       </Routes>
+      <footer>
+        <p>Created at <a href='www.junoCollege.com'>Juno College</a> 2022</p>
+      </footer> 
     </div>
   );
 }

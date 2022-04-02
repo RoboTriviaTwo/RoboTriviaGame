@@ -13,9 +13,6 @@ const LandingPage = (() => {
                     <Link to='/welcome'>Click here to begin</Link>
                 </div>
             </section>
-            <footer>
-                <p>Created at <a href='www.junoCollege.com'>Juno College</a> 2022</p>
-            </footer>
         </>
     )
 })
