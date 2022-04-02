@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDgjcP18ffQ0EGvq1asNFwbThLEPGenFBk",
-  authDomain: "robotriviatwo.firebaseapp.com",
-  projectId: "robotriviatwo",
-  storageBucket: "robotriviatwo.appspot.com",
-  messagingSenderId: "127249260176",
-  appId: "1:127249260176:web:f9686b98d84fd42ecb0215"
+  apiKey: "AIzaSyA3CRA7mMoa4tqdqa3Ckv8pjDtS34VLZGI",
+  authDomain: "robo-trivia-multiplayer.firebaseapp.com",
+  projectId: "robo-trivia-multiplayer",
+  storageBucket: "robo-trivia-multiplayer.appspot.com",
+  messagingSenderId: "744498971587",
+  appId: "1:744498971587:web:b70e0e35ac3a54df083376"
 };
 
 // Initialize Firebase

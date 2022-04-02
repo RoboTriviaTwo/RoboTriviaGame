@@ -4,6 +4,7 @@ import LandingPage from './components/LandingPage';
 import UserSelection from './components/UserSelection';
 import Customization from './components/Customization.js';
 import GameDisplay from './components/GameDisplay';
+import UserScoreCard from "./components/UserScoreCard.js";
 import './styles/sass/App.scss';
 
 function App() {
@@ -29,7 +30,8 @@ function App() {
         <Route path='/' element={<LandingPage />} />
         <Route path='/welcome' element={<UserSelection updatePlayerInfo={updatePlayerInfo}/>}/>
         <Route path='/customize' element={<Customization addQuizQuestions={addQuizQuestions}/>}/>
-        <Route path='/quiz' element={<GameDisplay quizQuestions={quizQuestions} updatePlayerInfo={updatePlayerInfo} appPlayerInfo={appPlayerInfo}/>}/>     
+        <Route path='/quiz' element={<GameDisplay quizQuestions={quizQuestions} updatePlayerInfo={updatePlayerInfo} appPlayerInfo={appPlayerInfo}/>}/> 
+        <Route path='/scoreboard' element={<UserScoreCard appPlayerInfo={appPlayerInfo}/>}/> 
       </Routes>
       <footer>
         <p>Created at <a href='www.junoCollege.com'>Juno College</a> 2022</p>
