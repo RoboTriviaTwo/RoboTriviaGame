@@ -13,15 +13,14 @@ const PlayerNames = (props) => {
                 </form>
 
                 { props.loading === false ?
-                    props.avatarImage.length > 0 ?
+                    props.avatarImage.length > 0 &&
                     <div className="avatarContainer">
                         <p>Hello {props.userName}, please meet your avatar.</p>
                         <div className="avatarImageContainer">
                             <img src={`${props.imgSrc}`} alt='your avatar'></img>
                         </div>
                     </div> 
-                    : <div className="loading">loading</div>
-                    : null
+                    : <div className="loading"><div></div><div></div></div>
                 }
 
                 {
