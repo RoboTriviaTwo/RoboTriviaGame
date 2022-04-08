@@ -59,27 +59,26 @@ const UserSelectionForm = (props) => {
   };
   
   const handleUserName = (event) => {
+    // setLoading(true);
     setUserName(event.target.value)
   }
 
-  const url = `https://robohash.org/${userName}.png`
-
   const allPlayerArrUpdate = (event) => {
+    const url = `https://robohash.org/${userName}.png`
+
     const avatarCall = () => {
       fetch(url).then((res) => {
-        console.log(res)
-      if(res.statusText === 'OK') {
-        console.log('true')
+      if(res.status === 200) {
         setLoading(false)
       } 
-    }).catch(err => {
+    }).catch(() => {
       avatarCall()
     })
   }
   avatarCall()
-    event.preventDefault()
-    setAvatarImage(userName)
-    setAvatarError(false)
+    event.preventDefault();
+    setAvatarImage(userName);
+    setAvatarError(false);
     let tempAllPlayersArr = [...allPlayersArr];
     tempAllPlayersArr[0] = {
       ...tempAllPlayersArr[0],
@@ -89,7 +88,6 @@ const UserSelectionForm = (props) => {
     setAllPlayersArr(tempAllPlayersArr);
   }
 
-  console.log(allPlayersArr)
   const shuffleArr = (array) => {
     let currentIndex = array.length, randomIndex;
     // While there remain elements to shuffle...
@@ -187,7 +185,6 @@ const UserSelectionForm = (props) => {
             handleUserName={handleUserName}
             userName={userName}
             allPlayerArrUpdate={allPlayerArrUpdate}
-            // handleAvatarSubmit={handleAvatarSubmit}
             loading={loading}
             avatarImage={avatarImage}
             avatarError={avatarError}
