@@ -1,5 +1,4 @@
 import { useState } from "react";
-import ReactModal from "react-modal";
 import { Navigate } from 'react-router-dom';
 import PlayerDisplay from "./PlayerDisplay.js";
 const Quiz = (props) => {
@@ -43,13 +42,12 @@ const Quiz = (props) => {
   return (
     <div className="wrapper">
       <PlayerDisplay playerInfo={appPlayerInfo}/>
-      <h2>It's player {appPlayerInfo[turnPlayer].name}'s turn</h2>
+      <h3>{appPlayerInfo[turnPlayer].name}'s up:</h3>
       <div className="quiz">
       {quizQuestions.length !== 0 && (
       <>
         <div className="quizContainer">
           <div className="questionContainer">
-            <p>Question {currentIndex + 1}</p>
             <h2 className="currentQuestion">{(quizQuestions[currentIndex].question)}</h2>
           </div>
           <div className="answerContainer">

@@ -1,17 +1,17 @@
 // Scoreboard.js
-import firebase from "./../firebase.js";
-import { getDatabase, ref, onValue, set } from "firebase/database";
-import { useState, useEffect } from "react";
+// import firebase from "./../firebase.js";
+// import { getDatabase, ref, onValue, set } from "firebase/database";
+// import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 
 const UserScoreCard = (props) => {
   const { appPlayerInfo } = props;
 
   // firebase data - for userObj
-  const [userObj, setUserObj] = useState([]);
-  const [userKey, setUserKey] = useState([]);
-  const [combineMethod, setCombineMethod] = useState(false);
-  const [initialClick, setInitialClick] = useState(0);
+  // const [userObj, setUserObj] = useState([]);
+  // const [userKey, setUserKey] = useState([]);
+  // const [combineMethod, setCombineMethod] = useState(false);
+  // const [initialClick, setInitialClick] = useState(0);
 
   // useEffect to get firebase data
   // useEffect(() => {
@@ -83,7 +83,6 @@ const UserScoreCard = (props) => {
   //     return set(childRef, userObject)      
   //   }
   // };
-console.log(appPlayerInfo[0].name);
   return (
     <div className="popup">
         <h2>High Scores</h2>      
@@ -115,7 +114,9 @@ console.log(appPlayerInfo[0].name);
         })}
         </ul> */}
         {/* <button onClick={submitHandler}>Submit Score</button> */}
-        <Link to="/" className="playAgainBtn">Play again</Link>
+        <div className="quizRouterBtn">
+          <Link to="/" className="playAgainBtn">Play again</Link>
+        </div>
     </div>
   );
 };

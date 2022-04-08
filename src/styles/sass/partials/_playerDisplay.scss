@@ -1,8 +1,11 @@
 .playerCard {
     display: flex;
+    justify-content: center;
     column-gap: 20px;
+    padding-bottom: 30px;
     .eachPlayerCard {
         width: calc(100px + 5vw);
+        text-align: center;
         .avatarImageContainer {
             border-radius: 100px;
             background-color: $tertiary-color;

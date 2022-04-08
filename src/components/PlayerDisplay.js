@@ -3,7 +3,7 @@
 const PlayerDisplay = (prop) => {
     return(
         <section>
-            <h2>Number of players: {prop.playerInfo.length}</h2>
+            {/* <p>Number of players: {prop.playerInfo.length}</p> */}
             <div className="playerCard">
                 {prop.playerInfo.map((player, index) => 
                     <div className="eachPlayerCard" key={index}>

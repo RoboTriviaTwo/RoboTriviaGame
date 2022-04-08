@@ -3,11 +3,11 @@ button {
     font-family: 'Exo', sans-serif;
     text-transform: uppercase;
     margin: 20px;
-    padding: 12px;
+    padding: 12px 25px;
     color: #252525;
     background-color: #64DFDF;
     border-style: none;
-    border-radius: 14px;
+    border-radius: 4px;
     font-weight: 500;
     &:hover {
         background-color: darken($secondary-color, 15%);
@@ -18,10 +18,15 @@ button {
     margin: 20px;
     a {
         font-size: 1.2rem;
-        font-weight: 700;
         text-transform: uppercase;
         text-decoration: none;
-        color: $secondary-color;
+        padding: 12px 25px;
+        color: #252525;
+        background-color: #64DFDF;
+        border-radius: 4px;
+        &:hover {
+            background-color: darken($secondary-color, 15%);
+        }
     }
 }
 
