@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Exo:wght@400;500;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&display=swap");
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -289,12 +289,12 @@ footer a:hover {
 button {
   font-family: "Exo", sans-serif;
   text-transform: uppercase;
-  margin: 20px;
+  margin: 10px;
   padding: 12px;
   color: #252525;
-  background-color: #64DFDF;
+  background-color: #9bd3d3;
   border-style: none;
-  border-radius: 14px;
+  border-radius: 10px;
   font-weight: 500;
 }
 button:hover {
@@ -388,13 +388,13 @@ select {
 }
 .playerRoboInfo form label {
   font-size: 1.5rem;
-  margin-bottom: 16px;
+  margin: 16px;
 }
 .playerRoboInfo form input {
   padding-left: 12px;
   width: 60%;
   align-self: center;
-  border-radius: 14px;
+  border-radius: 10px;
   border-style: none;
 }
 .playerRoboInfo form button {
@@ -424,11 +424,12 @@ select {
   font-size: 1rem;
 }
 .avatarContainer .avatarImageContainer {
-  border-radius: 100px;
+  border-radius: 50%;
   background-color: #6930C3;
 }
 .avatarContainer .avatarImageContainer img {
-  height: 200px;
+  height: 100%;
+  width: 200px;
   border-radius: 100px;
 }
 
@@ -517,10 +518,10 @@ header h1 {
 
 .headerImage {
   background-image: url(../../../assets/robo-trivia-header-image.png);
-  height: 65vh;
+  height: 58vh;
   width: 100%;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: top;
   background-size: cover;
 }
 
@@ -556,6 +557,7 @@ header h1 {
   justify-content: space-between;
 }
 .quizContainer h2 {
+  margin: 0px;
   font-size: 1.5rem;
   font-weight: 500;
   letter-spacing: 0px;

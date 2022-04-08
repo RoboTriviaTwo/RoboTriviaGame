@@ -72,13 +72,13 @@ select {
         width: 75%;
             label {
                 font-size: 1.5rem;
-                margin-bottom: 16px;
+                margin: 16px;
             }
             input {
                 padding-left: 12px;
                 width: 60%;
                 align-self: center;
-                border-radius: 14px;
+                border-radius: 10px;
                 border-style: none;
             }
             button {
@@ -109,10 +109,11 @@ select {
             font-size: 1rem;
         }
         .avatarImageContainer {
-            border-radius: 100px;
+            border-radius: 50%;
             background-color: $tertiary-color;
                 img {
-                    height: 200px;
+                    height: 100%;
+                    width: 200px;
                     border-radius: 100px;
                 }
         }
@@ -147,6 +148,7 @@ select {
     position: relative;
     width: 80px;
     height: 80px;
+    margin-bottom: 40px;
   }
   .loading div {
     position: absolute;
@@ -160,14 +162,14 @@ select {
   }
   @keyframes lds-ripple {
     0% {
-      top: 36px;
+      top: 72px;
       left: 36px;
       width: 0;
       height: 0;
       opacity: 1;
     }
     100% {
-      top: 0px;
+      top: 36px;
       left: 0px;
       width: 72px;
       height: 72px;

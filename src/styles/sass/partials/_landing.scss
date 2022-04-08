@@ -5,12 +5,21 @@ header {
     }
 }
 
+.landing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h1 {
+        margin-bottom: 0px;
+    }
+}
+
 .headerImage {
     background-image: url(../../../assets/robo-trivia-header-image.png);
-    height: 65vh;
-    width: 100%;
+    height: 62vh;
+    width: 80%;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: top;
     background-size: cover;
 }
 
@@ -19,7 +28,7 @@ header {
     a {
         font-weight: 700;
         text-transform: uppercase;
-        font-size: 1.5rem;
+        font-size: 1.6rem;
         text-decoration: none;
         color: $secondary-color;
     }
