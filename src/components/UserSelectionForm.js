@@ -31,6 +31,8 @@ const UserSelectionForm = (props) => {
   const [avatarError, setAvatarError] = useState(false);
   const [networkErrorMsg, setNetworkErrorMsg] = useState(false);
 
+  const [loading, setLoading] = useState(true);
+
   const handleCategoryChoice = (event) => {
     setUserChoiceObject((prevState) => {
       return {...prevState, userCategory: event.target.value}
@@ -60,13 +62,24 @@ const UserSelectionForm = (props) => {
     setUserName(event.target.value)
   }
 
-  const handleAvatarSubmit = (event) => {
+  const url = `https://robohash.org/${userName}.png`
+
+  const allPlayerArrUpdate = (event) => {
+    const avatarCall = () => {
+      fetch(url).then((res) => {
+        console.log(res)
+      if(res.statusText === 'OK') {
+        console.log('true')
+        setLoading(false)
+      } 
+    }).catch(err => {
+      avatarCall()
+    })
+  }
+  avatarCall()
     event.preventDefault()
     setAvatarImage(userName)
     setAvatarError(false)
-  };
-
-  const allPlayerArrUpdate = () => {
     let tempAllPlayersArr = [...allPlayersArr];
     tempAllPlayersArr[0] = {
       ...tempAllPlayersArr[0],
@@ -76,6 +89,7 @@ const UserSelectionForm = (props) => {
     setAllPlayersArr(tempAllPlayersArr);
   }
 
+  console.log(allPlayersArr)
   const shuffleArr = (array) => {
     let currentIndex = array.length, randomIndex;
     // While there remain elements to shuffle...
@@ -173,9 +187,11 @@ const UserSelectionForm = (props) => {
             handleUserName={handleUserName}
             userName={userName}
             allPlayerArrUpdate={allPlayerArrUpdate}
-            handleAvatarSubmit={handleAvatarSubmit}
+            // handleAvatarSubmit={handleAvatarSubmit}
+            loading={loading}
             avatarImage={avatarImage}
             avatarError={avatarError}
+            imgSrc={allPlayersArr[0].avatar}
           />
           <form
             className='userSelectionContainer'
