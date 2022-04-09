@@ -12,7 +12,8 @@ const Scoreboard = (props) => {
   const [userKey, setUserKey] = useState([]);
   const [combineMethod, setCombineMethod] = useState(false);
   const [initialClick, setInitialClick] = useState(0);
-
+  const [scoreSubmit, setScoreSubmit] = useState(false);
+  
   useEffect(() => {
     const database = getDatabase(firebase);
     const dbRef = ref(database);
@@ -72,7 +73,7 @@ const Scoreboard = (props) => {
 
   const submitHandler = () => {
     setInitialClick(initialClick + 1);
-
+    setScoreSubmit(true);
     // set replaces existing values at child
     if (initialClick === 0) {
       const database = getDatabase(firebase);
@@ -87,18 +88,18 @@ const Scoreboard = (props) => {
         <div className="currentPlayerInfo">
           <p className="playScore">Score: {currentScore} / 100</p>
         </div>
-        <h1>High Scores</h1>
+        <h2>High Scores</h2>
         <ul className="highScores">
         {userObj.map((user, index) => {
           return (
             <li key={index}>
                 <p className="scoreName">{user.playerName}</p>
-                <p>{user.score} / 100</p>
+                <p className="highScore">{user.score} / 100</p>
             </li>
           );
         })}
         </ul>
-        <button onClick={submitHandler}>Submit Score</button>
+        <button onClick={submitHandler}>{!scoreSubmit ? 'Submit Score': "Submitted!"}</button>
         <Link to="/" className="playAgainBtn">Play again</Link>
 
       </div>

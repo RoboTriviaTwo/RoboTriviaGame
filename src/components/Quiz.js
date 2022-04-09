@@ -25,6 +25,11 @@ const Quiz = (props) => {
         addScoreToObj(currentScore);
       }
       setShowScoreModal(true);
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
      }
   }
 
@@ -68,9 +73,9 @@ const Quiz = (props) => {
         </div>
       </>) : null}
       
-      <ReactModal isOpen={showScoreModal} className={"scoreModal"}style={{overlay: {background: "rgba(0, 0, 0, 0.2)"}}} appElement={document.getElementsByClassName('app')}>
-        <Scoreboard currentScore={currentScore} allPlayersArr={allPlayersArr}/>
-      </ReactModal>
+        <ReactModal isOpen={showScoreModal} className={"scoreModal"} overlayClassName={"ReactModal__Overlay"} style={{overlay: {background: "rgba(0, 0, 0, 0.2)"}}} appElement={document.getElementsByClassName('app')}>
+          <Scoreboard currentScore={currentScore} allPlayersArr={allPlayersArr}/>
+        </ReactModal>
     </div>
   </div>
   );

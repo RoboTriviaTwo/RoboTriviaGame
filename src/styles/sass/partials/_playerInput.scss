@@ -63,8 +63,10 @@ select {
     border: 2px solid $secondary-color;
     padding: 50px;
     color: $secondary-color;
+    margin-top: 35px;
     margin-bottom: 50px;
     border-radius: 10px;
+    width: 70%;
     form {
         display: flex;
         flex-direction: column;
@@ -72,17 +74,17 @@ select {
         width: 75%;
             label {
                 font-size: 1.5rem;
-                margin: 16px;
+                margin-bottom: 25px;
             }
             input {
                 padding-left: 12px;
-                width: 60%;
+                width: 75%;
                 align-self: center;
                 border-radius: 10px;
                 border-style: none;
             }
             button {
-                width: 40%;
+                width: 45%;
                 align-self: center;
                 background-color: $secondary-color;
                 color: $primary-color;
@@ -110,10 +112,12 @@ select {
         }
         .avatarImageContainer {
             border-radius: 50%;
+            height: 200px;
+            width: 200px;
             background-color: $tertiary-color;
                 img {
-                    height: 100%;
-                    width: 200px;
+                    height: auto;
+                    width: 100%;
                     border-radius: 100px;
                 }
         }
