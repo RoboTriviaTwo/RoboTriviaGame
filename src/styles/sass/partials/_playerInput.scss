@@ -116,8 +116,9 @@ select {
             width: 200px;
             background-color: $tertiary-color;
                 img {
-                    height: auto;
+                    height: 200px;
                     width: 100%;
+                    object-fit: cover;
                     border-radius: 100px;
                 }
         }
