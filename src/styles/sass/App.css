@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Exo:wght@400;500;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&display=swap");
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -289,12 +289,12 @@ footer a:hover {
 button {
   font-family: "Exo", sans-serif;
   text-transform: uppercase;
-  margin: 20px;
+  margin: 10px;
   padding: 12px;
   color: #252525;
-  background-color: #64DFDF;
+  background-color: #92d8d8;
   border-style: none;
-  border-radius: 14px;
+  border-radius: 10px;
   font-weight: 500;
 }
 button:hover {
@@ -377,8 +377,10 @@ select {
   border: 2px solid #67e2c8;
   padding: 50px;
   color: #67e2c8;
+  margin-top: 35px;
   margin-bottom: 50px;
   border-radius: 10px;
+  width: 70%;
 }
 .playerRoboInfo form {
   display: flex;
@@ -388,17 +390,17 @@ select {
 }
 .playerRoboInfo form label {
   font-size: 1.5rem;
-  margin-bottom: 16px;
+  margin-bottom: 25px;
 }
 .playerRoboInfo form input {
   padding-left: 12px;
-  width: 60%;
+  width: 75%;
   align-self: center;
-  border-radius: 14px;
+  border-radius: 10px;
   border-style: none;
 }
 .playerRoboInfo form button {
-  width: 40%;
+  width: 45%;
   align-self: center;
   background-color: #67e2c8;
   color: #1c0452;
@@ -424,11 +426,14 @@ select {
   font-size: 1rem;
 }
 .avatarContainer .avatarImageContainer {
-  border-radius: 100px;
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
   background-color: #6930C3;
 }
 .avatarContainer .avatarImageContainer img {
-  height: 200px;
+  height: auto;
+  width: 100%;
   border-radius: 100px;
 }
 
@@ -454,20 +459,81 @@ select {
   font-size: 1.1rem;
 }
 
+.loading {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 40px;
+}
+
+.loading div {
+  position: absolute;
+  border: 4px solid #fff;
+  opacity: 1;
+  border-radius: 50%;
+  -webkit-animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+          animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.loading div:nth-child(2) {
+  -webkit-animation-delay: -0.5s;
+          animation-delay: -0.5s;
+}
+
+@-webkit-keyframes lds-ripple {
+  0% {
+    top: 72px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 36px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
+
+@keyframes lds-ripple {
+  0% {
+    top: 72px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 36px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
 header {
   margin: 50px;
 }
 header h1 {
-  margin-bottom: 25px;
+  margin-bottom: 0px;
+}
+
+.landing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .headerImage {
   background-image: url(../../../assets/robo-trivia-header-image.png);
-  height: 65vh;
-  width: 100%;
+  height: 60vh;
+  width: 80%;
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
+  background-position: top;
+  background-size: cover;
 }
 
 .startingLink {
@@ -476,7 +542,7 @@ header h1 {
 .startingLink a {
   font-weight: 700;
   text-transform: uppercase;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   text-decoration: none;
   color: #67e2c8;
 }
@@ -500,8 +566,10 @@ header h1 {
   display: flex;
   padding-bottom: 50px;
   justify-content: space-between;
+  margin-top: 15px;
 }
 .quizContainer h2 {
+  margin: 0px;
   font-size: 1.5rem;
   font-weight: 500;
   letter-spacing: 0px;
@@ -517,17 +585,24 @@ header h1 {
 }
 
 .questionContainer {
-  width: 45%;
+  width: 46%;
+  margin-top: 15px;
   margin-left: 25px;
+}
+.questionContainer h2 {
+  line-height: 1.35;
 }
 
 .answerContainer {
   display: flex;
   flex-direction: column;
-  width: 45%;
+  width: 47%;
 }
 
 .quiz {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 25px;
   padding: 20px;
   border: 2px solid #330796;
   border-radius: 10px;
@@ -541,34 +616,47 @@ header h1 {
 }
 
 .correctAnswer:active.correctAnswer:hover {
-  background-color: #64dc32;
+  background-color: rgb(100, 220, 50);
 }
 
 .incorrectAnswer:active.incorrectAnswer:hover {
   background-color: red;
 }
 
+.ReactModal__Overlay {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
 .scoreModal {
   margin: 10vh auto;
   padding: 1rem 2.5rem 3rem 2.5rem;
-  width: 70%;
+  width: 60%;
+  border-radius: 10px;
   background-color: #1c0452;
-  border: 10px solid white;
+  border: 8px solid #fff;
   text-align: center;
 }
-.scoreModal .topPlayers {
-  text-align: center;
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 1.2rem;
-}
-.scoreModal h1 {
-  font-size: calc(2rem + 2vw);
+.scoreModal h2 {
+  font-weight: 800;
+  font-size: calc(1.2rem + 2vw);
+  margin: 30px 0 18px 0;
 }
 .scoreModal ul {
   display: flex;
   flex-direction: column;
-  row-gap: 20px;
   align-items: center;
   width: 100%;
 }
@@ -576,13 +664,10 @@ header h1 {
   list-style: none;
   display: flex;
   justify-content: space-between;
-  -moz-column-gap: 10px;
-       column-gap: 10px;
   align-items: center;
   width: 300px;
 }
 .scoreModal a {
-  padding: 12px;
   border-radius: 15px;
   text-decoration: none;
   color: #67e2c8;
@@ -590,9 +675,17 @@ header h1 {
   text-transform: uppercase;
   font-weight: 500;
 }
+.scoreModal p {
+  font-size: 1.1rem;
+}
 
 .scoreName {
-  font-weight: 800;
+  text-transform: uppercase;
+  margin: 10px 0;
+}
+
+.highScore {
+  font-weight: 700;
 }
 
 .scoreAvatar {
@@ -611,9 +704,21 @@ header h1 {
        column-gap: 10px;
 }
 
+.popup button {
+  padding: 15px 30px;
+  background-color: #67e2c8;
+}
+.popup button:hover {
+  background-color: #28d4b0;
+}
+
+.playAgainBtn {
+  margin-top: 20px;
+}
+
 @media (max-width: 951px) {
   .headerImage {
-    height: 50vh;
+    height: 60vh;
   }
 
   .playerRoboInfo form input, .playerRoboInfo form button {
@@ -622,7 +727,7 @@ header h1 {
 }
 @media (max-width: 768px) {
   .headerImage {
-    height: 35vh;
+    height: 45vh;
   }
 
   .avatarGenerator, .quizContainer {
@@ -657,22 +762,64 @@ header h1 {
 }
 @media (max-width: 575px) {
   .headerImage {
-    height: 25vh;
+    margin-top: 40px;
+    height: 35vh;
+    width: 100%;
   }
 
   header span {
     display: block;
   }
   header h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
+  }
+
+  .startingLink a {
+    font-size: 1.2rem;
+  }
+
+  .playerRoboInfo {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+  .playerRoboInfo form input {
+    text-align: center;
+    padding: 14px;
+    font-size: 1rem;
+    border-radius: 6px;
+  }
+  .playerRoboInfo form label {
+    font-size: 1.2rem;
+    padding-bottom: 20px;
+    margin: 10px 0;
+  }
+  .playerRoboInfo form button {
+    font-size: 1rem;
+    border-radius: 6px;
+  }
+
+  .formSubmit button {
+    font-size: 1rem;
+    border-radius: 6px;
+  }
+
+  .playerChoiceCard {
+    margin: 10px 0;
   }
 
   .userSelectionContainer {
     align-items: center;
   }
+  .userSelectionContainer select {
+    border-radius: 6px;
+  }
 
   .playerRoboInfo {
     padding: 50px 20px;
+  }
+
+  .avatarContainer .avatarImageContainer img {
+    width: 120px;
   }
 
   .quizContainer h2 {
@@ -680,14 +827,42 @@ header h1 {
     line-height: 1.4;
   }
 
-  .answerContainer button {
-    font-size: 0.8rem;
-    padding: 20px 0;
+  .quiz {
+    margin: 0;
+    margin-bottom: 60px;
+    width: 100%;
+    border: none;
   }
 
-  label {
-    font-size: calc(1rem + 2vw);
-    padding-bottom: 20px;
+  .quizScoreContainer {
+    padding: 0px;
+  }
+  .quizScoreContainer p, .quizScoreContainer h2 {
+    margin: 15px 0;
+  }
+  .quizScoreContainer p, .quizScoreContainer .playerCurrentScore {
+    font-size: 1.1rem;
+  }
+
+  .quizContainer {
+    padding-bottom: 0px;
+  }
+  .quizContainer .questionContainer {
+    width: 100%;
+  }
+  .quizContainer .currentQuestion {
+    margin: 20px 0;
+  }
+
+  .questionContainer h2 {
+    line-height: 1.5;
+  }
+
+  .answerContainer button {
+    width: 100%;
+    font-size: 0.8rem;
+    margin: 8px 0;
+    padding: 15px 20px;
   }
 
   select {
@@ -700,36 +875,34 @@ header h1 {
   }
 
   .formSubmit button {
-    width: 150px;
+    width: 250px;
   }
 
   .playerRoboInfo {
     padding: 40px 0;
   }
 
-  .scoreModal h1 {
-    margin-top: 30px;
+  .scoreModal {
+    border-width: 5px;
+    width: 80%;
+  }
+  .scoreModal h2 {
+    margin-top: 60px;
     font-size: 1.4rem;
     letter-spacing: 1px;
   }
   .scoreModal ul {
+    margin: 20px auto;
+    width: 80%;
     padding: 0;
   }
-  .scoreModal li {
-    width: 60%;
-  }
-  .scoreModal .scoreName {
-    text-align: left;
-  }
-  .scoreModal button {
-    margin: 10px;
-  }
-
-  .scoreAvatar img {
-    width: 50px;
+  .scoreModal .scoreName, .scoreModal .highScore {
+    font-size: 0.8rem;
   }
 
   button, .playAgainBtn {
+    margin-top: 10px;
+    margin-bottom: 20px;
     font-size: 0.8rem;
   }
 

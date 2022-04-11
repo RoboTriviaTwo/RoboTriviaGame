@@ -12,13 +12,12 @@ const Scoreboard = (props) => {
   const [userKey, setUserKey] = useState([]);
   const [combineMethod, setCombineMethod] = useState(false);
   const [initialClick, setInitialClick] = useState(0);
-
-  // useEffect to get firebase data
+  const [scoreSubmit, setScoreSubmit] = useState(false);
+  
   useEffect(() => {
     const database = getDatabase(firebase);
     const dbRef = ref(database);
 
-    // add an event listener to call data 'response'
     onValue(dbRef, (response) => {
       // storing new state
       const newState = [];
@@ -30,8 +29,8 @@ const Scoreboard = (props) => {
 
       setUserObj(newState[0].name);
       setUserKey(newState[0].key);
-      // runs combine method
-      // compares current score with db scores to remove min score
+
+      // combines and compares current score with db scores 
       setCombineMethod(true);
     });
   }, []);
@@ -65,7 +64,6 @@ const Scoreboard = (props) => {
     });
 
     // finds index of min score
-    // from allUsers array
     const index = allUsers.indexOf(minScoreUser);
 
     // splice removes from array
@@ -75,8 +73,8 @@ const Scoreboard = (props) => {
 
   const submitHandler = () => {
     setInitialClick(initialClick + 1);
-
-    // replaces existing values at child
+    setScoreSubmit(true);
+    // set replaces existing values at child
     if (initialClick === 0) {
       const database = getDatabase(firebase);
       const childRef = ref(database, `/${userKey}`);
@@ -90,21 +88,18 @@ const Scoreboard = (props) => {
         <div className="currentPlayerInfo">
           <p className="playScore">Score: {currentScore} / 100</p>
         </div>
-        <h1>High Scores</h1>
+        <h2>High Scores</h2>
         <ul className="highScores">
         {userObj.map((user, index) => {
           return (
             <li key={index}>
                 <p className="scoreName">{user.playerName}</p>
-                <p>{user.score} / 100</p>
-              <div className="scoreAvatar">
-                <img src={user.avatar} alt="Your avatar" />
-              </div>
+                <p className="highScore">{user.score} / 100</p>
             </li>
           );
         })}
         </ul>
-        <button onClick={submitHandler}>Submit Score</button>
+        <button onClick={submitHandler}>{!scoreSubmit ? 'Submit Score': "Submitted!"}</button>
         <Link to="/" className="playAgainBtn">Play again</Link>
 
       </div>

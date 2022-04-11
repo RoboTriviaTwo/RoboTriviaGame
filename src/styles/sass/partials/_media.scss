@@ -1,6 +1,6 @@
 @media (max-width: 951px) {
     .headerImage {
-        height: 50vh;
+        height: 60vh;
     }
     .playerRoboInfo {
         form {
@@ -13,7 +13,7 @@
 
 @media (max-width: 768px) {
     .headerImage {
-        height: 35vh;
+        height: 45vh;
     }
 
     .avatarGenerator, .quizContainer {
@@ -50,7 +50,9 @@
 
 @media (max-width: 575px) {
     .headerImage {
-        height: 25vh;
+        margin-top: 40px;
+        height: 35vh;
+        width: 100%;
     }
 
     header {
@@ -58,18 +60,67 @@
             display: block;
         }
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
         }
+    }
+
+    .startingLink {
+        a {
+            font-size: 1.2rem;
+        }
+    }
+
+    .playerRoboInfo {
+        width: 90%;
+        margin-bottom: 20px;
+        form {
+            input {
+                text-align: center;
+                padding: 14px;
+                font-size: 1rem;
+                border-radius: 6px;
+            }
+            label {
+                font-size: 1.2rem;
+                padding-bottom: 20px;
+                margin: 10px 0;
+            }
+            button {
+                font-size: 1rem;
+                border-radius: 6px;
+            }
+        }
+    }
+
+    .formSubmit {
+        button {
+            font-size: 1rem;
+            border-radius: 6px;
+        }
+    }
+    
+    .playerChoiceCard {
+        margin: 10px 0;
     }
 
     .userSelectionContainer {
         align-items: center;
+        select {
+            border-radius: 6px;
+        }
     }
     
     .playerRoboInfo {
         padding: 50px 20px;
     }
 
+    .avatarContainer {
+        .avatarImageContainer {
+            img {
+                width: 120px;
+            }
+        }
+    }
     .quizContainer {
         h2 {
             font-size: 1rem;
@@ -77,16 +128,45 @@
         }
     }
 
-    .answerContainer {
-        button {
-            font-size: 0.8rem;
-            padding: 20px 0;
+    .quiz {
+        margin: 0;
+        margin-bottom: 60px;
+        width: 100%;
+        border: none;
+    }
+
+    .quizScoreContainer {
+        padding: 0px;
+        p, h2 {
+            margin: 15px 0;
+        }
+        p, .playerCurrentScore {
+            font-size: 1.1rem;
         }
     }
 
-    label {
-        font-size: calc(1rem + 2vw);
-        padding-bottom: 20px;
+    .quizContainer {
+        padding-bottom: 0px;
+        .questionContainer {
+            width: 100%;
+        }
+        .currentQuestion {
+            margin: 20px 0;
+        }
+    }
+
+    .questionContainer {
+        h2 {
+            line-height: 1.5;
+        }
+    }
+    .answerContainer {
+        button {
+            width: 100%;
+            font-size: 0.8rem;
+            margin: 8px 0;
+            padding: 15px 20px;
+        }
     }
 
     select {
@@ -100,7 +180,7 @@
 
     .formSubmit {
         button {
-            width: 150px;
+            width: 250px;
         }
     }
     .playerRoboInfo {
@@ -108,32 +188,26 @@
     }
 
     .scoreModal {
-        h1 {
-            margin-top: 30px;
+        border-width: 5px;
+        width: 80%;
+        h2 {
+            margin-top: 60px;
             font-size: 1.4rem;
             letter-spacing: 1px;
         }
         ul {
+            margin: 20px auto;
+            width: 80%;
             padding: 0;
         }
-        li {
-            width: 60%;
+        .scoreName, .highScore {
+            font-size: 0.8rem;
         }
-        .scoreName {
-            text-align: left;
-        }
-        button {
-            margin: 10px;
-        }
-    }
-
-    .scoreAvatar {
-        img {
-            width: 50px;
-          }
     }
 
     button, .playAgainBtn {
+        margin-top: 10px;
+        margin-bottom: 20px;
         font-size: 0.8rem;
     }
 

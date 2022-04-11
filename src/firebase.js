@@ -10,7 +10,7 @@ const firebaseConfig = {
   projectId: "robotriviatwo",
   storageBucket: "robotriviatwo.appspot.com",
   messagingSenderId: "127249260176",
-  appId: "1:127249260176:web:f9686b98d84fd42ecb0215",
+  appId: "1:127249260176:web:f9686b98d84fd42ecb0215"
 };
 
 // Initialize Firebase

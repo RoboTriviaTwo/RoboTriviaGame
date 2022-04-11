@@ -4,11 +4,9 @@ import { Link } from 'react-router-dom';
 import PlayerNames from './PlayerNames.js';
 
 const UserSelectionForm = (props) => {
-
   const difficultyArr = ["easy", "medium", "hard"];
   const [categoryArr, setCategoryArr] = useState([]);
   
-  // useStates from form component - for second api call
   const [userChoiceObject, setUserChoiceObject] = useState({
     userCategory: '',
     userDifficulty: '',
@@ -27,10 +25,13 @@ const UserSelectionForm = (props) => {
     },
   ]);
 
-  const [selectionError, setSelectionError] = useState(false);
+  // error messages
   const [avatarError, setAvatarError] = useState(false);
-  const [networkErrorMsg, setNetworkErrorMsg] = useState(false);
+  const [selectionError, setSelectionError] = useState(false);
+  const [networkError, setNetworkError] = useState(false);
 
+  const [loading, setLoading] = useState(false);
+  
   const handleCategoryChoice = (event) => {
     setUserChoiceObject((prevState) => {
       return {...prevState, userCategory: event.target.value}
@@ -60,13 +61,23 @@ const UserSelectionForm = (props) => {
     setUserName(event.target.value)
   }
 
-  const handleAvatarSubmit = (event) => {
-    event.preventDefault()
-    setAvatarImage(userName)
-    setAvatarError(false)
-  };
+  const allPlayerArrUpdate = (event) => {
+    setLoading(true);
+    const url = `https://robohash.org/${userName}.png`
 
-  const allPlayerArrUpdate = () => {
+    const avatarCall = () => {
+      fetch(url).then((res) => {
+      if(res.status === 200) {
+        setLoading(false)
+      } 
+    }).catch(() => {
+      avatarCall()
+    })
+  }
+  avatarCall()
+    event.preventDefault();
+    setAvatarImage(userName);
+    setAvatarError(false);
     let tempAllPlayersArr = [...allPlayersArr];
     tempAllPlayersArr[0] = {
       ...tempAllPlayersArr[0],
@@ -105,7 +116,7 @@ const UserSelectionForm = (props) => {
         setCategoryArr(res.data.trivia_categories);
       }).catch((err) => {
         if (err.message === "Network Error") {
-          setNetworkErrorMsg(true); 
+          setNetworkError(true); 
         }
       });
   }, []);
@@ -159,7 +170,7 @@ const UserSelectionForm = (props) => {
           return res;
         }).catch((err) => {
           if (err.message === "Network Error") {
-            setNetworkErrorMsg(true); 
+            setNetworkError(true); 
           }
         });
     }
@@ -173,9 +184,10 @@ const UserSelectionForm = (props) => {
             handleUserName={handleUserName}
             userName={userName}
             allPlayerArrUpdate={allPlayerArrUpdate}
-            handleAvatarSubmit={handleAvatarSubmit}
+            loading={loading}
             avatarImage={avatarImage}
             avatarError={avatarError}
+            imgSrc={allPlayersArr[0].avatar}
           />
           <form
             className='userSelectionContainer'
@@ -212,13 +224,13 @@ const UserSelectionForm = (props) => {
                   onChange={handleDifficultyChoice}
                   value={userChoiceObject.userDifficulty}
                 >
-                  <option value="placeholder" default hidden>Pick One</option>
+                    <option value="placeholder" default hidden>Pick One</option>
 
-                  {difficultyArr.map((difficultyItem) => {
-                    return (
-                      <option key={difficultyItem} value={difficultyItem}>{`${difficultyItem}`}</option>
-                    );
-                  })}
+                    {difficultyArr.map((difficultyItem) => {
+                      return (
+                        <option key={difficultyItem} value={difficultyItem}>{`${difficultyItem}`}</option>
+                      );
+                    })}
                 </select>
               </div>
             </fieldset>
@@ -228,7 +240,7 @@ const UserSelectionForm = (props) => {
             }
 
             {
-              networkErrorMsg ? <p className='errorMessage'>Sorry – there was an issue while making the request. Please check again later.</p> : null
+              networkError ? <p className='errorMessage'>Sorry – there was an issue while making the request. Please check again later.</p> : null
             }
 
             <div className='formSubmit'>
@@ -240,9 +252,10 @@ const UserSelectionForm = (props) => {
           </form>
         </div>
       </section>
-   </main>      
-   <footer>
+    </main>      
+    <footer>
         <p>Created at <a href='www.junoCollege.com'>Juno College</a> 2022</p>
+        <p>CSS loader from loading.io</p>
     </footer> 
     </>
   );

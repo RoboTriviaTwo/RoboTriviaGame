@@ -25,6 +25,11 @@ const Quiz = (props) => {
         addScoreToObj(currentScore);
       }
       setShowScoreModal(true);
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
      }
   }
 
@@ -39,20 +44,16 @@ const Quiz = (props) => {
 
   return (
     <div className="wrapper">
-      <div className="roboAvatar">
-        <img src={allPlayersArr[0].avatar} alt="Your robo avatar"/>
-      </div>
       <div className="quiz">
       {props.quizQuestions.length !== 0 ? (
       <>
         <div className="quizScoreContainer">
-          <p>player: {allPlayersArr[0].playerName}</p>
+          <p>Question {currentQuestion+ 1}</p>
           <h2 className="playerCurrentScore">Score {currentScore}</h2>
         </div>
 
         <div className="quizContainer">
           <div className="questionContainer">
-            <p>Question {currentQuestion+ 1}</p>
             <h2 className="currentQuestion">{(props.quizQuestions[currentQuestion].question).replace(/&ldquo;/g, '"').replace(/&rdquo;/g, '"').replace(/&quot;/g, '"').replace(/&rsquo;/g, "'").replace(/&Eacute;/g, "é").replace(/&#039;/g, "'").replace(/&shy;/g, "").replace(/&hellip;/g, "...").replace(/&auml;/g, "Ä").replace(/&ouml;/g, "Ö").replace(/&uuml;/g, "ü").replace(/&Ouml;/g, "Ö")}</h2>
           </div>
           <div className="answerContainer">
@@ -72,9 +73,9 @@ const Quiz = (props) => {
         </div>
       </>) : null}
       
-      <ReactModal isOpen={showScoreModal} className={"scoreModal"}style={{overlay: {background: "rgba(0, 0, 0, 0.2)"}}} appElement={document.getElementsByClassName('app')}>
-        <Scoreboard currentScore={currentScore} allPlayersArr={allPlayersArr}/>
-      </ReactModal>
+        <ReactModal isOpen={showScoreModal} className={"scoreModal"} overlayClassName={"ReactModal__Overlay"} style={{overlay: {background: "rgba(0, 0, 0, 0.2)"}}} appElement={document.getElementsByClassName('app')}>
+          <Scoreboard currentScore={currentScore} allPlayersArr={allPlayersArr}/>
+        </ReactModal>
     </div>
   </div>
   );
